@@ -1,6 +1,9 @@
 package project.client;
 
+import gui.GUI;
 import project.shared.FieldVerifier;
+import backend.Configuration;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -39,6 +42,15 @@ public class AAMarsProject implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		final GUI mainGUI = new GUI(new Configuration());
+		//RootPanel.get().add(mainGUI);		
+		
+		
+		
+		
+		
+		
+		
 		final Button sendButton = new Button("Send");
 		final TextBox nameField = new TextBox();
 		nameField.setText("GWT User");
