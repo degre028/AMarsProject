@@ -1,4 +1,4 @@
-package backend;
+package project.backend;
 
 public class Module {
 
