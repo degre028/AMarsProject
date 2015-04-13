@@ -33,7 +33,7 @@ public class AAMarsProject implements EntryPoint {
 			+ "connection and try again.";
 
 	/**
-	 * Create a remote service proxy to talk to the server-side Greeting service.
+	 * Create a remote serviceproxy to talk to the server-side Greeting service.
 	 */
 	private final GreetingServiceAsync greetingService = GWT
 			.create(GreetingService.class);

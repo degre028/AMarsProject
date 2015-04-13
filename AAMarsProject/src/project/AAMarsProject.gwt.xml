@@ -27,6 +27,7 @@
   <source path='shared'/>
   <source path='gui'/>
   <source path='backend'/>
+  <source path='controlpanel'/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>

@@ -1,6 +1,8 @@
 package project.gui;
 
 import project.backend.Configuration;
+import project.controlpanel.CtrlAddModule;
+import project.controlpanel.CtrlPanel;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Button;
@@ -27,6 +29,11 @@ public class GUI extends Composite {
 	 * Modules and such are referred to by public methods in liveConfig.
 	 */
 	private Configuration liveConfig;
+	/**
+	 * Global variable for the Flex Table that stores the four main
+	 * quandrents of the GUI.
+	 */
+	private FlexTable fTable;
 	
 	
 	/**
@@ -36,6 +43,7 @@ public class GUI extends Composite {
 	 */
 	public GUI(Configuration passedConfig) {
 		liveConfig = passedConfig;
+		fTable = new FlexTable();
 		
 
 	      
@@ -50,7 +58,6 @@ public class GUI extends Composite {
 	 */
 	private VerticalPanel makeMainPanel() {
 	    VerticalPanel panel = new VerticalPanel();
-		FlexTable fTable = new FlexTable();
 		
 
 		
@@ -60,7 +67,7 @@ public class GUI extends Composite {
 		controlPanel.setWidth("224px");
 		
 		fTable.setWidget(0,0, buildCanvasArea("800px","568px"));
-		fTable.setWidget(0,1, buildControlArea("224px","568px"));
+		fTable.setWidget(0,1, buildControlArea("224px","568px",new CtrlPanel()));
 		fTable.setWidget(1,0, buildButtonArea("800px","200px"));
 		fTable.setWidget(1,1, buildStatusArea("214px","190px"));
 	      
@@ -82,8 +89,11 @@ public class GUI extends Composite {
 		bArea.getElement().getStyle().setBackgroundColor("#77FF77");
 		
 		//Dummy Code for area.
-		Label dumbLabel = new Label("Button Area");
-		bArea.add(dumbLabel);
+		//Label dumbLabel = new Label("Button Area");
+		//bArea.add(dumbLabel);
+		
+		//Add the button area
+		bArea.add(new ButtonArea(this));
 		
 		return bArea;
 	}
@@ -116,15 +126,12 @@ public class GUI extends Composite {
 	 * @param hieght Height of the control panel.  This can be tweaked in the calling method.
 	 * @return FlowPAnel representation of the control panel area.
 	 */
-	private FlowPanel buildControlArea(String width, String height) {
-		FlowPanel controlPanel = new FlowPanel();
+	private CtrlPanel buildControlArea(String width, String height, CtrlPanel controlPanel) {
 		controlPanel.setHeight(height);
 		controlPanel.setWidth(width);
 		controlPanel.getElement().getStyle().setBackgroundColor("#7777FF");
+		controlPanel.getElement().getStyle().setPadding(5.0, Unit.PX);
 		
-		//Dummy Code for area.
-		Label dumbLabel = new Label("Control Area");
-		controlPanel.add(dumbLabel);
 		
 		return controlPanel;
 	
@@ -160,6 +167,14 @@ public class GUI extends Composite {
 	    
 		return statusPanel;
 	
+	}
+	
+	/**
+	 * Method used to change the control area in response to a button press.
+	 * @param control
+	 */
+	public void updateControlArea(CtrlPanel control) {
+		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
 	}
 	
 	
