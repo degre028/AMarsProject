@@ -31,7 +31,7 @@ public class GUI extends Composite {
 	private Configuration liveConfig;
 	/**
 	 * Global variable for the Flex Table that stores the four main
-	 * quadrants of the GUI.
+	 * quandrents of the GUI.
 	 */
 	private FlexTable fTable;
 	
@@ -130,7 +130,7 @@ public class GUI extends Composite {
 		controlPanel.setHeight(height);
 		controlPanel.setWidth(width);
 		controlPanel.getElement().getStyle().setBackgroundColor("#7777FF");
-		controlPanel.getElement().getStyle().setPadding(5.0, Unit.PX);
+		
 		
 		
 		return controlPanel;
@@ -159,6 +159,9 @@ public class GUI extends Composite {
 	    lb.addItem("Plain = 40");
 	    lb.addItem("Dormitory = 20");
 	    lb.addItem("etc.");
+	    
+	    
+	    
 	    lb.setWidth("100%");
 	    
 	    lb.setVisibleItemCount(8);
