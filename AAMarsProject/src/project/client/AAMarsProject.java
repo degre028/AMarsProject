@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -45,8 +46,12 @@ public class AAMarsProject implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		//final GUI mainGUI = new GUI(new Configuration());
-		//RootPanel.get().add(mainGUI);		
-		final Login log1 = new Login(new Passwd());
-		RootPanel.get().add(log1);
+		//RootPanel.get().add(mainGUI);
+		final FlowPanel flo1 = new FlowPanel();
+		final Login log1 = new Login(new Passwd(), flo1);
+		flo1.add(log1);
+		RootPanel.get().add(flo1);
+		
+		
 	}
 }

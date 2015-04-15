@@ -1,6 +1,7 @@
 package project.gui;
 
 import project.backend.Configuration;
+import project.backend.ModuleSet;
 import project.controlpanel.CtrlAddModule;
 import project.controlpanel.CtrlPanel;
 
@@ -28,7 +29,7 @@ public class GUI extends Composite {
 	 * Global variable for the live Configuration.  
 	 * Modules and such are referred to by public methods in liveConfig.
 	 */
-	private Configuration liveConfig;
+	private ModuleSet moduleSet;
 	/**
 	 * Global variable for the Flex Table that stores the four main
 	 * quandrents of the GUI.
@@ -41,8 +42,8 @@ public class GUI extends Composite {
 	 * and build the UI displayed in the onModuleLoad method (main method).  It does this with a series of
 	 * private method calls.
 	 */
-	public GUI(Configuration passedConfig) {
-		liveConfig = passedConfig;
+	public GUI(ModuleSet modset) {
+		moduleSet = modset;
 		fTable = new FlexTable();
 		
 

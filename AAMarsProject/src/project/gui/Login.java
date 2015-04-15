@@ -1,5 +1,6 @@
 package project.gui;
 
+import project.backend.ModuleSet;
 import project.backend.Passwd;
 
 import com.google.gwt.dom.client.Style.Unit;
@@ -19,7 +20,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Login extends Composite {
 	
-	public Login(final Passwd passwd){
+	public Login(final Passwd passwd, final FlowPanel homePanel){
 		//Creating mainPanel and setting dimensions
 		VerticalPanel mainPanel = new VerticalPanel();
 		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -57,9 +58,11 @@ public class Login extends Composite {
 				String passCheck = passTest.getText();
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
-					userLabel.setText("Rob");
+					homePanel.remove(0);
+					homePanel.add(new GUI(new ModuleSet()));
+					
 				}
-				//System.out.println("Hello World");
+				//System.out.println("Hello World");	
 			}
 		});
 		
