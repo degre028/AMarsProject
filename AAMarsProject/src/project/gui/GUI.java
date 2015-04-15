@@ -31,7 +31,7 @@ public class GUI extends Composite {
 	private Configuration liveConfig;
 	/**
 	 * Global variable for the Flex Table that stores the four main
-	 * quandrents of the GUI.
+	 * quadrants of the GUI.
 	 */
 	private FlexTable fTable;
 	
