@@ -15,12 +15,15 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Login extends Composite {
 	
 	public Login(final Passwd passwd, final FlowPanel homePanel){
+	
+		
 		//Creating mainPanel and setting dimensions
 		VerticalPanel mainPanel = new VerticalPanel();
 		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -31,10 +34,20 @@ public class Login extends Composite {
 		
 		//Creating the Inner Panel
 		FlowPanel innerPanel = new FlowPanel();
+		innerPanel.getElement().getStyle().setPadding(350, Unit.PX);
+
 		FlexTable userpassPanel = new FlexTable(); 
 		userpassPanel.getElement().getStyle().setPadding(10.0, Unit.PX);
 
+		//Popup When incorrect login
+        final PopupPanel popup = new PopupPanel();
+        popup.setVisible(false);
+        final Label loginFail = new Label("Login Failed");
+		popup.getElement().getStyle().setBackgroundColor("#FF0000");
+        loginFail.getElement().getStyle().setPadding(12, Unit.PX);
+        loginFail.getElement().getStyle().setFontSize(2, Unit.EM);
 
+		//loginFail.setPixelSize(80, 100);
 		
 		//Creating Elements adding padding
 		Label logLabel = new Label("Login Menu");
@@ -53,19 +66,29 @@ public class Login extends Composite {
 		passLabel.getElement().getStyle().setPadding(8.0, Unit.PX);
 		final PasswordTextBox passTest = new PasswordTextBox();
 		
+		int countClick = 0;
+		int countInner = 0;
+
 		Button loginButton = new Button("Login", new ClickHandler(){
 			public void onClick(ClickEvent event){
+				//countInner++;
 				String passCheck = passTest.getText();
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
 					homePanel.remove(0);
-					homePanel.add(new GUI(new ModuleSet()));
-					
+					homePanel.add(new GUI(new ModuleSet()));					
+				} else {
+					//countInner = countClick + countInner;
+					loginFail.setText("Login Attempt Failed ");
+			        popup.setVisible(true);
 				}
-				//System.out.println("Hello World");	
 			}
 		});
+
 		
+		
+
+		loginButton.getElement().getStyle().setPadding(8.0, Unit.PX);
 		loginButton.setSize("100px", "50px");
 	    
 		//CheckBox showTest = new CheckBox("Show Password?");
@@ -81,11 +104,16 @@ public class Login extends Composite {
 		userpassPanel.setWidget(1, 1, passTest);
 		//mainPanel.add(showTest);
 		
+		//PopUp Panel Adding
+        popup.add(loginFail);
+
+		
 		mainPanel.add(innerPanel);
 		innerPanel.add(userpassPanel);
 		innerPanel.add(loginButton);
+		innerPanel.add(popup);
 
-		
+	
 		// All composites must call initWidget() in their constructors.
 	    initWidget(mainPanel);
 	}
