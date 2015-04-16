@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class Configuration {
 	//Define private variables.
-	private LinkedList<Module> moduleList = new LinkedList<Module>();
+	private LinkedList<MarsModule> moduleList = new LinkedList<MarsModule>();
 	
 	
 	public Configuration() {
@@ -20,7 +20,7 @@ public class Configuration {
 	/**
 	 * Default constructor for configuration.
 	 */
-	public Configuration(LinkedList<Module> list) {
+	public Configuration(LinkedList<MarsModule> list) {
 		
 		this.moduleList = list;
 		

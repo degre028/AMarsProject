@@ -29,7 +29,7 @@ public class MarsButton extends Button{
 	 * @param masterEnabled boolean representation of the master enable.
 	 * @param text String to set the button text to.
 	 */
-	public MarsButton(boolean masterEnabled, String text, CtrlPanel controlP, final GUI gui) {
+	public MarsButton(boolean masterEnabled, String text, final CtrlPanel controlP, final GUI gui) {
 		this.masterEnabled = masterEnabled;
 		this.control = controlP;
 		
@@ -42,7 +42,9 @@ public class MarsButton extends Button{
 		//Set the buttons click event to display control panel.
 		super.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
+				control.setupDisplay();
 				gui.updateControlArea(control);
+
 			}
 		});
 	}

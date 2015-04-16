@@ -37,9 +37,9 @@ public class ButtonArea extends Composite{
 		
 		//Generate Buttons
 		LinkedList<MarsButton> buttonList = new LinkedList<MarsButton>();
-		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true),gui));
-		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false),gui));
-		buttonList.add(new MarsButton(true, "View Histogram", new CtrlPanel(),gui));
+		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,gui.getModules()),gui));
+		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,gui.getModules()),gui));
+		//buttonList.add(new MarsButton(true, "View Histogram", new CtrlPanel(),gui));
 		
 		//Add buttons to table.
 		for (int i = 0; i < buttonList.size(); i++) {

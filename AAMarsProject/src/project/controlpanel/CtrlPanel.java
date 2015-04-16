@@ -52,4 +52,11 @@ public class CtrlPanel extends Composite{
 		return mainPanel;
 	}
 	
+	/**
+	 * This method should be overridden.
+	 */
+	public void setupDisplay() {
+		
+	}
+	
 }

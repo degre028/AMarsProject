@@ -13,26 +13,44 @@ import java.util.LinkedList;
 public class ModuleSet {
 	//Private variables
 	
-	LinkedList<Module> modList;
+	LinkedList<MarsModule> modList;
 	
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
 	 */
 	public ModuleSet() {
-		modList = new LinkedList<Module>();
+		modList = new LinkedList<MarsModule>();
+		
 	}
 	
-	public void addModule(Module mod) {
+	/**
+	 * Adds the module to the list.
+	 * @param mod The module to add.
+	 */
+	public void addModule(MarsModule mod) {
 		modList.add(mod);
 	}
 	
+	public void removeModule(int i) {
+		modList.remove(i);
+	}
+	
 	public int getCount(String type) {
+		
+		if(type.equals("all")) return modList.size();
+		
 		int count = 0;
-		for(int i=0; i<modList.size(); i++)
+		for(int i=0; i<modList.size(); i++) {
 			if(modList.get(i).getType().equals(type)) {
 				count++;
 			}
-			return count;
+		}
+		return count;
+		
+	}
+	
+	public MarsModule getModule(int i) {
+		return modList.get(i);
 	}
 	
 }

@@ -7,30 +7,32 @@ package project.backend;
  * @author Rob
  *
  */
-public class Module {
+public class MarsModule {
 	//Private fields for the module class.
-	int xcoord = -1;
-	int ycoord = -1;
-	int id = 0;
+	Integer xcoord = -1;
+	Integer ycoord = -1;
+	Integer id = 0;
 	String condition = "";
-	int orientation = 0;
+	Integer orientation = 0;
 	String type = "";
 	
 	
 	/**
 	 * Constructor for the Module.
 	 */
-	public Module() {					
+	public MarsModule() {		
+		
 	}
 	/**
 	 * Secondary Constructor for Module.
 	 */
-	public Module(int xdim, int ydim, int idnum, String cond, int ori) {
+	public MarsModule(int xdim, int ydim, int idnum, String cond, int ori) {
 		xcoord=xdim;
 		ycoord=ydim;
-		id=idnum;
+		setID(idnum);
 		condition=cond;
-		orientation=ori;				
+		orientation=ori;
+		
 	}
 	
 	/**
@@ -39,7 +41,7 @@ public class Module {
 	 * @param x
 	 * @method makeType
 	 */
-	public void SetID(int x) {
+	public void setID(int x) {
 		id=x;
 		type=makeType();
 	}
@@ -52,7 +54,7 @@ public class Module {
 	 * 
 	 * @return the id of the module
 	 */
-	public int getID() {
+	public Integer getID() {
 		return id;
 	}
 	
@@ -84,7 +86,7 @@ public class Module {
 	 * 
 	 * @return the orientation of the module as an int. (number of flips needed to be upright)
 	 */
-	public int getOrientation() {
+	public Integer getOrientation() {
 		return orientation;
 	}
 	
@@ -100,8 +102,24 @@ public class Module {
 	 * 
 	 * @return the ycoordinate of the module as an int
 	 */	
-	public int getY() {
+	public Integer getY() {
 		return ycoord;
+	}
+	
+	/**
+	 * Sets the y-coordinate of the module as an int.
+	 * @param y
+	 */
+	public void setX(int x) {
+		xcoord = x;
+	}
+	
+	/**
+	 * 
+	 * @return the ycoordinate of the module as an int
+	 */	
+	public Integer getX() {
+		return xcoord;
 	}
 	
 	/**

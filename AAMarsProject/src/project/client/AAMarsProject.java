@@ -1,6 +1,7 @@
 package project.client;
 
 import project.backend.Configuration;
+import project.backend.ModuleSet;
 import project.backend.Passwd;
 import project.gui.GUI;
 import project.gui.Login;
@@ -45,7 +46,7 @@ public class AAMarsProject implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		//final GUI mainGUI = new GUI(new Configuration());
+		//final GUI mainGUI = new GUI(new ModuleSet());
 		//RootPanel.get().add(mainGUI);
 		final FlowPanel flo1 = new FlowPanel();
 		final Login log1 = new Login(new Passwd(), flo1);

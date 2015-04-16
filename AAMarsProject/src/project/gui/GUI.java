@@ -68,7 +68,7 @@ public class GUI extends Composite {
 		controlPanel.setWidth("224px");
 		
 		fTable.setWidget(0,0, buildCanvasArea("800px","568px"));
-		fTable.setWidget(0,1, buildControlArea("224px","568px",new CtrlPanel()));
+		fTable.setWidget(0,1, buildControlArea("224px","568px",new CtrlAddModule(true,this.moduleSet)));
 		fTable.setWidget(1,0, buildButtonArea("800px","200px"));
 		fTable.setWidget(1,1, buildStatusArea("214px","190px"));
 	      
@@ -156,18 +156,22 @@ public class GUI extends Composite {
 		statusPanel.add(dumbLabel);
 		
 	    // Make a new list box, adding a few items to it.
-	    ListBox lb = new ListBox();
-	    lb.addItem("Plain = 40");
-	    lb.addItem("Dormitory = 20");
-	    lb.addItem("etc.");
-	    
-	    
-	    
-	    lb.setWidth("100%");
-	    
-	    lb.setVisibleItemCount(8);
-		
-	    statusPanel.add(lb);
+//	    ListBox lb = new ListBox();
+//	    lb.addItem("Plain = " + moduleSet.getCount("Plain"));
+//	    lb.addItem("Dormitory = ");
+//	    lb.addItem("Sanitation = ");
+//	    lb.addItem("Food & Water = ");
+//	    lb.addItem("Gym & Relaxation = ");
+//	    lb.addItem("Canteen = ");
+//	    lb.addItem("Power = ");
+//	    
+//	    
+//	    
+//	    lb.setWidth("100%");
+//	    
+//	    lb.setVisibleItemCount(8);
+//		
+//	    statusPanel.add(lb);
 	    
 		return statusPanel;
 	
@@ -181,5 +185,8 @@ public class GUI extends Composite {
 		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
 	}
 	
+	public ModuleSet getModules() {
+		return moduleSet;
+	}
 	
 }
