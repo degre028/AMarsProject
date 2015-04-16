@@ -138,8 +138,6 @@ public class CtrlAddModule extends CtrlPanel{
 		coordTable.setWidget(4, 1, ltCond);
 		coordTable.setWidget(5, 0, lbType);
 		coordTable.setWidget(5, 1, tbType);
-		coordTable.setWidget(6, 0, lbCond);
-		coordTable.setWidget(6, 1, tbCond);
 		
 		
 		//Button Handlers
@@ -155,6 +153,7 @@ public class CtrlAddModule extends CtrlPanel{
 							ltOri.getSelectedIndex());
 					modules.addModule(newMod);
 					listBoxUpdater(listModules,modules);
+					setupDisplay();
 				}
 				catch (NumberFormatException e) {
 					Window.alert("Invalid Input!");
@@ -287,6 +286,20 @@ public class CtrlAddModule extends CtrlPanel{
 		if(!isNew) {
 			btnSubmit.setEnabled(false);
 			btnCancel.setEnabled(false);
+			tbX.setText("");
+			tbY.setText("");
+			tbID.setText("");
+			ltOri.setSelectedIndex(0);
+			ltCond.setSelectedIndex(0);
+			tbType.setText("");
+		}
+		else {
+			tbX.setText("");
+			tbY.setText("");
+			tbID.setText("");
+			ltOri.setSelectedIndex(0);
+			ltCond.setSelectedIndex(0);
+			tbType.setText("");
 		}
 	}
 	

@@ -158,7 +158,7 @@ public class MarsModule {
 			return "Medical";
 		}
 		else {
-			return "";
+			return "Unknown";
 		}
 		
 	}

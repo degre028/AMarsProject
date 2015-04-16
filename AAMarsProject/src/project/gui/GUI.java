@@ -87,7 +87,7 @@ public class GUI extends Composite {
 		FlowPanel bArea = new FlowPanel();
 		bArea.setHeight(height);
 		bArea.setWidth(width);
-		bArea.getElement().getStyle().setBackgroundColor("#77FF77");
+		bArea.getElement().getStyle().setBackgroundColor("#DDDDDD");
 		
 		//Dummy Code for area.
 		//Label dumbLabel = new Label("Button Area");
@@ -110,7 +110,7 @@ public class GUI extends Composite {
 		FlowPanel canvasPanel = new FlowPanel();
 		canvasPanel.setHeight(height);
 		canvasPanel.setWidth(width);
-		canvasPanel.getElement().getStyle().setBackgroundColor("#FF7777");
+		canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
 		
 		//Dummy Code for area.
 		Label dumbLabel = new Label("Canvas Area");
@@ -130,7 +130,7 @@ public class GUI extends Composite {
 	private CtrlPanel buildControlArea(String width, String height, CtrlPanel controlPanel) {
 		controlPanel.setHeight(height);
 		controlPanel.setWidth(width);
-		controlPanel.getElement().getStyle().setBackgroundColor("#7777FF");
+		controlPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
 		
 		
 		
@@ -149,7 +149,7 @@ public class GUI extends Composite {
 		statusPanel.getElement().getStyle().setPadding(5.0, Unit.PX);
 		statusPanel.setHeight(height);
 		statusPanel.setWidth(width);
-		statusPanel.getElement().getStyle().setBackgroundColor("#FFFF77");
+		statusPanel.getElement().getStyle().setBackgroundColor("#DDDDDD");
 		
 		//Dummy Code for area.
 		Label dumbLabel = new Label("Status Area");
