@@ -28,6 +28,7 @@
   <source path='gui'/>
   <source path='backend'/>
   <source path='controlpanel'/>
+  <source path='canvaspanel'/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>
