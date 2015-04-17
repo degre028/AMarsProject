@@ -27,6 +27,10 @@ public class CnvsPanel extends Composite {
 		this.initWidget(mainPanel);
 	}
 	
+	public FlowPanel getPanel() {
+		return mainPanel;
+	}
+	
 	/**
 	 * Method should be overridden.  It's purpose is to provide the GUI
 	 * with a way to refresh the current canvas panel from any method.
