@@ -1,5 +1,5 @@
-# { 2 }
-# { 'user.agent' : 'ie9' }
+# { 3 }
+# { 'user.agent' : 'ie10' }
 # jsName, jsniIdent, className, memberName, sourceUri, sourceLine, fragmentNumber
 Animation,,com.google.gwt.animation.client.Animation,,com/google/gwt/animation/client/Animation.java,27,-1
 $cancel,com.google.gwt.animation.client.Animation::$cancel(Lcom/google/gwt/animation/client/Animation;)V,com.google.gwt.animation.client.Animation,$cancel,com/google/gwt/animation/client/Animation.java,105,0
@@ -661,7 +661,7 @@ $add,com.google.gwt.user.client.ui.ComplexPanel::$add(Lcom/google/gwt/user/clien
 $remove,com.google.gwt.user.client.ui.ComplexPanel::$remove(Lcom/google/gwt/user/client/ui/ComplexPanel;I)Z,com.google.gwt.user.client.ui.ComplexPanel,$remove,com/google/gwt/user/client/ui/ComplexPanel.java,55,0
 $remove_0,com.google.gwt.user.client.ui.ComplexPanel::$remove(Lcom/google/gwt/user/client/ui/ComplexPanel;Lcom/google/gwt/user/client/ui/Widget;)Z,com.google.gwt.user.client.ui.ComplexPanel,$remove,com/google/gwt/user/client/ui/ComplexPanel.java,60,0
 ComplexPanel_0,com.google.gwt.user.client.ui.ComplexPanel::ComplexPanel()V,com.google.gwt.user.client.ui.ComplexPanel,ComplexPanel,com/google/gwt/user/client/ui/ComplexPanel.java,26,0
-children_0,com.google.gwt.user.client.ui.ComplexPanel::children,com.google.gwt.user.client.ui.ComplexPanel,children,com/google/gwt/user/client/ui/ComplexPanel.java,28,-1
+children,com.google.gwt.user.client.ui.ComplexPanel::children,com.google.gwt.user.client.ui.ComplexPanel,children,com/google/gwt/user/client/ui/ComplexPanel.java,28,-1
 iterator_0,com.google.gwt.user.client.ui.ComplexPanel::iterator()Ljava/util/Iterator;,com.google.gwt.user.client.ui.ComplexPanel,iterator,com/google/gwt/user/client/ui/ComplexPanel.java,51,0
 remove,com.google.gwt.user.client.ui.ComplexPanel::remove(Lcom/google/gwt/user/client/ui/Widget;)Z,com.google.gwt.user.client.ui.ComplexPanel,remove,com/google/gwt/user/client/ui/ComplexPanel.java,60,0
 Composite,,com.google.gwt.user.client.ui.Composite,,com/google/gwt/user/client/ui/Composite.java,42,-1
@@ -732,7 +732,6 @@ $resizeColumnGroup,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter::$res
 HTMLTable$ColumnFormatter_0,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter::HTMLTable$ColumnFormatter(Lcom/google/gwt/user/client/ui/HTMLTable;)V,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter,HTMLTable$ColumnFormatter,com/google/gwt/user/client/ui/HTMLTable.java,449,0
 columnGroup,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter::columnGroup,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter,columnGroup,com/google/gwt/user/client/ui/HTMLTable.java,450,-1
 this$0,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter::this$0,com.google.gwt.user.client.ui.HTMLTable$ColumnFormatter,this$0,com/google/gwt/user/client/ui/HTMLTable.java,449,-1
-$getCells,com.google.gwt.user.client.ui.HTMLTable$HTMLTableIEImpl::$getCells(Lcom/google/gwt/user/client/ui/HTMLTable$HTMLTableIEImpl;Lcom/google/gwt/dom/client/Element;)Lcom/google/gwt/core/client/JsArray;,com.google.gwt.user.client.ui.HTMLTable$HTMLTableIEImpl,$getCells,com/google/gwt/user/client/ui/HTMLTable.java,108,0
 $clinit_HasAutoHorizontalAlignment,com.google.gwt.user.client.ui.HasAutoHorizontalAlignment::$clinit()V,com.google.gwt.user.client.ui.HasAutoHorizontalAlignment,$clinit,com/google/gwt/user/client/ui/HasAutoHorizontalAlignment.java,23,0
 ALIGN_CONTENT_START,com.google.gwt.user.client.ui.HasAutoHorizontalAlignment::ALIGN_CONTENT_START,com.google.gwt.user.client.ui.HasAutoHorizontalAlignment,ALIGN_CONTENT_START,com/google/gwt/user/client/ui/HasAutoHorizontalAlignment.java,30,-1
 $clinit_HasHorizontalAlignment,com.google.gwt.user.client.ui.HasHorizontalAlignment::$clinit()V,com.google.gwt.user.client.ui.HasHorizontalAlignment,$clinit,com/google/gwt/user/client/ui/HasHorizontalAlignment.java,44,0
@@ -960,7 +959,7 @@ index_0,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::index,com
 next_2,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::next()Ljava/lang/Object;,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,next,com/google/gwt/user/client/ui/WidgetCollection.java,47,0
 remove_6,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::remove()V,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,remove,com/google/gwt/user/client/ui/WidgetCollection.java,57,0
 this$0,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::this$0,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,this$0,com/google/gwt/user/client/ui/WidgetCollection.java,36,-1
-$getRuntimeValue,com.google.gwt.useragent.client.UserAgentImplIe9::$getRuntimeValue(Lcom/google/gwt/useragent/client/UserAgentImplIe9;)Ljava/lang/String;,com.google.gwt.useragent.client.UserAgentImplIe9,$getRuntimeValue,gen/com/google/gwt/useragent/client/UserAgentImplIe9.java,5,0
+$getRuntimeValue,com.google.gwt.useragent.client.UserAgentImplIe10::$getRuntimeValue(Lcom/google/gwt/useragent/client/UserAgentImplIe10;)Ljava/lang/String;,com.google.gwt.useragent.client.UserAgentImplIe10,$getRuntimeValue,gen/com/google/gwt/useragent/client/UserAgentImplIe10.java,5,0
 Event_0,,com.google.web.bindery.event.shared.Event,,com/google/web/bindery/event/shared/Event.java,23,-1
 source,com.google.web.bindery.event.shared.Event::source,com.google.web.bindery.event.shared.Event,source,com/google/web/bindery/event/shared/Event.java,51,-1
 toString_3,com.google.web.bindery.event.shared.Event::toString()Ljava/lang/String;,com.google.web.bindery.event.shared.Event,toString,com/google/web/bindery/event/shared/Event.java,102,0
@@ -1354,11 +1353,11 @@ GreetingService_TypeSerializer,,project.client.GreetingService_TypeSerializer,,g
 $clinit_GreetingService_TypeSerializer,project.client.GreetingService_TypeSerializer::$clinit()V,project.client.GreetingService_TypeSerializer,$clinit,gen/project/client/GreetingService_TypeSerializer.java,10,0
 GreetingService_TypeSerializer_0,project.client.GreetingService_TypeSerializer::GreetingService_TypeSerializer()V,project.client.GreetingService_TypeSerializer,GreetingService_TypeSerializer,gen/project/client/GreetingService_TypeSerializer.java,72,0
 CtrlAddModule,,project.controlpanel.CtrlAddModule,,project/controlpanel/CtrlAddModule.java,30,-1
-$editArea,project.controlpanel.CtrlAddModule::$editArea(Lproject/controlpanel/CtrlAddModule;Lproject/backend/ModuleSet;Lcom/google/gwt/user/client/ui/ListBox;)Lcom/google/gwt/user/client/ui/FlowPanel;,project.controlpanel.CtrlAddModule,$editArea,project/controlpanel/CtrlAddModule.java,234,0
-$listBoxUpdater,project.controlpanel.CtrlAddModule::$listBoxUpdater(Lproject/controlpanel/CtrlAddModule;Lcom/google/gwt/user/client/ui/ListBox;Lproject/backend/ModuleSet;)V,project.controlpanel.CtrlAddModule,$listBoxUpdater,project/controlpanel/CtrlAddModule.java,266,0
-$populateTextBoxes,project.controlpanel.CtrlAddModule::$populateTextBoxes(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule,$populateTextBoxes,project/controlpanel/CtrlAddModule.java,293,0
-$setupDisplay,project.controlpanel.CtrlAddModule::$setupDisplay(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule,$setupDisplay,project/controlpanel/CtrlAddModule.java,285,0
-$textBoxMaker,project.controlpanel.CtrlAddModule::$textBoxMaker(Lproject/controlpanel/CtrlAddModule;Lcom/google/gwt/user/client/ui/TextBox;I)V,project.controlpanel.CtrlAddModule,$textBoxMaker,project/controlpanel/CtrlAddModule.java,260,0
+$editArea,project.controlpanel.CtrlAddModule::$editArea(Lproject/controlpanel/CtrlAddModule;Lproject/backend/ModuleSet;Lcom/google/gwt/user/client/ui/ListBox;)Lcom/google/gwt/user/client/ui/FlowPanel;,project.controlpanel.CtrlAddModule,$editArea,project/controlpanel/CtrlAddModule.java,233,0
+$listBoxUpdater,project.controlpanel.CtrlAddModule::$listBoxUpdater(Lproject/controlpanel/CtrlAddModule;Lcom/google/gwt/user/client/ui/ListBox;Lproject/backend/ModuleSet;)V,project.controlpanel.CtrlAddModule,$listBoxUpdater,project/controlpanel/CtrlAddModule.java,265,0
+$populateTextBoxes,project.controlpanel.CtrlAddModule::$populateTextBoxes(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule,$populateTextBoxes,project/controlpanel/CtrlAddModule.java,306,0
+$setupDisplay,project.controlpanel.CtrlAddModule::$setupDisplay(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule,$setupDisplay,project/controlpanel/CtrlAddModule.java,284,0
+$textBoxMaker,project.controlpanel.CtrlAddModule::$textBoxMaker(Lproject/controlpanel/CtrlAddModule;Lcom/google/gwt/user/client/ui/TextBox;I)V,project.controlpanel.CtrlAddModule,$textBoxMaker,project/controlpanel/CtrlAddModule.java,259,0
 CtrlAddModule_0,project.controlpanel.CtrlAddModule::CtrlAddModule(ZLproject/backend/ModuleSet;)V,project.controlpanel.CtrlAddModule,CtrlAddModule,project/controlpanel/CtrlAddModule.java,53,0
 btnCancel,project.controlpanel.CtrlAddModule::btnCancel,project.controlpanel.CtrlAddModule,btnCancel,project/controlpanel/CtrlAddModule.java,35,-1
 btnSubmit,project.controlpanel.CtrlAddModule::btnSubmit,project.controlpanel.CtrlAddModule,btnSubmit,project/controlpanel/CtrlAddModule.java,34,-1
@@ -1373,29 +1372,29 @@ tbOri,project.controlpanel.CtrlAddModule::tbOri,project.controlpanel.CtrlAddModu
 tbType,project.controlpanel.CtrlAddModule::tbType,project.controlpanel.CtrlAddModule,tbType,project/controlpanel/CtrlAddModule.java,42,-1
 tbX,project.controlpanel.CtrlAddModule::tbX,project.controlpanel.CtrlAddModule,tbX,project/controlpanel/CtrlAddModule.java,37,-1
 tbY,project.controlpanel.CtrlAddModule::tbY,project.controlpanel.CtrlAddModule,tbY,project/controlpanel/CtrlAddModule.java,38,-1
-CtrlAddModule$1,,project.controlpanel.CtrlAddModule$1,,project/controlpanel/CtrlAddModule.java,148,-1
-CtrlAddModule$1_0,project.controlpanel.CtrlAddModule$1::CtrlAddModule$1(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$1,CtrlAddModule$1,project/controlpanel/CtrlAddModule.java,148,0
-onClick,project.controlpanel.CtrlAddModule$1::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$1,onClick,project/controlpanel/CtrlAddModule.java,149,0
-this$0,project.controlpanel.CtrlAddModule$1::this$0,project.controlpanel.CtrlAddModule$1,this$0,project/controlpanel/CtrlAddModule.java,148,-1
-val$modules,project.controlpanel.CtrlAddModule$1::val$modules,project.controlpanel.CtrlAddModule$1,val$modules,project/controlpanel/CtrlAddModule.java,148,-1
-CtrlAddModule$2,,project.controlpanel.CtrlAddModule$2,,project/controlpanel/CtrlAddModule.java,167,-1
-CtrlAddModule$2_0,project.controlpanel.CtrlAddModule$2::CtrlAddModule$2(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$2,CtrlAddModule$2,project/controlpanel/CtrlAddModule.java,167,0
-onClick_0,project.controlpanel.CtrlAddModule$2::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$2,onClick,project/controlpanel/CtrlAddModule.java,168,0
-this$0,project.controlpanel.CtrlAddModule$2::this$0,project.controlpanel.CtrlAddModule$2,this$0,project/controlpanel/CtrlAddModule.java,167,-1
-val$modules,project.controlpanel.CtrlAddModule$2::val$modules,project.controlpanel.CtrlAddModule$2,val$modules,project/controlpanel/CtrlAddModule.java,167,-1
-CtrlAddModule$3,,project.controlpanel.CtrlAddModule$3,,project/controlpanel/CtrlAddModule.java,184,-1
-CtrlAddModule$3_0,project.controlpanel.CtrlAddModule$3::CtrlAddModule$3(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$3,CtrlAddModule$3,project/controlpanel/CtrlAddModule.java,184,0
-onClick_1,project.controlpanel.CtrlAddModule$3::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$3,onClick,project/controlpanel/CtrlAddModule.java,185,0
-this$0,project.controlpanel.CtrlAddModule$3::this$0,project.controlpanel.CtrlAddModule$3,this$0,project/controlpanel/CtrlAddModule.java,184,-1
-val$modules,project.controlpanel.CtrlAddModule$3::val$modules,project.controlpanel.CtrlAddModule$3,val$modules,project/controlpanel/CtrlAddModule.java,184,-1
-CtrlAddModule$4,,project.controlpanel.CtrlAddModule$4,,project/controlpanel/CtrlAddModule.java,195,-1
-CtrlAddModule$4_0,project.controlpanel.CtrlAddModule$4::CtrlAddModule$4(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$4,CtrlAddModule$4,project/controlpanel/CtrlAddModule.java,195,0
-onChange_0,project.controlpanel.CtrlAddModule$4::onChange(Lcom/google/gwt/event/dom/client/ChangeEvent;)V,project.controlpanel.CtrlAddModule$4,onChange,project/controlpanel/CtrlAddModule.java,196,0
-this$0,project.controlpanel.CtrlAddModule$4::this$0,project.controlpanel.CtrlAddModule$4,this$0,project/controlpanel/CtrlAddModule.java,195,-1
-CtrlAddModule$5,,project.controlpanel.CtrlAddModule$5,,project/controlpanel/CtrlAddModule.java,206,-1
-CtrlAddModule$5_0,project.controlpanel.CtrlAddModule$5::CtrlAddModule$5(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$5,CtrlAddModule$5,project/controlpanel/CtrlAddModule.java,206,0
-onValueChange_0,project.controlpanel.CtrlAddModule$5::onValueChange(Lcom/google/gwt/event/logical/shared/ValueChangeEvent;)V,project.controlpanel.CtrlAddModule$5,onValueChange,project/controlpanel/CtrlAddModule.java,208,0
-this$0,project.controlpanel.CtrlAddModule$5::this$0,project.controlpanel.CtrlAddModule$5,this$0,project/controlpanel/CtrlAddModule.java,206,-1
+CtrlAddModule$1,,project.controlpanel.CtrlAddModule$1,,project/controlpanel/CtrlAddModule.java,146,-1
+CtrlAddModule$1_0,project.controlpanel.CtrlAddModule$1::CtrlAddModule$1(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$1,CtrlAddModule$1,project/controlpanel/CtrlAddModule.java,146,0
+onClick,project.controlpanel.CtrlAddModule$1::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$1,onClick,project/controlpanel/CtrlAddModule.java,147,0
+this$0,project.controlpanel.CtrlAddModule$1::this$0,project.controlpanel.CtrlAddModule$1,this$0,project/controlpanel/CtrlAddModule.java,146,-1
+val$modules,project.controlpanel.CtrlAddModule$1::val$modules,project.controlpanel.CtrlAddModule$1,val$modules,project/controlpanel/CtrlAddModule.java,146,-1
+CtrlAddModule$2,,project.controlpanel.CtrlAddModule$2,,project/controlpanel/CtrlAddModule.java,166,-1
+CtrlAddModule$2_0,project.controlpanel.CtrlAddModule$2::CtrlAddModule$2(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$2,CtrlAddModule$2,project/controlpanel/CtrlAddModule.java,166,0
+onClick_0,project.controlpanel.CtrlAddModule$2::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$2,onClick,project/controlpanel/CtrlAddModule.java,167,0
+this$0,project.controlpanel.CtrlAddModule$2::this$0,project.controlpanel.CtrlAddModule$2,this$0,project/controlpanel/CtrlAddModule.java,166,-1
+val$modules,project.controlpanel.CtrlAddModule$2::val$modules,project.controlpanel.CtrlAddModule$2,val$modules,project/controlpanel/CtrlAddModule.java,166,-1
+CtrlAddModule$3,,project.controlpanel.CtrlAddModule$3,,project/controlpanel/CtrlAddModule.java,183,-1
+CtrlAddModule$3_0,project.controlpanel.CtrlAddModule$3::CtrlAddModule$3(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$3,CtrlAddModule$3,project/controlpanel/CtrlAddModule.java,183,0
+onClick_1,project.controlpanel.CtrlAddModule$3::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,project.controlpanel.CtrlAddModule$3,onClick,project/controlpanel/CtrlAddModule.java,184,0
+this$0,project.controlpanel.CtrlAddModule$3::this$0,project.controlpanel.CtrlAddModule$3,this$0,project/controlpanel/CtrlAddModule.java,183,-1
+val$modules,project.controlpanel.CtrlAddModule$3::val$modules,project.controlpanel.CtrlAddModule$3,val$modules,project/controlpanel/CtrlAddModule.java,183,-1
+CtrlAddModule$4,,project.controlpanel.CtrlAddModule$4,,project/controlpanel/CtrlAddModule.java,194,-1
+CtrlAddModule$4_0,project.controlpanel.CtrlAddModule$4::CtrlAddModule$4(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$4,CtrlAddModule$4,project/controlpanel/CtrlAddModule.java,194,0
+onChange_0,project.controlpanel.CtrlAddModule$4::onChange(Lcom/google/gwt/event/dom/client/ChangeEvent;)V,project.controlpanel.CtrlAddModule$4,onChange,project/controlpanel/CtrlAddModule.java,195,0
+this$0,project.controlpanel.CtrlAddModule$4::this$0,project.controlpanel.CtrlAddModule$4,this$0,project/controlpanel/CtrlAddModule.java,194,-1
+CtrlAddModule$5,,project.controlpanel.CtrlAddModule$5,,project/controlpanel/CtrlAddModule.java,205,-1
+CtrlAddModule$5_0,project.controlpanel.CtrlAddModule$5::CtrlAddModule$5(Lproject/controlpanel/CtrlAddModule;)V,project.controlpanel.CtrlAddModule$5,CtrlAddModule$5,project/controlpanel/CtrlAddModule.java,205,0
+onValueChange_0,project.controlpanel.CtrlAddModule$5::onValueChange(Lcom/google/gwt/event/logical/shared/ValueChangeEvent;)V,project.controlpanel.CtrlAddModule$5,onValueChange,project/controlpanel/CtrlAddModule.java,207,0
+this$0,project.controlpanel.CtrlAddModule$5::this$0,project.controlpanel.CtrlAddModule$5,this$0,project/controlpanel/CtrlAddModule.java,205,-1
 CtrlPanel,,project.controlpanel.CtrlPanel,,project/controlpanel/CtrlPanel.java,18,-1
 headerLabel,project.controlpanel.CtrlPanel::headerLabel,project.controlpanel.CtrlPanel,headerLabel,project/controlpanel/CtrlPanel.java,19,-1
 mainPanel,project.controlpanel.CtrlPanel::mainPanel,project.controlpanel.CtrlPanel,mainPanel,project/controlpanel/CtrlPanel.java,20,-1

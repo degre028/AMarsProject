@@ -76,7 +76,8 @@ public class Login extends Composite {
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
 					homePanel.remove(0);
-					homePanel.add(new GUI(new ModuleSet()));					
+					ModuleSet mainModuleSet = new ModuleSet();
+					homePanel.add(mainModuleSet.getGui());					
 				} else {
 					//countInner = countClick + countInner;
 					loginFail.setText("Login Attempt Failed ");

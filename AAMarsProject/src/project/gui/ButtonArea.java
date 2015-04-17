@@ -2,6 +2,7 @@ package project.gui;
 
 import java.util.LinkedList;
 
+import project.backend.ModuleSet;
 import project.controlpanel.*;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -19,10 +20,10 @@ public class ButtonArea extends Composite{
 	/**
 	 * The constructor simply generates the GUI by adding buttons.
 	 */
-	public ButtonArea(GUI gui) {
+	public ButtonArea(ModuleSet modset) {
 		FlowPanel panel = new FlowPanel();
 
-		panel.add(makeButtons(gui));
+		panel.add(makeButtons(modset));
 		
         // All composites must call initWidget() in their constructors.
         initWidget(panel);
@@ -32,13 +33,13 @@ public class ButtonArea extends Composite{
 	 * This field makes the buttons and returns them in a table to be added to the
 	 * button area.
 	 */
-	private FlexTable makeButtons(GUI gui) {
+	private FlexTable makeButtons(ModuleSet modset) {
 		FlexTable fTable = new FlexTable();
 		
 		//Generate Buttons
 		LinkedList<MarsButton> buttonList = new LinkedList<MarsButton>();
-		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,gui.getModules()),gui));
-		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,gui.getModules()),gui));
+		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,modset),modset));
+		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,modset),modset));
 		//buttonList.add(new MarsButton(true, "View Histogram", new CtrlPanel(),gui));
 		
 		//Add buttons to table.

@@ -94,7 +94,7 @@ public class GUI extends Composite {
 		//bArea.add(dumbLabel);
 		
 		//Add the button area
-		bArea.add(new ButtonArea(this));
+		bArea.add(new ButtonArea(moduleSet));
 		
 		return bArea;
 	}
@@ -182,6 +182,7 @@ public class GUI extends Composite {
 	 * @param control
 	 */
 	public void updateControlArea(CtrlPanel control) {
+		control.setupDisplay();
 		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
 	}
 	
