@@ -5,6 +5,7 @@ import project.backend.ModuleSet;
 import project.backend.Passwd;
 import project.gui.GUI;
 import project.gui.Login;
+import project.gui.Starter;
 import project.shared.FieldVerifier;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -46,13 +47,10 @@ public class AAMarsProject implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		//final GUI mainGUI = new GUI(new ModuleSet());
-		//RootPanel.get().add(mainGUI);
-		final FlowPanel flo1 = new FlowPanel();
-		final Login log1 = new Login(new Passwd(), flo1);
-		flo1.add(log1);
-		RootPanel.get().add(flo1);
 		
+		Starter starter = new Starter();
+		RootPanel.get().add(starter);
+			
 		
 	}
 }

@@ -20,9 +20,9 @@ public class ModuleSet {
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
 	 */
-	public ModuleSet() {
+	public ModuleSet(String user) {
 		modList = new LinkedList<MarsModule>();
-		gui = new GUI(this);
+		gui = new GUI(this,user);
 	}
 	
 	/**

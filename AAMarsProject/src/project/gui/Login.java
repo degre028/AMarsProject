@@ -7,7 +7,6 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -16,6 +15,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -66,8 +66,6 @@ public class Login extends Composite {
 		passLabel.getElement().getStyle().setPadding(8.0, Unit.PX);
 		final PasswordTextBox passTest = new PasswordTextBox();
 		
-		int countClick = 0;
-		int countInner = 0;
 
 		Button loginButton = new Button("Login", new ClickHandler(){
 			public void onClick(ClickEvent event){
@@ -76,8 +74,9 @@ public class Login extends Composite {
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
 					homePanel.remove(0);
-					ModuleSet mainModuleSet = new ModuleSet();
-					homePanel.add(mainModuleSet.getGui());					
+					ModuleSet mainModuleSet = new ModuleSet(userCheck);
+	
+					homePanel.add(mainModuleSet.getGui());
 				} else {
 					//countInner = countClick + countInner;
 					loginFail.setText("Login Attempt Failed ");

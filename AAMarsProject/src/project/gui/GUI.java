@@ -35,6 +35,7 @@ public class GUI extends Composite {
 	 * quandrents of the GUI.
 	 */
 	private FlexTable fTable;
+	private String user;
 	
 	
 	/**
@@ -42,10 +43,10 @@ public class GUI extends Composite {
 	 * and build the UI displayed in the onModuleLoad method (main method).  It does this with a series of
 	 * private method calls.
 	 */
-	public GUI(ModuleSet modset) {
+	public GUI(ModuleSet modset, String username) {
 		moduleSet = modset;
 		fTable = new FlexTable();
-		
+		user = username;
 
 	      
 	      // All composites must call initWidget() in their constructors.
@@ -103,7 +104,7 @@ public class GUI extends Composite {
 	/**
 	 * This method builds the canvas area and passes it back to the topFlexTable() method.
 	 * @param width Width of the canvas panel.  This can be tweaked in the calling method.
-	 * @param hieght Height of the canvas panel.  This can be tweaked in the calling method.
+	 * @param height Height of the canvas panel.  This can be tweaked in the calling method.
 	 * @return FlowPAnel representation of the canvas.
 	 */
 	private FlowPanel buildCanvasArea(String width, String height) {
@@ -186,8 +187,9 @@ public class GUI extends Composite {
 		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
 	}
 	
-	public ModuleSet getModules() {
-		return moduleSet;
+	
+	public void setUsername(String username) {
+		user = "aa";
 	}
 	
 }

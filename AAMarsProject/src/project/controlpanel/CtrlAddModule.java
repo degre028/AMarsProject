@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -23,7 +24,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.sun.xml.internal.ws.api.server.Module;
 
 /**
- * Control panel subclass for the Add Module control panel.
+ * Control panel subclass for the Add Module / Edit module control panel.
  * @author Rob
  *
  */
@@ -33,7 +34,7 @@ public class CtrlAddModule extends CtrlPanel{
 	final ModuleSet modules;
 	Button btnSubmit;
 	Button btnCancel;
-	boolean isNew;
+	final boolean isNew;
 	final TextBox tbX;
 	final TextBox tbY;
 	final TextBox tbID;
@@ -50,7 +51,7 @@ public class CtrlAddModule extends CtrlPanel{
 	 * @param isNew if true, the "Add Module" button was clicked.  If false, the "Edit Module"
 	 * button was clicked.
 	 */
-	public CtrlAddModule(boolean isNew, final ModuleSet modules) {
+	public CtrlAddModule(final boolean isNew, final ModuleSet modules) {
 		
 		this.isNew = isNew;
 		
@@ -70,12 +71,9 @@ public class CtrlAddModule extends CtrlPanel{
 		btnCancel = new Button("Delete");
 		
 		//Panel display modifications
-//		mainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-//		mainPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		mainPanel.getElement().getStyle().setWidth(95, Unit.PCT);
 		mainPanel.getElement().getStyle().setHeight(90, Unit.PCT);
 		mainPanel.getElement().getStyle().setPadding(4.0, Unit.PX);
-//		mainPanel.getElement().getStyle().setPaddingTop(20.0, Unit.PX);
 		
 		
 		Label lbX = new Label("X Coord.:");
@@ -142,10 +140,10 @@ public class CtrlAddModule extends CtrlPanel{
 		
 		//Button Handlers
 		//Code button handler
-		if(isNew) {
 		btnSubmit.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				try {
+					if(!isNew){ modules.removeModule(listModules.getSelectedIndex());}
 					MarsModule newMod = new MarsModule(Integer.parseInt(tbX.getText()),
 							Integer.parseInt(tbY.getText()),
 							Integer.parseInt(tbID.getText()),
@@ -154,32 +152,19 @@ public class CtrlAddModule extends CtrlPanel{
 					modules.addModule(newMod);
 					listBoxUpdater(listModules,modules);
 					setupDisplay();
+					if(!isNew) {btnSubmit.setEnabled(false);}
 				}
 				catch (NumberFormatException e) {
+					Window.alert("Invalid Input!");
+				}
+				catch (UmbrellaException e) {
 					Window.alert("Invalid Input!");
 				}
 
 			}
 		});
-		}
-		else {
-			btnSubmit.addClickHandler( new ClickHandler() {
-				public void onClick(ClickEvent ev) {
-					modules.removeModule(listModules.getSelectedIndex());
-					
-					MarsModule newMod = new MarsModule(Integer.parseInt(tbX.getText()),
-							Integer.parseInt(tbY.getText()),
-							Integer.parseInt(tbID.getText()),
-							ltCond.getValue(ltCond.getSelectedIndex()),
-							ltOri.getSelectedIndex());
-					modules.addModule(newMod);
-					listBoxUpdater(listModules,modules);
-					btnSubmit.setEnabled(false);
-				}
-			});
-		}
 		
-		
+		//(Cancel) Button Handler
 		btnCancel.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				modules.removeModule(listModules.getSelectedIndex());
@@ -213,7 +198,7 @@ public class CtrlAddModule extends CtrlPanel{
 		});
 			
 		
-		
+		//Add all items to the panel.
 		mainPanel.add(coordTable);
 		mainPanel.add(btnSubmit);
 		mainPanel.add(btnCancel);
@@ -279,7 +264,11 @@ public class CtrlAddModule extends CtrlPanel{
 	    }
 	}
 	
-	
+	/**
+	 * This method is the override of the parent.  It is responsible for emptying the text boxes
+	 * and setting the buttons to the initial parameters.  It should be called when the buttons
+	 * are pressed in the button areas.
+	 */
 	@Override
 	public void setupDisplay() {
 		listBoxUpdater(listModules,modules);
@@ -303,6 +292,9 @@ public class CtrlAddModule extends CtrlPanel{
 		}
 	}
 	
+	/**
+	 * Utility method for setting the textboxes for edit module.
+	 */
 	private void populateTextBoxes() {
 		MarsModule tempMod = modules.getModule(listModules.getSelectedIndex());
 		tbX.setText(tempMod.getX().toString());
