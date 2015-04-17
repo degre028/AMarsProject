@@ -53,7 +53,9 @@ public class CtrlPanel extends Composite{
 	}
 	
 	/**
-	 * This method should be overridden.
+	 * This method should be overridden.  It's primary use is to refresh the display
+	 * on the control panel widgets.  It is called in the updateControlArea() method
+	 * of GUI.java, which is called when a MarsButton is clicked.
 	 */
 	public void setupDisplay() {
 		
