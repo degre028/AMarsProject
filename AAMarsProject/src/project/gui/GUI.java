@@ -6,12 +6,17 @@ import project.controlpanel.CtrlAddModule;
 import project.controlpanel.CtrlPanel;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Panel;
@@ -151,28 +156,39 @@ public class GUI extends Composite {
 		statusPanel.setHeight(height);
 		statusPanel.setWidth(width);
 		statusPanel.getElement().getStyle().setBackgroundColor("#DDDDDD");
+		//statusPanel.getElement().getStyle().setVerticalAlign(Style.ALIGN_MIDDLE);
 		
-		//Dummy Code for area.
-		Label dumbLabel = new Label("Status Area");
-		statusPanel.add(dumbLabel);
+
+		Label headerLabel = new Label("Welcome, " + user);
+		headerLabel.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
+		headerLabel.getElement().getStyle().setFontSize(1.2, Unit.EM);
 		
-	    // Make a new list box, adding a few items to it.
-//	    ListBox lb = new ListBox();
-//	    lb.addItem("Plain = " + moduleSet.getCount("Plain"));
-//	    lb.addItem("Dormitory = ");
-//	    lb.addItem("Sanitation = ");
-//	    lb.addItem("Food & Water = ");
-//	    lb.addItem("Gym & Relaxation = ");
-//	    lb.addItem("Canteen = ");
-//	    lb.addItem("Power = ");
-//	    
-//	    
-//	    
-//	    lb.setWidth("100%");
-//	    
-//	    lb.setVisibleItemCount(8);
-//		
-//	    statusPanel.add(lb);
+		
+		Image nasa = new Image("resources/images/NASAlogo.png");
+		nasa.getElement().getStyle().setWidth(50, Unit.PCT);
+		nasa.getElement().getStyle().setHeight(50, Unit.PCT);
+		Image esa = new Image("resources/images/esa_logo.gif");
+		esa.getElement().getStyle().setWidth(50, Unit.PCT);
+		esa.getElement().getStyle().setHeight(40, Unit.PCT);
+		nasa.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
+		
+		
+		Button adamlogout = new Button("Logout");
+		adamlogout.getElement().getStyle().setWidth(100, Unit.PCT);
+
+		
+		adamlogout.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				Window.Location.reload();
+
+			}
+		});
+		
+		statusPanel.add(headerLabel);
+		statusPanel.add(nasa);
+		statusPanel.add(esa);
+		statusPanel.add(adamlogout);
+		
 	    
 		return statusPanel;
 	

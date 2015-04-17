@@ -18,9 +18,18 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
+/**
+ * 
+ * @author Rob
+ *
+ */
 public class Login extends Composite {
 	
+	/**
+	 * 
+	 * @param passwd
+	 * @param homePanel
+	 */
 	public Login(final Passwd passwd, final FlowPanel homePanel){
 	
 		
