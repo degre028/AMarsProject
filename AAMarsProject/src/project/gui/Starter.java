@@ -3,6 +3,7 @@ package project.gui;
 import project.backend.MarsModule;
 import project.backend.ModuleSet;
 import project.backend.Passwd;
+import project.backend.MarsStorage;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -23,8 +24,9 @@ public class Starter extends FlowPanel {
 	 */
 	public Starter() {
 		//launchLoginDemo();
-		//launchSkipLogin();
-		launchSomeData();
+		launchSkipLogin();
+		//launchSomeData();
+		//launchServerStorage();
 	}
 	
 	
@@ -65,6 +67,17 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(100,100,172,"Good",0));
 		modset.addModule(new MarsModule(32,17,150,"Good",0));
 		
+		
+		RootPanel.get().add(modset.getGui());
+	}
+	
+	/**
+	 * Method called if the user wants to test the dictionary reader.
+	 */
+	private void launchServerStorage() {
+		final ModuleSet modset = new ModuleSet("demostorage");
+		
+		modset.getStorage().readServerHtml();
 		
 		RootPanel.get().add(modset.getGui());
 	}

@@ -16,6 +16,7 @@ public class ModuleSet {
 	//Private variables
 	LinkedList<MarsModule> modList;
 	GUI gui;
+	MarsStorage storage;
 	
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
@@ -23,6 +24,7 @@ public class ModuleSet {
 	public ModuleSet(String user) {
 		modList = new LinkedList<MarsModule>();
 		gui = new GUI(this,user);
+		storage = new MarsStorage(this);
 	}
 	
 	/**
@@ -31,6 +33,7 @@ public class ModuleSet {
 	 */
 	public void addModule(MarsModule mod) {
 		modList.add(mod);
+		storage.saveToLocalStore();
 	}
 	
 	
@@ -79,4 +82,11 @@ public class ModuleSet {
 		return gui;
 	}
 	
+	/**
+	 * Returns the associated storage object.
+	 * @return storage
+	 */
+	public MarsStorage getStorage() {
+		return storage;
+	}
 }
