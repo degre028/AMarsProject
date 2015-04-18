@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * @author Rob
  *
  */
-public class CtrlPanel extends Composite{
+public abstract class CtrlPanel extends Composite{
 	private Label headerLabel;
 	private FlowPanel mainPanel = new FlowPanel();
 	
@@ -57,8 +57,6 @@ public class CtrlPanel extends Composite{
 	 * on the control panel widgets.  It is called in the updateControlArea() method
 	 * of GUI.java, which is called when a MarsButton is clicked.
 	 */
-	public void setupDisplay() {
-		
-	}
+	abstract public void setupDisplay();
 	
 }
