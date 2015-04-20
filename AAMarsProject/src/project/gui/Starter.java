@@ -1,5 +1,6 @@
 package project.gui;
 
+import project.backend.MarsModule;
 import project.backend.ModuleSet;
 import project.backend.Passwd;
 
@@ -22,7 +23,8 @@ public class Starter extends FlowPanel {
 	 */
 	public Starter() {
 		//launchLoginDemo();
-		launchSkipLogin();
+		//launchSkipLogin();
+		launchSomeData();
 	}
 	
 	
@@ -46,4 +48,24 @@ public class Starter extends FlowPanel {
 		RootPanel.get().add(modset.getGui());
 	}
 	
+	/**
+	 * Method called if the user wants to have some bs data entered
+	 * at the start
+	 */
+	private void launchSomeData() {
+		final ModuleSet modset = new ModuleSet("demo");
+		
+		modset.addModule(new MarsModule(32,16,2,"Good",0));
+		modset.addModule(new MarsModule(88,55,63,"Good",0));
+		modset.addModule(new MarsModule(32,65,65,"Good",0));
+		modset.addModule(new MarsModule(102,18,91,"Good",0));
+		modset.addModule(new MarsModule(99,14,3,"Good",0));
+		modset.addModule(new MarsModule(1,19,132,"Good",0));
+		modset.addModule(new MarsModule(55,5,184,"Good",0));
+		modset.addModule(new MarsModule(100,100,172,"Good",0));
+		modset.addModule(new MarsModule(32,17,150,"Good",0));
+		
+		
+		RootPanel.get().add(modset.getGui());
+	}
 }

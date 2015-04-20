@@ -40,6 +40,7 @@ public class ButtonArea extends Composite{
 		LinkedList<MarsButton> buttonList = new LinkedList<MarsButton>();
 		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,modset),modset));
 		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,modset),modset));
+		buttonList.add(new MarsButton(true, "Weather", new CtrlWeather(modset),modset));
 		//buttonList.add(new MarsButton(true, "View Histogram", new CtrlPanel(),gui));
 		
 		//Add buttons to table.
