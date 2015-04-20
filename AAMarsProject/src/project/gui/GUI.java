@@ -2,6 +2,7 @@ package project.gui;
 
 import project.backend.Configuration;
 import project.backend.ModuleSet;
+import project.canvaspanel.CnvsMap;
 import project.controlpanel.CtrlAddModule;
 import project.controlpanel.CtrlPanel;
 
@@ -114,13 +115,13 @@ public class GUI extends Composite {
 	 */
 	private FlowPanel buildCanvasArea(String width, String height) {
 		FlowPanel canvasPanel = new FlowPanel();
-		canvasPanel.setHeight(height);
-		canvasPanel.setWidth(width);
+		canvasPanel.getElement().getStyle().setHeight(568, Unit.PX);
+		canvasPanel.getElement().getStyle().setWidth(800, Unit.PX);
+		//canvasPanel.setHeight(height);
+		//canvasPanel.setWidth(width);
 		canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
-		
-		//Dummy Code for area.
-		Label dumbLabel = new Label("Canvas Area");
-		canvasPanel.add(dumbLabel);
+
+		canvasPanel.add(new CnvsMap(moduleSet));
 		
 		return canvasPanel;
 	

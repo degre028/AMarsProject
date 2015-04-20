@@ -22,9 +22,17 @@ public class CnvsPanel extends Composite {
 	 * the canvas panels here.
 	 */
 	public CnvsPanel() {
-	
+		mainPanel.getElement().getStyle().setWidth(100.0, Unit.PX);
+		mainPanel.setWidth("100px");
+		mainPanel.setHeight("100px");
+		mainPanel.getElement().getStyle().setHeight(100.0, Unit.PX);
+		
 		//All composites must call initWidget(panel);
 		this.initWidget(mainPanel);
+	}
+	
+	public FlowPanel getPanel() {
+		return mainPanel;
 	}
 	
 	/**

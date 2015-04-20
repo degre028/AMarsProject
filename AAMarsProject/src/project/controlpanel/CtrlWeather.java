@@ -86,6 +86,8 @@ public class CtrlWeather extends CtrlPanel{
 		Image wunder = new Image("resources/images/wunder.png");
 		vp.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		vp.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		
+		
 		wunder.getElement().getStyle().setWidth(80, Unit.PCT);
 		wunder.getElement().getStyle().setHeight(80, Unit.PCT);
 		vp.add(wunder);

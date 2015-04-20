@@ -1,2 +1,3 @@
 # Module aamarsproject
 # RPC service class, partial path of RPC policy file
+project.client.GreetingService, A9D3D92E49CAFE806658BD47E14C8AAD.gwt.rpc
