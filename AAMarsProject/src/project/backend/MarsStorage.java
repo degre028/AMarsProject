@@ -192,7 +192,7 @@ public class MarsStorage {
 		} 
 		
 		}catch (Exception ex) {
-			Window.alert(ex.getMessage());
+			//Window.alert(ex.getMessage());
 		}
 			
 		
