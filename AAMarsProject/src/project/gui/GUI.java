@@ -7,6 +7,7 @@ import project.canvaspanel.CnvsPanel;
 import project.controlpanel.CtrlAddModule;
 import project.controlpanel.CtrlPanel;
 import project.controlpanel.CtrlWeather;
+import project.controlpanel.CtrlWelcome;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -45,6 +46,7 @@ public class GUI extends Composite {
 	private FlexTable fTable;
 	private String user;
 	CnvsPanel curCanvas;
+	CtrlPanel defaultControl;
 	
 	
 	
@@ -61,6 +63,8 @@ public class GUI extends Composite {
 	      
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(makeMainPanel());
+	      
+	      //this.updateControlArea(defaultControl);
 	}
 	
 	
@@ -79,7 +83,7 @@ public class GUI extends Composite {
 		controlPanel.getElement().getStyle().setBackgroundColor("#000066");
 		controlPanel.setHeight("500px");
 		controlPanel.setWidth("224px");
-		CtrlPanel defaultControl = new CtrlWeather(this.moduleSet);
+		defaultControl = new CtrlWelcome();
 		
 		fTable.setWidget(0,0, buildCanvasArea("800px","568px"));
 		fTable.setWidget(0,1, buildControlArea("224px","568px",defaultControl));
