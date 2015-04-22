@@ -3,8 +3,10 @@ package project.gui;
 import project.backend.Configuration;
 import project.backend.ModuleSet;
 import project.canvaspanel.CnvsMap;
+import project.canvaspanel.CnvsPanel;
 import project.controlpanel.CtrlAddModule;
 import project.controlpanel.CtrlPanel;
+import project.controlpanel.CtrlWeather;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -42,6 +44,8 @@ public class GUI extends Composite {
 	 */
 	private FlexTable fTable;
 	private String user;
+	CnvsPanel curCanvas;
+	
 	
 	
 	/**
@@ -59,6 +63,8 @@ public class GUI extends Composite {
 	      initWidget(makeMainPanel());
 	}
 	
+	
+
 	/**
 	 * This method creates the main panel.  The main panel is a 2x1 panel containing a 1x2 flex table in 
 	 * the top div and a flow layout of buttons in the bottom div.
@@ -73,13 +79,16 @@ public class GUI extends Composite {
 		controlPanel.getElement().getStyle().setBackgroundColor("#000066");
 		controlPanel.setHeight("500px");
 		controlPanel.setWidth("224px");
+		CtrlPanel defaultControl = new CtrlWeather(this.moduleSet);
 		
 		fTable.setWidget(0,0, buildCanvasArea("800px","568px"));
-		fTable.setWidget(0,1, buildControlArea("224px","568px",new CtrlAddModule(true,this.moduleSet)));
+		fTable.setWidget(0,1, buildControlArea("224px","568px",defaultControl));
 		fTable.setWidget(1,0, buildButtonArea("800px","200px"));
 		fTable.setWidget(1,1, buildStatusArea("214px","190px"));
+		
 	      
-	    panel.add(fTable);  
+	    panel.add(fTable);
+	    
 		
 	    return panel;
 	}
@@ -96,9 +105,6 @@ public class GUI extends Composite {
 		bArea.setWidth(width);
 		bArea.getElement().getStyle().setBackgroundColor("#DDDDDD");
 		
-		//Dummy Code for area.
-		//Label dumbLabel = new Label("Button Area");
-		//bArea.add(dumbLabel);
 		
 		//Add the button area
 		bArea.add(new ButtonArea(moduleSet));
@@ -121,7 +127,10 @@ public class GUI extends Composite {
 		//canvasPanel.setWidth(width);
 		canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
 
-		canvasPanel.add(new CnvsMap(moduleSet));
+		//Setup Default Canvas
+		curCanvas = new CnvsMap(moduleSet);
+		
+		canvasPanel.add(curCanvas);
 		
 		return canvasPanel;
 	
@@ -138,7 +147,6 @@ public class GUI extends Composite {
 		controlPanel.setHeight(height);
 		controlPanel.setWidth(width);
 		controlPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
-		
 		
 		
 		return controlPanel;
@@ -171,7 +179,7 @@ public class GUI extends Composite {
 		Image esa = new Image("resources/images/esa_logo.gif");
 		esa.getElement().getStyle().setWidth(50, Unit.PCT);
 		esa.getElement().getStyle().setHeight(40, Unit.PCT);
-		nasa.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
+		esa.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
 		
 		
 		Button adamlogout = new Button("Logout");

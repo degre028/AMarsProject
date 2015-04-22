@@ -24,9 +24,10 @@ public class Starter extends FlowPanel {
 	 */
 	public Starter() {
 		//launchLoginDemo();
-		launchSkipLogin();
+		//launchSkipLogin();
 		//launchSomeData();
 		//launchServerStorage();
+		launchLocalStorage();
 	}
 	
 	
@@ -78,6 +79,18 @@ public class Starter extends FlowPanel {
 		final ModuleSet modset = new ModuleSet("demostorage");
 		
 		modset.getStorage().readServerHtml();
+		
+		RootPanel.get().add(modset.getGui());
+	}
+	
+	/**
+	 * Method called if the user wants to test the JSON reader.
+	 * Uses local web storage
+	 */
+	private void launchLocalStorage() {
+		final ModuleSet modset = new ModuleSet("demolocal");
+		
+		modset.getStorage().loadLocalStore();
 		
 		RootPanel.get().add(modset.getGui());
 	}

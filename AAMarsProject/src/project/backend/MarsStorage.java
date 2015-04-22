@@ -3,6 +3,12 @@ package project.backend;
 import java.util.LinkedList;
 
 import com.google.gwt.i18n.client.Dictionary;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONException;
+import com.google.gwt.json.client.JSONNumber;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
 
@@ -78,6 +84,7 @@ public class MarsStorage {
 		 if (!localFail) {
 			 
 			 StringBuilder mainSave = new StringBuilder();
+
 			 mainSave.append("[");
 			 
 			 Integer i;
@@ -87,36 +94,109 @@ public class MarsStorage {
 				 StringBuilder modString = new StringBuilder();
 				 MarsModule mod = modset.getModule(i);
 				 
-				 modString.append("{id:");
+				 modString.append("{code:");
 				 modString.append(mod.getID());
-				 modString.append(",xcoord:");
-				 modString.append(mod.getX());
-				 modString.append(",ycoord:");
-				 modString.append(mod.getY());
-				 modString.append(",orientation:");
-				 modString.append(mod.getOrientation());
-				 modString.append(",condition:\"");
+				 modString.append(",status:\"");
 				 modString.append(mod.getCondition());
-				 modString.append("\"}");
+				 modString.append("\",turns:");
+				 modString.append(mod.getOrientation());
+				 modString.append(",X:");
+				 modString.append(mod.getX());
+				 modString.append(",Y:");
+				 modString.append(mod.getY());
+				 modString.append("}");
 				 
 				 mainSave.append(modString);
 				 
-				 if(i != modset.getCount("all")) {
+				 if(i != modset.getCount("all")-1) {
 					 mainSave.append(",");
 				 }
 				 
 			 }
+			 mainSave.append("]");
 			 
+//			String sAll = "[" +
+//						 "{id:091,status:\"undamaged\",turns:0,X:5,Y:5}," +
+//						 "{code:002,status:\"undamaged\",turns:0,X:5,Y:6}," +
+//						 "{code:003,status:\"undamaged\",turns:0,X:5,Y:7}" +
+//						 "]";
 
 			 //Write to local storage.
 			 localStorage.setItem("number",i.toString());
-			 localStorage.setItem("modlist", mainSave.toString());
+			 localStorage.setItem("config1", mainSave.toString());
 		 
 		 }
 		}
 		catch (Exception e) {
 			 Window.alert(e.getMessage());
 		}
+		
+	}
+	
+	/**
+	 * This method reads in the data from the local store
+	 * and adds it to the modset.
+	 */
+	public void loadLocalStore() {
+		Integer i = 0;
+		
+		JSONArray jA;
+		JSONNumber jN;
+		JSONString jS;
+		JSONObject jO;
+		try {
+		
+			 //localStorage = Storage.getLocalStorageIfSupported();
+	
+			 String sConfigOne = localStorage.getItem("config1");
+			 jA = (JSONArray)JSONParser. parseLenient(sConfigOne);
+		
+
+		
+		if (!localFail) {
+			
+			for (i = 0; i < jA.size(); i++) {
+				try {
+
+			
+					jO = (JSONObject)jA.get(i);
+					
+					jN = (JSONNumber) jO.get("code");
+					Integer modID = (int) jN.doubleValue();
+							
+					jS = (JSONString) jO.get("status");
+					String modCond = jS.stringValue();				
+					
+					jN = (JSONNumber) jO.get("turns");
+					Integer modOri = (int) jN.doubleValue();
+
+					jN = (JSONNumber) jO.get("X");
+					Integer modX = (int) jN.doubleValue();
+					
+					jN = (JSONNumber) jO.get("Y");
+					Integer modY = (int) jN.doubleValue();
+					
+					MarsModule newModule = new MarsModule(modX, modY, modID, modCond, modOri);
+					modset.addModule(newModule);
+					
+				}
+				catch (JSONException ex) {
+					
+					Window.alert(ex.getMessage() + "\n" + i.toString() + "\n in loop");
+				}
+				
+				
+				
+			}
+			
+		} 
+		
+		}catch (Exception ex) {
+			Window.alert(ex.getMessage());
+		}
+			
+		
+		
 		
 	}
 	

@@ -57,6 +57,9 @@ public class CtrlWeather extends CtrlPanel{
 		catch (RequestException e) { 
 			Window.alert("RequestException: Couldn't retrieve JSON"); 
 		}
+		
+		getHeaderLabel().setText("Weather");
+		
 	}
 	
 	
@@ -69,7 +72,7 @@ public class CtrlWeather extends CtrlPanel{
 	public void setupDisplay() {
 		//KEY: d52e7b82dd8d3349
 		
-		getHeaderLabel().setText("Weather");
+
 		
 		VerticalPanel vp = new VerticalPanel(); 
 		//vp.add(new Label(text)); //TO VIEW 
@@ -89,7 +92,7 @@ public class CtrlWeather extends CtrlPanel{
 		
 		
 		wunder.getElement().getStyle().setWidth(80, Unit.PCT);
-		wunder.getElement().getStyle().setHeight(80, Unit.PCT);
+		wunder.getElement().getStyle().setHeight(40, Unit.PCT);
 		vp.add(wunder);
 		getPanel().add(vp);
 		
