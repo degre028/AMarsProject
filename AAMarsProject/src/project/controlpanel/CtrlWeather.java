@@ -29,7 +29,7 @@ public class CtrlWeather extends CtrlPanel{
 	private VerticalPanel weatherPanel = new VerticalPanel(); 
 	private Label tempWeather = new Label("Default Temp");
 	private Label visWeather = new Label("Default Visiblility");
-
+	final String DEGREE  = "\u00b0";
 
 
 	/**
@@ -63,35 +63,32 @@ public class CtrlWeather extends CtrlPanel{
 			Window.alert("RequestException: Couldn't retrieve JSON"); 
 		}
 		
+		// Header set to "Weather"
 		super.getHeaderLabel().setText("Weather");
 		weatherPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		weatherPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		Label tempLabel = new Label("Tempurature");
+		
+		// Temp Label
+		Label tempLabel = new Label("Temperature");
 		weatherPanel.add(tempLabel);
 		weatherPanel.add(tempWeather); //TO VIEW
 		
-		Label visLabel = new Label("Visibility in km");
+		// Visibility Label
+		Label visLabel = new Label("Visibility");
 		weatherPanel.add(visLabel);
 		weatherPanel.add(visWeather); //TO VIEW
+
 		
+		// Weather Underground Image
 		Image wunder = new Image("resources/images/wunder.png");
 		weatherPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		weatherPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-		
+		weatherPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_BOTTOM);
 		
 		wunder.getElement().getStyle().setWidth(80, Unit.PCT);
 		wunder.getElement().getStyle().setHeight(40, Unit.PCT);
+		wunder.getElement().getStyle().setPaddingTop(70, Unit.PCT);
 		weatherPanel.add(wunder);
 		getPanel().add(weatherPanel);
-		
-		//vp.add(new Label(text)); //TO VIEW 
-		//VerticalPanel testPanel = new VerticalPanel();
-		//Label test = new Label("TEST TEST");
-		//testPanel.add(test);
-		//getPanel().add(testPanel);
-		//setupDisplay();
-		
-
 	}
 	
 	
@@ -104,7 +101,6 @@ public class CtrlWeather extends CtrlPanel{
 	public void setupDisplay() {
 		//KEY: d52e7b82dd8d3349
 
-		//vp.add(new Label(text)); //TO VIEW 
 		String sAll = mResponse; 
 		JSONObject jA = (JSONObject)JSONParser.parseLenient(sAll);
 		JSONValue jTry = jA.get("current_observation"); 
@@ -113,14 +109,13 @@ public class CtrlWeather extends CtrlPanel{
 		
 		JSONValue temp = jB.get("temp_c"); 
 		String sTemp = temp.toString();
-		tempWeather.setText(sTemp);
+		tempWeather.setText(sTemp + DEGREE + "c");
 		
 		JSONValue visibility = jB.get("visibility_km");
 		
 		String sVisibility = visibility.toString();	
-		visWeather.setText(sVisibility);
-
-		
+		sVisibility = sVisibility.substring(1, sVisibility.length()-1);
+		visWeather.setText(sVisibility + " km");	
 			
 	}
 }
