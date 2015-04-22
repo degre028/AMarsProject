@@ -29,6 +29,8 @@ import project.backend.ModuleSet;
  */
 public class CnvsMap extends CnvsPanel{
 	
+	final double SPACER = 28.72; 
+	
 	/**
 	 * Constructor for the canvas map panel area.
 	 * @param modset
@@ -48,9 +50,9 @@ public class CnvsMap extends CnvsPanel{
 		
 		Canvas canvas = Canvas.createIfSupported();
 		//canvas.setWidth("800px");
-		canvas.setPixelSize(800,568);
-		canvas.setCoordinateSpaceHeight(568);
-		canvas.setCoordinateSpaceWidth(800);
+		canvas.setPixelSize(2872,1436);
+		canvas.setCoordinateSpaceHeight(1436);
+		canvas.setCoordinateSpaceWidth(2872);
 		
 //		canvas.setHeight("568px"); //800x568
 		//Context2d context = canvas.getContext2d();
@@ -63,7 +65,7 @@ public class CnvsMap extends CnvsPanel{
 		
 		final Context2d context1 = canvas.getContext2d();
 		
-		final Image img = new Image("resources/images/wunder.png");
+		final Image img = new Image("resources/modpics/Sanitation.jpg");
 		final ImageElement nasa = ImageElement.as(img.getElement());
 		
 		
@@ -73,7 +75,8 @@ public class CnvsMap extends CnvsPanel{
 			}
 		}); 
 		
-		context1.drawImage(nasa, 10, 10, 50, 50);
+		context1.drawImage(nasa, 0, 0, SPACER, SPACER);
+		context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
 		//context1.drawImage(nasa, 100, 10, 50, 50);
 
 
@@ -81,25 +84,25 @@ public class CnvsMap extends CnvsPanel{
 		for(int i=0; i<100; i++) {
 			Context2d context = canvas.getContext2d();
 			context.beginPath();
-			context.moveTo(i*8,0);
+			context.moveTo(i*SPACER,0);
 //			if(i%2==0){
 //				context.setLineWidth(2);}
 			//else{ context.setLineWidth(1);}
 			//context.setFillStyle("000000");
-			context.lineTo(i*8,500);
+			context.lineTo(i*SPACER,1436);
 			context.stroke(); 
 			context.closePath();
 		}
-		for(int i=0; i<72; i++) {
+		for(int i=0; i<50; i++) {
 			Context2d context = canvas.getContext2d();
 			context.beginPath();
-			context.moveTo(0,i*8);
+			context.moveTo(0,i*SPACER);
 //			if(i%2==0){
 //				context.setLineWidth(2);}
 			//else{ context.setLineWidth(1);}
 			//context.setLineWidth(.5);
 			//context.setFillStyle("000000");
-			context.lineTo(500,i*8);
+			context.lineTo(2872,i*SPACER);
 			context.stroke(); 
 			context.closePath();
 

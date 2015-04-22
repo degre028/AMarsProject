@@ -85,9 +85,9 @@ public class GUI extends Composite {
 		controlPanel.setWidth("224px");
 		defaultControl = new CtrlWelcome();
 		
-		fTable.setWidget(0,0, buildCanvasArea("800px","568px"));
+		fTable.setWidget(0,0, buildCanvasArea("1136px","568px"));
 		fTable.setWidget(0,1, buildControlArea("224px","568px",defaultControl));
-		fTable.setWidget(1,0, buildButtonArea("800px","200px"));
+		fTable.setWidget(1,0, buildButtonArea("1136px","200px"));
 		fTable.setWidget(1,1, buildStatusArea("214px","190px"));
 		
 	      
@@ -125,8 +125,8 @@ public class GUI extends Composite {
 	 */
 	private FlowPanel buildCanvasArea(String width, String height) {
 		FlowPanel canvasPanel = new FlowPanel();
-		canvasPanel.getElement().getStyle().setHeight(568, Unit.PX);
-		canvasPanel.getElement().getStyle().setWidth(800, Unit.PX);
+		canvasPanel.getElement().getStyle().setHeight(718, Unit.PX);
+		canvasPanel.getElement().getStyle().setWidth(1436, Unit.PX);
 		//canvasPanel.setHeight(height);
 		//canvasPanel.setWidth(width);
 		canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");

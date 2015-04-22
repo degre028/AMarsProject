@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 
 /**
@@ -13,7 +14,7 @@ import com.google.gwt.user.client.ui.Label;
  * @author Rob
  *
  */
-public class CnvsPanel extends Composite {
+public class CnvsPanel extends ScrollPanel {
 
 	private FlowPanel mainPanel = new FlowPanel();
 	
@@ -28,7 +29,9 @@ public class CnvsPanel extends Composite {
 		mainPanel.getElement().getStyle().setHeight(100.0, Unit.PX);
 		
 		//All composites must call initWidget(panel);
-		this.initWidget(mainPanel);
+		this.setWidth("100%");
+		this.setHeight("100%");
+		this.add(mainPanel);
 	}
 	
 	public FlowPanel getPanel() {
