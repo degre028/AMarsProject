@@ -119,12 +119,12 @@ public class CnvsMap extends CnvsPanel{
 
 			}
 		
-		//for(int i = 0; i < modset.getCount("all"); i++) {
+		for(int i = 0; i < modset.getCount("all"); i++) {
 			int xcoor= modset.getModule(0).getX();
 			int ycoor= modset.getModule(0).getY();
 			context1.drawImage(nasa, xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
 			
-		//}
+		}
 		
 		super.getPanel().add(canvas);
 		img.setVisible(false);
