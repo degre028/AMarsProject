@@ -25,9 +25,9 @@ public class Starter extends FlowPanel {
 	public Starter() {
 		//launchLoginDemo();
 		//launchSkipLogin();
-		//launchSomeData();
+		launchSomeData();
 		//launchServerStorage();
-		launchLocalStorage();
+		//launchLocalStorage();
 	}
 	
 	
@@ -68,8 +68,9 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(100,100,172,"Good",0));
 		modset.addModule(new MarsModule(32,17,150,"Good",0));
 		
-		
+		modset.BuildGUI();		
 		RootPanel.get().add(modset.getGui());
+
 	}
 	
 	/**

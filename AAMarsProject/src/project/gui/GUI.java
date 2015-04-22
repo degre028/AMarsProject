@@ -83,7 +83,7 @@ public class GUI extends Composite {
 		controlPanel.getElement().getStyle().setBackgroundColor("#000066");
 		controlPanel.setHeight("500px");
 		controlPanel.setWidth("224px");
-		defaultControl = new CtrlWelcome();
+		defaultControl = new CtrlAddModule(true,moduleSet);
 		
 		fTable.setWidget(0,0, buildCanvasArea("1136px","568px"));
 		fTable.setWidget(0,1, buildControlArea("224px","568px",defaultControl));
