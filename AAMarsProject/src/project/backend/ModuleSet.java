@@ -17,13 +17,14 @@ public class ModuleSet {
 	LinkedList<MarsModule> modList;
 	GUI gui;
 	MarsStorage storage;
+	String user;
 	
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
 	 */
 	public ModuleSet(String user) {
 		modList = new LinkedList<MarsModule>();
-		gui = new GUI(this,user);
+		this.user = user;
 		storage = new MarsStorage(this);
 	}
 	
@@ -90,4 +91,10 @@ public class ModuleSet {
 	public MarsStorage getStorage() {
 		return storage;
 	}
+	
+	public void BuildGUI() {
+		gui = new GUI(this,user);
+	}
+	
+	
 }
