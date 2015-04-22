@@ -41,7 +41,10 @@ public class ButtonArea extends Composite{
 		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,modset),modset));
 		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,modset),modset));
 		buttonList.add(new MarsButton(true, "Weather", new CtrlWeather(modset),modset));
-		//buttonList.add(new MarsButton(true, "View Histogram", new CtrlPanel(),gui));
+		buttonList.add(new MarsButton(true, "Configuration", new CtrlConfig(modset),modset));
+		buttonList.add(new MarsButton(false, "Test Cases", new CtrlWelcome(),modset));
+		
+	
 		
 		//Add buttons to table.
 		for (int i = 0; i < buttonList.size(); i++) {
