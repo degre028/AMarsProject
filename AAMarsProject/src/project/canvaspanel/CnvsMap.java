@@ -74,31 +74,32 @@ public class CnvsMap extends CnvsPanel{
 		}); 
 		
 		context1.drawImage(nasa, 10, 10, 50, 50);
-		
+		//context1.drawImage(nasa, 100, 10, 50, 50);
+
 
 		
-		for(int i=0; i<51; i++) {
+		for(int i=0; i<100; i++) {
 			Context2d context = canvas.getContext2d();
 			context.beginPath();
-			context.moveTo(i*6,0);
-			if(i%2==0){
-				context.setLineWidth(2);}
-			else{ context.setLineWidth(1);}
+			context.moveTo(i*8,0);
+//			if(i%2==0){
+//				context.setLineWidth(2);}
+			//else{ context.setLineWidth(1);}
 			//context.setFillStyle("000000");
-			context.lineTo(i*6,500);
+			context.lineTo(i*8,500);
 			context.stroke(); 
 			context.closePath();
 		}
-		for(int i=0; i<31; i++) {
+		for(int i=0; i<72; i++) {
 			Context2d context = canvas.getContext2d();
 			context.beginPath();
-			context.moveTo(0,i*5);
-			if(i%2==0){
-				context.setLineWidth(2);}
-			else{ context.setLineWidth(1);}
+			context.moveTo(0,i*8);
+//			if(i%2==0){
+//				context.setLineWidth(2);}
+			//else{ context.setLineWidth(1);}
 			//context.setLineWidth(.5);
 			//context.setFillStyle("000000");
-			context.lineTo(500,i*5);
+			context.lineTo(500,i*8);
 			context.stroke(); 
 			context.closePath();
 
