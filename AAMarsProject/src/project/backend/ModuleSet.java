@@ -43,6 +43,7 @@ public class ModuleSet {
 	 */
 	public void removeModule(int i) {
 		modList.remove(i);
+		storage.saveToLocalStore();
 	}
 	
 	
