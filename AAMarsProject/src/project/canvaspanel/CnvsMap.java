@@ -66,6 +66,17 @@ public class CnvsMap extends CnvsPanel{
 		final Context2d context1 = canvas.getContext2d();
 		
 		final Image img = new Image("resources/modpics/Sanitation.jpg");
+		final Image Air = new Image("resources/modpics/Airloc.jpg");
+		final Image Ter = new Image("resources/modpics/Bad Terrain.jpg");
+		final Image Can = new Image("resources/modpics/Canteen.jpg");
+		final Image Con = new Image("resources/modpics/Control.jpg");
+		final Image Dor = new Image("resources/modpics/Dormitory.jpg");
+		final Image Foo = new Image("resources/modpics/Food.jpg");
+		final Image Gym = new Image("resources/modpics/Gym.jpg");
+		final Image Med = new Image("resources/modpics/Medical.jpg");
+		final Image Pla = new Image("resources/modpics/Plain.jpg");
+		final Image Pow = new Image("resources/modpics/Power.jpg");
+		
 		final ImageElement nasa = ImageElement.as(img.getElement());
 		
 		
@@ -75,8 +86,8 @@ public class CnvsMap extends CnvsPanel{
 			}
 		}); 
 		
-		context1.drawImage(nasa, 0, 0, SPACER, SPACER);
-		context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
+		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
+		//context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
 		//context1.drawImage(nasa, 100, 10, 50, 50);
 
 
@@ -106,7 +117,14 @@ public class CnvsMap extends CnvsPanel{
 			context.stroke(); 
 			context.closePath();
 
-			}		
+			}
+		
+		//for(int i = 0; i < modset.getCount("all"); i++) {
+			int xcoor= modset.getModule(0).getX();
+			int ycoor= modset.getModule(0).getY();
+			context1.drawImage(nasa, xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
+			
+		//}
 		
 		super.getPanel().add(canvas);
 		img.setVisible(false);
