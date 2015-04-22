@@ -146,14 +146,14 @@ public class MarsStorage {
 		JSONObject jO;
 		try {
 		
-			 localStorage = Storage.getLocalStorageIfSupported();
+			 //localStorage = Storage.getLocalStorageIfSupported();
 	
 			 String sConfigOne = localStorage.getItem("config1");
 			 jA = (JSONArray)JSONParser. parseLenient(sConfigOne);
 		
 
 		
-		if (!localFail && sConfigOne != null) {
+		if (!localFail) {
 			
 			for (i = 0; i < jA.size(); i++) {
 				try {
