@@ -73,8 +73,7 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(90,34,171,"Good",0));
 		modset.addModule(new MarsModule(23,23,171,"Good",0));
 		modset.addModule(new MarsModule(67,45,171,"Good",0));
-		
-		modset.BuildGUI();		
+			
 		RootPanel.get().add(modset.getGui());
 
 	}
@@ -91,6 +90,7 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(100,100,164,"Good",0));	//Control
 		modset.addModule(new MarsModule(32,17,174,"Good",0));	//Airlock
 		modset.addModule(new MarsModule(32,17,111,"Good",0));	//Food and Water
+		
 		RootPanel.get().add(modset.getGui());
 	}
 	

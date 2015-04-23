@@ -27,6 +27,7 @@ public class ModuleSet {
 		modList = new LinkedList<MarsModule>();
 		this.user = user;
 		storage = new MarsStorage(this);
+		gui = new GUI(this,user);
 		
 	}
 	
@@ -94,10 +95,7 @@ public class ModuleSet {
 		return storage;
 	}
 	
-	public void BuildGUI() {
-		gui = new GUI(this,user);
-		configList.add(new Configuration(this));
-	}
+
 	
 	
 }
