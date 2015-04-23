@@ -28,8 +28,22 @@ import project.backend.ModuleSet;
  *
  */
 public class CnvsMap extends CnvsPanel{
-	
+	Canvas canvas = Canvas.createIfSupported();
 	final double SPACER = 28.72; 
+	ImageElement sanitation;
+	ImageElement airlock;
+	ImageElement terrain;
+	ImageElement canteen;
+	ImageElement dormitory;
+	ImageElement food;
+	ImageElement gymnasium;
+	ImageElement medical;
+	ImageElement plain;
+	ImageElement power;
+	ImageElement control;
+	ImageElement mars;
+	final Context2d context1 = canvas.getContext2d();
+	final ModuleSet modset;
 	
 	/**
 	 * Constructor for the canvas map panel area.
@@ -48,8 +62,9 @@ public class CnvsMap extends CnvsPanel{
 //		pane.getElement().getStyle().setHeight(100.0,Unit.PCT);
 //		pane.add(lab);
 		
-		Canvas canvas = Canvas.createIfSupported();
+
 		//canvas.setWidth("800px");
+		this.modset = modset;
 		canvas.setPixelSize(2872,1436);
 		canvas.setCoordinateSpaceHeight(1436);
 		canvas.setCoordinateSpaceWidth(2872);
@@ -60,32 +75,42 @@ public class CnvsMap extends CnvsPanel{
 //		context.moveTo(10,10);
 //		canvas.setHeight("100%");
 //		canvas.getParent().getOffsetHeight();
-		canvas.getElement().getStyle().setBackgroundColor("#FF8106");
+		//canvas.getElement().getStyle().setBackgroundColor("#FF8106");
 		
 		
-		final Context2d context1 = canvas.getContext2d();
-		
-		final Image img = new Image("resources/modpics/Sanitation.jpg");
-		final Image Air = new Image("resources/modpics/Airloc.jpg");
-		final Image Ter = new Image("resources/modpics/Bad Terrain.jpg");
-		final Image Can = new Image("resources/modpics/Canteen.jpg");
-		final Image Con = new Image("resources/modpics/Control.jpg");
-		final Image Dor = new Image("resources/modpics/Dormitory.jpg");
-		final Image Foo = new Image("resources/modpics/Food.jpg");
-		final Image Gym = new Image("resources/modpics/Gym.jpg");
-		final Image Med = new Image("resources/modpics/Medical.jpg");
-		final Image Pla = new Image("resources/modpics/Plain.jpg");
-		final Image Pow = new Image("resources/modpics/Power.jpg");
-		
-		final ImageElement nasa = ImageElement.as(img.getElement());
-		
-		
-		img.addLoadHandler(new LoadHandler() {
-			public void onLoad(LoadEvent event) { // fired by RootPanel.get().add
 
-			}
-		}); 
 		
+		
+		final Image mar = new Image("resources/images/Mars Surface.jpg");
+		final Image san = new Image("resources/modpics/Sanitation.jpg");
+		final Image air = new Image("resources/modpics/Airlock.jpg");
+		final Image ter = new Image("resources/modpics/Bad Terrain.jpg");
+		final Image can = new Image("resources/modpics/Canteen.jpg");
+		final Image con = new Image("resources/modpics/Control.jpg");
+		final Image dor = new Image("resources/modpics/Dormitory.jpg");
+		final Image foo = new Image("resources/modpics/Food.jpg");
+		final Image gym = new Image("resources/modpics/Gym.jpg");
+		final Image med = new Image("resources/modpics/Medical.jpg");
+		final Image pla = new Image("resources/modpics/Plain.jpg");
+		final Image pow = new Image("resources/modpics/Power.jpg");
+		
+		mars = makeImage(mar);
+		sanitation = makeImage(san);
+		airlock = makeImage(air);
+		terrain = makeImage(ter);
+		canteen = makeImage(can);
+		control = makeImage(con);
+		dormitory = makeImage(dor);
+		food = makeImage(foo);
+		gymnasium = makeImage(gym);
+		medical = makeImage(med);
+		plain = makeImage(pla);
+		power = makeImage(pow);
+		
+		context1.drawImage(mars, 1, 1, 2872, 1436);
+		
+		
+
 		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
 		//context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
 		//context1.drawImage(nasa, 100, 10, 50, 50);
@@ -120,15 +145,14 @@ public class CnvsMap extends CnvsPanel{
 			}
 		
 		for(int i = 0; i < modset.getCount("all"); i++) {
-			int xcoor= modset.getModule(0).getX();
-			int ycoor= modset.getModule(0).getY();
-			context1.drawImage(nasa, xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
+			int xcoor= modset.getModule(i).getX()-1;
+			int ycoor= modset.getModule(i).getY()-1;
+			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
 			
 		}
-		
+		//super.getPanel().getElement().getStyle().setBackgroundImage("resources/images/Mars Surface.jpg");
 		super.getPanel().add(canvas);
-		img.setVisible(false);
-	    super.getPanel().add(img);
+		
 	}
 	
 	/**
@@ -137,7 +161,78 @@ public class CnvsMap extends CnvsPanel{
 	 */
 	@Override
 	public void refreshDisplay() {
+		context1.drawImage(mars, 1, 1, 2872, 1436);
+		
+		
+
+		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
+		//context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
+		//context1.drawImage(nasa, 100, 10, 50, 50);
+
+
+		
+		for(int i=0; i<100; i++) {
+			Context2d context = canvas.getContext2d();
+			context.beginPath();
+			context.moveTo(i*SPACER,0);
+//			if(i%2==0){
+//				context.setLineWidth(2);}
+			//else{ context.setLineWidth(1);}
+			//context.setFillStyle("000000");
+			context.lineTo(i*SPACER,1436);
+			context.stroke(); 
+			context.closePath();
+		}
+		for(int i=0; i<50; i++) {
+			Context2d context = canvas.getContext2d();
+			context.beginPath();
+			context.moveTo(0,i*SPACER);
+//			if(i%2==0){
+//				context.setLineWidth(2);}
+			//else{ context.setLineWidth(1);}
+			//context.setLineWidth(.5);
+			//context.setFillStyle("000000");
+			context.lineTo(2872,i*SPACER);
+			context.stroke(); 
+			context.closePath();
+
+			}
+		
+		for(int i = 0; i < modset.getCount("all"); i++) {
+			int xcoor= modset.getModule(i).getX()-1;
+			int ycoor= modset.getModule(i).getY()-1;
+			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
+			
+		}
+	}
+	
+	private ImageElement makeImage(Image img) {
+		final ImageElement image = ImageElement.as(img.getElement());
+		
+		
+		img.addLoadHandler(new LoadHandler() {
+			public void onLoad(LoadEvent event) { // fired by RootPanel.get().add
+
+			}
+		}); 
+		img.setVisible(false);
+	    super.getPanel().add(img);
+	    return image;
+	}
+	
+	private ImageElement getImage(String type) {
+		if(type.equals("Plain")) { return plain; }
+		else if (type.equals("Dormitory")) { return dormitory; }
+		else if (type.equals("Sanitation")) { return sanitation; }
+		else if (type.equals("Food & Water")) { return food; }
+		else if (type.equals("Gym & Relaxation")) { return gymnasium; }
+		else if (type.equals("Canteeen")) { return canteen; }
+		else if (type.equals("Power")) { return power; }
+		else if (type.equals("Control")) { return control; }
+		else if (type.equals("Airlock")) { return airlock; }
+		else if (type.equals("Medical")) { return medical; }
+		else return medical;
 		
 	}
-
+	
 }

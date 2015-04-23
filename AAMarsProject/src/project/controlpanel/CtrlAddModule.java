@@ -160,6 +160,8 @@ public class CtrlAddModule extends CtrlPanel{
 				catch (UmbrellaException e) {
 					Window.alert("Invalid Input!");
 				}
+				
+				modules.getGui().updateCanvasArea();
 
 			}
 		});

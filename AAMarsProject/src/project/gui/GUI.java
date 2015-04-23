@@ -129,7 +129,7 @@ public class GUI extends Composite {
 		canvasPanel.getElement().getStyle().setWidth(1436, Unit.PX);
 		//canvasPanel.setHeight(height);
 		//canvasPanel.setWidth(width);
-		canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
+		//canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
 
 		//Setup Default Canvas
 		curCanvas = new CnvsMap(moduleSet);
@@ -216,6 +216,13 @@ public class GUI extends Composite {
 		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
 	}
 	
+	public void updateCanvasArea() {
+		curCanvas.refreshDisplay();
+	}
+	
+	public CnvsPanel getCurCanvas() {
+		return curCanvas;
+	}
 	
 	public void setUsername(String username) {
 		user = "aa";

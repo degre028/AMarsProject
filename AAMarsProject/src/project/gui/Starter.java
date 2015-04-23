@@ -58,15 +58,20 @@ public class Starter extends FlowPanel {
 	private void launchSomeData() {
 		final ModuleSet modset = new ModuleSet("demo");
 		
-		modset.addModule(new MarsModule(32,16,2,"Good",0));
-		modset.addModule(new MarsModule(88,55,63,"Good",0));
-		modset.addModule(new MarsModule(32,65,65,"Good",0));
-		modset.addModule(new MarsModule(102,18,91,"Good",0));
-		modset.addModule(new MarsModule(99,14,3,"Good",0));
-		modset.addModule(new MarsModule(1,19,132,"Good",0));
-		modset.addModule(new MarsModule(55,5,184,"Good",0));
-		modset.addModule(new MarsModule(100,100,172,"Good",0));
-		modset.addModule(new MarsModule(32,17,150,"Good",0));
+		modset.addModule(new MarsModule(1,1,2,"Good",0));
+		modset.addModule(new MarsModule(100,50,63,"Good",0));
+		modset.addModule(new MarsModule(100,1,65,"Good",0));
+		modset.addModule(new MarsModule(1,50,91,"Good",0));
+		modset.addModule(new MarsModule(1,5,3,"Good",0));
+		modset.addModule(new MarsModule(1,6,132,"Good",0));
+		modset.addModule(new MarsModule(1,7,184,"Good",0));
+		modset.addModule(new MarsModule(1,8,172,"Good",0));
+		modset.addModule(new MarsModule(1,9,171,"Good",0));
+		modset.addModule(new MarsModule(50,25,171,"Good",0));
+		modset.addModule(new MarsModule(40,40,171,"Good",0));
+		modset.addModule(new MarsModule(90,34,171,"Good",0));
+		modset.addModule(new MarsModule(23,23,171,"Good",0));
+		modset.addModule(new MarsModule(67,45,171,"Good",0));
 		
 		modset.BuildGUI();		
 		RootPanel.get().add(modset.getGui());
