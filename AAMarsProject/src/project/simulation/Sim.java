@@ -1,5 +1,5 @@
 package project.simulation;
 
-public class sim {
+public class Sim {
 
 }
