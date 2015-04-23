@@ -27,7 +27,8 @@ public class Starter extends FlowPanel {
 		//launchSkipLogin();
 		//launchSomeData();
 		//launchServerStorage();
-		launchLocalStorage();
+		launchMinConfig();
+		//launchLocalStorage();
 	}
 	
 	
@@ -69,6 +70,21 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(32,17,150,"Good",0));
 		
 		
+		RootPanel.get().add(modset.getGui());
+	}
+	private void launchMinConfig() {
+		final ModuleSet modset = new ModuleSet("Minimum");
+		
+		modset.addModule(new MarsModule(32,16,2,"Good",0));		//Plain
+		modset.addModule(new MarsModule(88,61,3,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(32,65,4,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(102,18,70,"Good",0)); 	//Dormitory
+		modset.addModule(new MarsModule(99,14,95,"Good",0));	//Sanitation
+		modset.addModule(new MarsModule(1,19,141,"Good",0));	//Canteen
+		modset.addModule(new MarsModule(55,5,154,"Good",0));	//Power
+		modset.addModule(new MarsModule(100,100,164,"Good",0));	//Control
+		modset.addModule(new MarsModule(32,17,174,"Good",0));	//Airlock
+		modset.addModule(new MarsModule(32,17,111,"Good",0));	//Food and Water
 		RootPanel.get().add(modset.getGui());
 	}
 	
