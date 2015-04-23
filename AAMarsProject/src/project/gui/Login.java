@@ -30,7 +30,7 @@ public class Login extends Composite {
 	 * @param passwd
 	 * @param homePanel
 	 */
-	public Login(final Passwd passwd, final FlowPanel homePanel){
+	public Login(final Passwd passwd, final FlowPanel homePanel, final ModuleSet modset){
 	
 		
 		//Creating mainPanel and setting dimensions
@@ -83,9 +83,9 @@ public class Login extends Composite {
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
 					homePanel.remove(0);
-					ModuleSet mainModuleSet = new ModuleSet(userCheck);
+					
 	
-					homePanel.add(mainModuleSet.getGui());
+					homePanel.add(modset.getGui());
 				} else {
 					//countInner = countClick + countInner;
 					loginFail.setText("Login Attempt Failed ");

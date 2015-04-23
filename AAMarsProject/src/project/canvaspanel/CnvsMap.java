@@ -18,6 +18,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
+
+import project.backend.GraphicPack;
 import project.backend.ModuleSet;
 
 /**
@@ -62,6 +64,7 @@ public class CnvsMap extends CnvsPanel{
 //		pane.getElement().getStyle().setHeight(100.0,Unit.PCT);
 //		pane.add(lab);
 		
+		GraphicPack graphics = modset.getGraphics();
 
 		//canvas.setWidth("800px");
 		this.modset = modset;
@@ -94,18 +97,19 @@ public class CnvsMap extends CnvsPanel{
 		final Image pla = new Image("resources/modpics/Plain.jpg");
 		final Image pow = new Image("resources/modpics/Power.jpg");
 		
-		mars = makeImage(mar);
-		sanitation = makeImage(san);
-		airlock = makeImage(air);
-		terrain = makeImage(ter);
-		canteen = makeImage(can);
-		control = makeImage(con);
-		dormitory = makeImage(dor);
-		food = makeImage(foo);
-		gymnasium = makeImage(gym);
-		medical = makeImage(med);
-		plain = makeImage(pla);
-		power = makeImage(pow);
+		mars = graphics.getImageElement("mars");
+
+		sanitation = graphics.getImageElement("Sanitation");
+		airlock =graphics.getImageElement("Airlock");
+		terrain = graphics.getImageElement("Terrain");
+		canteen = graphics.getImageElement("Canteen");
+		control = graphics.getImageElement("Control");
+		dormitory = graphics.getImageElement("Dormitory");
+		food = graphics.getImageElement("Food");
+		gymnasium = graphics.getImageElement("Gymnasium");
+		medical = graphics.getImageElement("Medical");
+		plain = graphics.getImageElement("Plain");
+		power = graphics.getImageElement("Power");
 		
 		context1.drawImage(mars, 1, 1, 2872, 1436);
 		

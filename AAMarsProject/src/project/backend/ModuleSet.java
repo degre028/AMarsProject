@@ -19,14 +19,16 @@ public class ModuleSet {
 	GUI gui;
 	MarsStorage storage;
 	String user;
+	GraphicPack graphics;
 	
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
 	 */
-	public ModuleSet(String user) {
+	public ModuleSet(String user, GraphicPack graphics) {
 		modList = new LinkedList<MarsModule>();
 		this.user = user;
 		storage = new MarsStorage(this);
+		this.graphics = graphics;
 		gui = new GUI(this,user);
 		
 	}
@@ -95,6 +97,14 @@ public class ModuleSet {
 		return storage;
 	}
 	
+	
+	/**
+	 * Getter for the graphics pack.
+	 * @return
+	 */
+	public GraphicPack getGraphics() {
+		return graphics;
+	}
 
 	
 	

@@ -5,10 +5,11 @@ import project.backend.ModuleSet;
 import project.backend.Passwd;
 import project.backend.MarsStorage;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-
+import project.backend.GraphicPack;
 /**
  * This class is responsible for handling the start of the program.
  * It's startup method is the only thing called in onModuleLoad().
@@ -16,17 +17,26 @@ import com.google.gwt.user.client.ui.RootPanel;
  *
  */
 public class Starter extends FlowPanel {
+	final FlowPanel mainPanel = new FlowPanel();
 	
+	final GraphicPack graphics = new GraphicPack();
+	
+	final ModuleSet modset = new ModuleSet("default",graphics);
+
+	final Login log1 = new Login(new Passwd(), mainPanel, modset);
 	
 	/**
 	 * Starter constructor.  It begins the process of creating
 	 * desired system setup.
 	 */
 	public Starter() {
+
+
+		
 		//launchLoginDemo();
-		//launchSkipLogin();
+		launchSkipLogin();
 		//launchSomeData();
-		launchMinConfig();
+		//launchMinConfig();
 		//launchServerStorage();
 		//launchLocalStorage();
 	}
@@ -37,10 +47,8 @@ public class Starter extends FlowPanel {
 	 * login capabilities.
 	 */
 	private void launchLoginDemo() {
-		final FlowPanel flo1 = new FlowPanel();
-		final Login log1 = new Login(new Passwd(), flo1);
-		flo1.add(log1);
-		RootPanel.get().add(flo1);
+		mainPanel.add(log1);
+		RootPanel.get().add(mainPanel);
 	}
 	
 	/**
@@ -48,7 +56,7 @@ public class Starter extends FlowPanel {
 	 * login capabilities.
 	 */
 	private void launchSkipLogin() {
-		final ModuleSet modset = new ModuleSet("demo");
+		final ModuleSet modset = new ModuleSet("demo",graphics);
 		RootPanel.get().add(modset.getGui());
 	}
 	
@@ -57,7 +65,7 @@ public class Starter extends FlowPanel {
 	 * at the start
 	 */
 	private void launchSomeData() {
-		final ModuleSet modset = new ModuleSet("demo");
+		final ModuleSet modset = new ModuleSet("demo",graphics);
 		
 		modset.addModule(new MarsModule(1,1,2,"Good",0));
 		modset.addModule(new MarsModule(100,50,63,"Good",0));
@@ -78,7 +86,7 @@ public class Starter extends FlowPanel {
 
 	}
 	private void launchMinConfig() {
-		final ModuleSet modset = new ModuleSet("Minimum");
+		final ModuleSet modset = new ModuleSet("Minimum",graphics);
 		
 		modset.addModule(new MarsModule(32,16,2,"Good",0));		//Plain
 		modset.addModule(new MarsModule(88,61,3,"Good",0)); 	//Plain
@@ -91,14 +99,16 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(32,17,174,"Good",0));	//Airlock
 		modset.addModule(new MarsModule(32,17,111,"Good",0));	//Food and Water
 		
+		modset.getGui().updateCanvasArea();
 		RootPanel.get().add(modset.getGui());
+
 	}
 	
 	/**
 	 * Method called if the user wants to test the dictionary reader.
 	 */
 	private void launchServerStorage() {
-		final ModuleSet modset = new ModuleSet("demostorage");
+		final ModuleSet modset = new ModuleSet("demostorage",graphics);
 		
 		modset.getStorage().readServerHtml();
 		
@@ -110,7 +120,7 @@ public class Starter extends FlowPanel {
 	 * Uses local web storage
 	 */
 	private void launchLocalStorage() {
-		final ModuleSet modset = new ModuleSet("demolocal");
+		final ModuleSet modset = new ModuleSet("demolocal",graphics);
 		
 		modset.getStorage().loadLocalStore();
 		
