@@ -43,7 +43,7 @@ public class MarsStorage {
 	 * @return modset. Returns a configuration class representing the list of modules.
 	 */
 	public void readServerHtml() {
-		Configuration config = new Configuration();
+		Configuration config = new Configuration(modset);
 		LinkedList<MarsModule> modlist = new LinkedList<MarsModule>();
 		
 

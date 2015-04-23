@@ -13,6 +13,11 @@ public class CtrlConfig extends CtrlPanel {
 	
 	public CtrlConfig(ModuleSet modset) {
 		
+		super.getHeaderLabel().setText("Configurations");
+		
+		
+		
+		
 		
 		
 	}

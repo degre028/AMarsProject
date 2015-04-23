@@ -15,6 +15,7 @@ import project.gui.GUI;
 public class ModuleSet {
 	//Private variables
 	LinkedList<MarsModule> modList;
+	LinkedList<Configuration> configList;
 	GUI gui;
 	MarsStorage storage;
 	String user;
@@ -26,6 +27,7 @@ public class ModuleSet {
 		modList = new LinkedList<MarsModule>();
 		this.user = user;
 		storage = new MarsStorage(this);
+		
 	}
 	
 	/**
@@ -94,6 +96,7 @@ public class ModuleSet {
 	
 	public void BuildGUI() {
 		gui = new GUI(this,user);
+		configList.add(new Configuration(this));
 	}
 	
 	
