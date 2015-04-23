@@ -4,7 +4,7 @@ import project.backend.ModuleSet;
 
 public class Sim {
 	public Sim() {
-		
+
 	}
 	
 		
@@ -13,25 +13,30 @@ public class Sim {
 	 * Airlock, Control, Power, Food and Water Storage
 	 * Dormitory, Canteen, Sanitation, 3 Plain
 	 */
-//	public boolean testJUnit(ModuleSet modset){
-//		int test = modset.getCount("Dormitory");
-//		if(test == 1) {
-//			return true;
-//		}
-//		return false;
-//	}
+	public boolean testJUnit(ModuleSet modset){
+		int test = modset.getCount("Dormitory");
+		int test1 = modset.getCount("Airlock");
+		int total = test + test1;
+		
+		if(total >= 2) {
+			System.out.println("Inside If");
+			return true;
+		}
+		System.out.println("Outside If");
+		return false;
+	}
 	
 	public boolean isMinimum(ModuleSet modset) {
 		boolean isMin = false;
 		
-		int countDorm = modset.getCount("Dormitory");
-		int countAir = modset.getCount("Airlock");
-		int countPow = modset.getCount("Power");
-		int countCant = modset.getCount("Canteen");
-		int countFoodWater = modset.getCount("Food & Water");
-		int countSant = modset.getCount("Sanitation");
-		int countCtrl = modset.getCount("Control");
-		int countPlain = modset.getCount("Plain");
+		int countDorm =			modset.getCount("Dormitory");
+		int countAir =	 		modset.getCount("Airlock");
+		int countPow = 			modset.getCount("Power");
+		int countCant = 		modset.getCount("Canteen");
+		int countFoodWater =	modset.getCount("Food & Water");
+		int countSant = 		modset.getCount("Sanitation");
+		int countCtrl = 		modset.getCount("Control");
+		int countPlain =		modset.getCount("Plain");
 		
 
 		
