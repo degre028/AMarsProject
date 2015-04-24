@@ -48,7 +48,7 @@ public class ButtonArea extends Composite{
 		
 		//Add buttons to table.
 		for (int i = 0; i < buttonList.size(); i++) {
-			fTable.setWidget(i, 0, buttonList.get(i));
+			fTable.setWidget(i%3, i/3, buttonList.get(i));
 		}
 		
 		return fTable;

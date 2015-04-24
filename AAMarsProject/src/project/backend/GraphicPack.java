@@ -69,7 +69,7 @@ public class GraphicPack {
 		
 		img.addLoadHandler(new LoadHandler() {
 			public void onLoad(LoadEvent event) { // fired by RootPanel.get().add
-					Window.alert("loading");
+					//Window.alert("loading");
 			}
 		}); 
 

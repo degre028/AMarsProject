@@ -19,20 +19,15 @@ public class Configuration {
 	 * Constructor for configuration.
 	 * @param modset
 	 */
-	public Configuration(ModuleSet modset) {
+	public Configuration(ModuleSet modset, LinkedList<MarsModule> modlist) {
 		this.modset = modset;
+		this.moduleList = modlist;
 		
 		for(int i = 0; i < modset.getCount("all"); i++) {
 			moduleList.add(modset.getModule(i));
 		}
 	}
 	
-	/**
-	 * Default constructor for configuration.
-	 */
-	public Configuration(LinkedList<MarsModule> list) {
-		this.moduleList = list;
-	}
 	
 	/**
 	 * Method used to move a module within an individual config.

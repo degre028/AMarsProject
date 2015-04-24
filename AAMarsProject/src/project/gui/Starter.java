@@ -32,13 +32,16 @@ public class Starter extends FlowPanel {
 	public Starter() {
 
 
-		
+		try {
 		//launchLoginDemo();
-		launchSkipLogin();
+		//launchSkipLogin();
 		//launchSomeData();
 		//launchMinConfig();
-		//launchServerStorage();
+		launchServerStorage();
 		//launchLocalStorage();
+		} catch (Exception ex) {
+			Window.alert(ex.getMessage());
+		}
 	}
 	
 	

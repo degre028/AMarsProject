@@ -44,6 +44,8 @@ public class GUI extends Composite {
 	 * quandrents of the GUI.
 	 */
 	private FlexTable fTable;
+	private FlexTable fTableRight;
+	private FlexTable fTableLeft;
 	private String user;
 	CnvsPanel curCanvas;
 	CtrlPanel defaultControl;
@@ -57,14 +59,14 @@ public class GUI extends Composite {
 	 */
 	public GUI(ModuleSet modset, String username) {
 		moduleSet = modset;
-		fTable = new FlexTable();
+		fTableRight = new FlexTable();
 		user = username;
+		fTableLeft = new FlexTable();
 
 	      
 	      // All composites must call initWidget() in their constructors.
 	      initWidget(makeMainPanel());
 	      
-	      //this.updateControlArea(defaultControl);
 	}
 	
 	
@@ -74,24 +76,27 @@ public class GUI extends Composite {
 	 * the top div and a flow layout of buttons in the bottom div.
 	 * @return panel A 2x1 Vertical panel.
 	 */
-	private VerticalPanel makeMainPanel() {
-	    VerticalPanel panel = new VerticalPanel();
-		
-
+	private FlowPanel makeMainPanel() {
+	    //VerticalPanel panel = new VerticalPanel();
+		FlowPanel panel = new FlowPanel();
 		
 		FlowPanel controlPanel = new FlowPanel();
 		controlPanel.getElement().getStyle().setBackgroundColor("#000066");
 		controlPanel.setHeight("500px");
 		controlPanel.setWidth("224px");
-		defaultControl = new CtrlAddModule(true,moduleSet);
+		defaultControl = new CtrlWelcome();
 		
-		fTable.setWidget(0,0, buildCanvasArea("1136px","568px"));
-		fTable.setWidget(0,1, buildControlArea("224px","568px",defaultControl));
-		fTable.setWidget(1,0, buildButtonArea("1136px","200px"));
-		fTable.setWidget(1,1, buildStatusArea("214px","190px"));
+		fTableLeft.setWidget(0,0, buildCanvasArea("1136px","568px"));
+		fTableRight.setWidget(0,1, buildControlArea("224px","718px",defaultControl));
+		fTableLeft.setWidget(1,0, buildButtonArea("1436px","100px"));
+		fTableRight.setWidget(1,1, buildStatusArea("214px","100px"));
 		
-	      
+	    
+		fTable = new FlexTable();
+		fTable.setWidget(0,0,fTableLeft);
+		fTable.setWidget(0,1,fTableRight);
 	    panel.add(fTable);
+	    
 	    
 		
 	    return panel;
@@ -127,9 +132,6 @@ public class GUI extends Composite {
 		FlowPanel canvasPanel = new FlowPanel();
 		canvasPanel.getElement().getStyle().setHeight(718, Unit.PX);
 		canvasPanel.getElement().getStyle().setWidth(1436, Unit.PX);
-		//canvasPanel.setHeight(height);
-		//canvasPanel.setWidth(width);
-		//canvasPanel.getElement().getStyle().setBackgroundColor("#EEEEEE");
 
 		//Setup Default Canvas
 		curCanvas = new CnvsMap(moduleSet);
@@ -213,7 +215,7 @@ public class GUI extends Composite {
 	 */
 	public void updateControlArea(CtrlPanel control) {
 		control.setupDisplay();
-		fTable.setWidget(0,1, buildControlArea("224px","568px",control));
+		fTableRight.setWidget(0,1, buildControlArea("224px","718px",control));
 	}
 	
 	public void updateCanvasArea() {
