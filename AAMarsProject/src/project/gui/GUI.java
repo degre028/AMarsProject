@@ -47,6 +47,7 @@ public class GUI extends Composite {
 	private FlexTable fTableRight;
 	private FlexTable fTableLeft;
 	private String user;
+	private ButtonArea buttonArea;
 	CnvsPanel curCanvas;
 	CtrlPanel defaultControl;
 	
@@ -84,12 +85,12 @@ public class GUI extends Composite {
 		controlPanel.getElement().getStyle().setBackgroundColor("#000066");
 		controlPanel.setHeight("500px");
 		controlPanel.setWidth("224px");
-		defaultControl = new CtrlWelcome();
+		defaultControl = new CtrlAddModule(false,moduleSet);
 		
 		fTableLeft.setWidget(0,0, buildCanvasArea("1136px","568px"));
-		fTableRight.setWidget(0,1, buildControlArea("224px","718px",defaultControl));
+		fTableRight.setWidget(0,1, buildControlArea("224px","718px",new CtrlWelcome(user, moduleSet)));
 		fTableLeft.setWidget(1,0, buildButtonArea("1436px","100px"));
-		fTableRight.setWidget(1,1, buildStatusArea("214px","100px"));
+		fTableRight.setWidget(1,1, buildStatusArea("224px","100px"));
 		
 	    
 		fTable = new FlexTable();
@@ -114,9 +115,10 @@ public class GUI extends Composite {
 		bArea.setWidth(width);
 		bArea.getElement().getStyle().setBackgroundColor("#DDDDDD");
 		
+		buttonArea = new ButtonArea(moduleSet);
 		
 		//Add the button area
-		bArea.add(new ButtonArea(moduleSet));
+		bArea.add(buttonArea);
 		
 		return bArea;
 	}
@@ -167,42 +169,34 @@ public class GUI extends Composite {
 	 */
 	private FlowPanel buildStatusArea(String width, String height) {
 		FlowPanel statusPanel = new FlowPanel();
-		statusPanel.getElement().getStyle().setPadding(5.0, Unit.PX);
+		//statusPanel.getElement().getStyle().setPadding(5.0, Unit.PX);
 		statusPanel.setHeight(height);
 		statusPanel.setWidth(width);
 		statusPanel.getElement().getStyle().setBackgroundColor("#DDDDDD");
 		//statusPanel.getElement().getStyle().setVerticalAlign(Style.ALIGN_MIDDLE);
 		
 
-		Label headerLabel = new Label("Welcome, " + user);
-		headerLabel.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
+		Label headerLabel = new Label("User: " + user);
+		//headerLabel.getElement().getStyle().setPaddingBottom(10.0, Unit.PX);
 		headerLabel.getElement().getStyle().setFontSize(1.2, Unit.EM);
 		
-		
+		FlowPanel imagePanel = new FlowPanel();
 		Image nasa = new Image("resources/images/NASAlogo.png");
-		nasa.getElement().getStyle().setWidth(50, Unit.PCT);
-		nasa.getElement().getStyle().setHeight(50, Unit.PCT);
+		nasa.getElement().getStyle().setWidth(40, Unit.PCT);
+		nasa.getElement().setAttribute("height","auto");;
 		Image esa = new Image("resources/images/esa_logo.gif");
 		esa.getElement().getStyle().setWidth(50, Unit.PCT);
-		esa.getElement().getStyle().setHeight(40, Unit.PCT);
-		esa.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);
+		esa.getElement().setAttribute("height","auto");;
+		//esa.getElement().getStyle().setPaddingBottom(5.0, Unit.PCT);
 		
+		imagePanel.add(nasa);
+		imagePanel.add(esa);
 		
-		Button adamlogout = new Button("Logout");
-		adamlogout.getElement().getStyle().setWidth(100, Unit.PCT);
-
-		
-		adamlogout.addClickHandler( new ClickHandler() {
-			public void onClick(ClickEvent ev) {
-				Window.Location.reload();
-
-			}
-		});
+		imagePanel.getElement().getStyle().setPaddingLeft(7.0, Unit.PCT);
 		
 		statusPanel.add(headerLabel);
-		statusPanel.add(nasa);
-		statusPanel.add(esa);
-		statusPanel.add(adamlogout);
+		statusPanel.add(imagePanel);
+		
 		
 	    
 		return statusPanel;
@@ -230,4 +224,11 @@ public class GUI extends Composite {
 		user = "aa";
 	}
 	
+	public CtrlPanel getDefaultControl() {
+		return defaultControl;
+	}
+	
+	public ButtonArea getButtonArea() {
+		return buttonArea;
+	}
 }

@@ -5,6 +5,11 @@ import java.util.LinkedList;
 import project.backend.ModuleSet;
 import project.controlpanel.*;
 
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -17,13 +22,19 @@ import com.google.gwt.user.client.ui.FlowPanel;
  */
 public class ButtonArea extends Composite{
 
+	LinkedList<Button> buttonList = new LinkedList<Button>();
+	
 	/**
 	 * The constructor simply generates the GUI by adding buttons.
 	 */
 	public ButtonArea(ModuleSet modset) {
 		FlowPanel panel = new FlowPanel();
+		
+
 
 		panel.add(makeButtons(modset));
+		
+		disableAllButtons(); //Disabled in constructor to enable in welcome.
 		
         // All composites must call initWidget() in their constructors.
         initWidget(panel);
@@ -37,12 +48,26 @@ public class ButtonArea extends Composite{
 		FlexTable fTable = new FlexTable();
 		
 		//Generate Buttons
-		LinkedList<MarsButton> buttonList = new LinkedList<MarsButton>();
 		buttonList.add(new MarsButton(true, "Add Module", new CtrlAddModule(true,modset),modset));
 		buttonList.add(new MarsButton(true, "Edit Module", new CtrlAddModule(false,modset),modset));
 		buttonList.add(new MarsButton(true, "Weather", new CtrlWeather(modset),modset));
+		buttonList.add(new MarsButton(true, "Load Data", new CtrlLoadModules(modset), modset));
 		buttonList.add(new MarsButton(true, "Configuration", new CtrlConfig(modset),modset));
-		buttonList.add(new MarsButton(false, "Test Cases", new CtrlWelcome(),modset));
+		buttonList.add(new MarsButton(false, "Test Cases", new CtrlWelcome("BLANK", modset),modset));
+		
+		//Generate a regular button for logout.
+		Button adamlogout = new Button("Logout");
+		adamlogout.setWidth("120px");
+		
+		adamlogout.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				Window.Location.reload();
+
+			}
+		});
+		
+		buttonList.add(adamlogout);
+		
 		
 	
 		
@@ -54,4 +79,27 @@ public class ButtonArea extends Composite{
 		return fTable;
 	}
 	
+	/**
+	 * This method disables all Mars buttons in the button area.
+	 * Note that master enabled is not required here.
+	 */
+	public void disableAllButtons() {
+		for (int i = 0; i < buttonList.size(); i++) {
+			buttonList.get(i).setEnabled(false);
+			if (buttonList.get(i).getText().equals("Logout")) {
+				buttonList.get(i).setEnabled(true);
+			}
+		}
+		
+	}
+	
+	/**
+	 * This method disables all Mars buttons in the button area.
+	 * Note that master enabled will override this method.
+	 */
+	public void enableAllButtons() {
+		for (int i = 0; i < buttonList.size(); i++) {
+			buttonList.get(i).setEnabled(true);
+		}
+	}
 }

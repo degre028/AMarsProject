@@ -226,7 +226,7 @@ public class CtrlAddModule extends CtrlPanel{
 	    
 	    lb.setWidth("100%");
 	    
-	    lb.setVisibleItemCount(8);
+	    lb.setVisibleItemCount(16);
 	    editPanel.add(lb);
 	    
 	    return editPanel;
