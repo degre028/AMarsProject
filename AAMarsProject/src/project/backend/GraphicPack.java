@@ -26,6 +26,7 @@ public class GraphicPack {
 	ImageElement power;
 	ImageElement control;
 	ImageElement mars;
+	ImageElement blank;
 	
 	/**
 	 * Constructor for the GraphicPack should initiate all graphics for 
@@ -44,6 +45,7 @@ public class GraphicPack {
 		final Image med = new Image("resources/modpics/Medical.jpg");
 		final Image pla = new Image("resources/modpics/Plain.jpg");
 		final Image pow = new Image("resources/modpics/Power.jpg");
+		final Image bla = new Image("resources/modpics/blank.jpg");
 		
 		mars = makeImage(mar);
 		sanitation = makeImage(san);
@@ -57,6 +59,7 @@ public class GraphicPack {
 		medical = makeImage(med);
 		plain = makeImage(pla);
 		power = makeImage(pow);
+		blank = makeImage(bla);
 		
 	}
 	
@@ -95,7 +98,8 @@ public class GraphicPack {
 		else if (imgname.equals("Control")) { return control; }
 		else if (imgname.equals("Airlock")) { return airlock; }
 		else if (imgname.equals("Medical")) { return medical; }
-		else return mars;
+		else if (imgname.equals("mars")) { return mars;}
+		else return blank;
 
 	}
 }

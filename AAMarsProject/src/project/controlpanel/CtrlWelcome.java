@@ -5,6 +5,7 @@ import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -57,9 +58,13 @@ public class CtrlWelcome extends CtrlPanel {
 		//Set the buttons click event to display control panel.
 		startButton.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
+				try {
 				modset.getGui().updateCanvasArea();
 				modset.getGui().updateControlArea(modset.getGui().getDefaultControl());
 				modset.getGui().getButtonArea().enableAllButtons();
+				} catch (Exception e) {
+					Window.alert(e.getMessage());
+				}
 			}
 		});
 		

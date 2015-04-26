@@ -4,10 +4,12 @@ import java.awt.Graphics2D;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.canvas.dom.client.CssColor;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
+import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Image;
@@ -19,7 +21,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
+
+
+
 import project.backend.GraphicPack;
+import project.backend.MarsModule;
 import project.backend.ModuleSet;
 
 /**
@@ -105,56 +111,16 @@ public class CnvsMap extends CnvsPanel{
 		canteen = graphics.getImageElement("Canteen");
 		control = graphics.getImageElement("Control");
 		dormitory = graphics.getImageElement("Dormitory");
-		food = graphics.getImageElement("Food");
+		food = graphics.getImageElement("Food & Water");
 		gymnasium = graphics.getImageElement("Gymnasium");
 		medical = graphics.getImageElement("Medical");
 		plain = graphics.getImageElement("Plain");
 		power = graphics.getImageElement("Power");
 		
-		context1.drawImage(mars, 1, 1, 2872, 1436);
+		//context1.drawImage(mars, 1, 1, 2872, 1436);
+		context1.clearRect(0, 0, 100 * SPACER, 50 * SPACER);
 		
 		
-
-		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
-		//context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
-		//context1.drawImage(nasa, 100, 10, 50, 50);
-
-
-		
-		for(int i=0; i<100; i++) {
-			Context2d context = canvas.getContext2d();
-			context.beginPath();
-			context.moveTo(i*SPACER,0);
-//			if(i%2==0){
-//				context.setLineWidth(2);}
-			//else{ context.setLineWidth(1);}
-			//context.setFillStyle("000000");
-			context.lineTo(i*SPACER,1436);
-			context.stroke(); 
-			context.closePath();
-		}
-		for(int i=0; i<50; i++) {
-			Context2d context = canvas.getContext2d();
-			context.beginPath();
-			context.moveTo(0,i*SPACER);
-//			if(i%2==0){
-//				context.setLineWidth(2);}
-			//else{ context.setLineWidth(1);}
-			//context.setLineWidth(.5);
-			//context.setFillStyle("000000");
-			context.lineTo(2872,i*SPACER);
-			context.stroke(); 
-			context.closePath();
-
-			}
-		
-		for(int i = 0; i < modset.getCount("all"); i++) {
-			int xcoor= modset.getModule(i).getX()-1;
-			int ycoor= modset.getModule(i).getY()-1;
-			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
-			
-		}
-		//super.getPanel().getElement().getStyle().setBackgroundImage("resources/images/Mars Surface.jpg");
 		super.getPanel().add(canvas);
 		
 	}
@@ -166,7 +132,12 @@ public class CnvsMap extends CnvsPanel{
 	@Override
 	public void refreshDisplay() {
 		context1.drawImage(mars, 1, 1, 2872, 1436);
+
+
+        CssColor damagedArea = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
+        context1.setFillStyle(damagedArea);
 		
+		context1.fillRect(40*SPACER, 0*SPACER, 10*SPACER, 10*SPACER);
 		
 
 		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
@@ -177,35 +148,42 @@ public class CnvsMap extends CnvsPanel{
 		
 		for(int i=0; i<100; i++) {
 			Context2d context = canvas.getContext2d();
-			context.beginPath();
-			context.moveTo(i*SPACER,0);
-//			if(i%2==0){
-//				context.setLineWidth(2);}
-			//else{ context.setLineWidth(1);}
-			//context.setFillStyle("000000");
-			context.lineTo(i*SPACER,1436);
-			context.stroke(); 
-			context.closePath();
+			context1.beginPath();
+			context1.moveTo(i*SPACER,0);
+
+			context1.lineTo(i*SPACER,1436);
+			context1.stroke(); 
+			context1.closePath();
 		}
 		for(int i=0; i<50; i++) {
 			Context2d context = canvas.getContext2d();
-			context.beginPath();
-			context.moveTo(0,i*SPACER);
-//			if(i%2==0){
-//				context.setLineWidth(2);}
-			//else{ context.setLineWidth(1);}
-			//context.setLineWidth(.5);
-			//context.setFillStyle("000000");
-			context.lineTo(2872,i*SPACER);
-			context.stroke(); 
-			context.closePath();
+			context1.beginPath();
+			context1.moveTo(0,i*SPACER);
+
+			context1.lineTo(2872,i*SPACER);
+			context1.stroke(); 
+			context1.closePath();
 
 			}
 		
 		for(int i = 0; i < modset.getCount("all"); i++) {
-			int xcoor= modset.getModule(i).getX()-1;
-			int ycoor= modset.getModule(i).getY()-1;
-			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, ycoor*SPACER, SPACER, SPACER);
+			MarsModule drawMod = modset.getModule(i);
+			int xcoor= drawMod.getX()-1;
+			int ycoor= drawMod.getY()-1;
+			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+			
+			if (drawMod.getCondition().equals("Broken")) {
+		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 0 + "," + 0 + ", " + 0.4 + ")");
+		        context1.setFillStyle(damagedMod);
+				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+			}
+			
+			if (drawMod.getCondition().equals("Damaged")) {
+		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 255 + "," + 0 + ", " + 0.4 + ")");
+		        context1.setFillStyle(damagedMod);
+				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+			}
+			
 			
 		}
 	}
