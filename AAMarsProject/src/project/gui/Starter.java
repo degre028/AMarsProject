@@ -35,12 +35,13 @@ public class Starter extends FlowPanel {
 		try {
 		//launchLoginDemo();
 		//launchSkipLogin();
-		launchSomeData();
+		//launchSomeData();
 		//launchMinConfig();
 		//launchServerStorage();
 		//launchLocalStorage();
+		launchRemoteStorage();
 		} catch (Exception ex) {
-			Window.alert(ex.getMessage());
+			//Window.alert(ex.getMessage());
 		}
 	}
 	
@@ -131,4 +132,10 @@ public class Starter extends FlowPanel {
 	}
 	
 	
+	private void launchRemoteStorage() {
+		final ModuleSet modset = new ModuleSet("demoremote",graphics);
+		modset.getStorage().loadTestData();
+		
+		RootPanel.get().add(modset.getGui());
+	}
 }

@@ -89,8 +89,8 @@ public class GUI extends Composite {
 		
 		fTableLeft.setWidget(0,0, buildCanvasArea("1136px","568px"));
 		fTableRight.setWidget(0,1, buildControlArea("224px","718px",new CtrlWelcome(user, moduleSet)));
-		fTableLeft.setWidget(1,0, buildButtonArea("1436px","100px"));
-		fTableRight.setWidget(1,1, buildStatusArea("224px","100px"));
+		fTableLeft.setWidget(1,0, buildButtonArea("1436px","120px"));
+		fTableRight.setWidget(1,1, buildStatusArea("224px","120px"));
 		
 	    
 		fTable = new FlexTable();

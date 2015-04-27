@@ -2,6 +2,12 @@ package project.backend;
 
 import java.util.LinkedList;
 
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONException;
@@ -201,6 +207,78 @@ public class MarsStorage {
 	}
 	
 	
+	/**
+	 * This method loads data from remote locations
+	 * Test cases (Use Case #1)
+	 */
+	public void loadTestData() {
+		String proxy = "http://www.d.umn.edu/~degre028/Proxy.php?url=";
+		String url = proxy+"http://www.d.umn.edu/~abrooks/SomeTests.php?q=1";
+		url = URL.encode("http://www.d.umn.edu/~degre028/Proxy.php?url=http://www.d.umn.edu/~abrooks/SomeTests.php?q=1");
+		
+		// Send request to server and catch any errors.
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+		
+		try {
+		 Request request = builder.sendRequest(null, new RequestCallback() {
+			 public void onError(Request request, Throwable exception) {
+				 Window. alert("onError: Couldn't retrieve JSON");
+			 }
+		 public void onResponseReceived(Request request, Response response) {
+			 if (200 == response.getStatusCode()) {
+				 String rt = response.getText();
+				 updateModSet(rt); //METHOD CALL TO DO SOMETHING WITH RESPONSE TEXT
+			 } else {
+				 Window. alert("Couldn't retrieve JSON (" + response.getStatusCode()
+						 + ")\n" + response.getText() + "\n" + request.toString());
+			 }
+		 	}
+		 	} ) ;
+		 
+		} catch (RequestException e) {
+		 Window. alert("RequestException: Couldn't retrieve JSON");
+		}
+	}
+	
+	/**
+	 * This method takes in a string from loadTestData() and adds it to the modset.
+	 */
+	private void updateModSet(String sConfig) {
+		
+		Integer i = 0;
+		
+		JSONArray jA;
+		JSONNumber jN;
+		JSONString jS;
+		JSONObject jO;
+		
+		jA = (JSONArray)JSONParser. parseLenient(sConfig);
+		
+		for (i = 0; i < jA.size(); i++) {
+			jO = (JSONObject)jA.get(i);
+			
+			jN = (JSONNumber) jO.get("code");
+			Integer modID = (int) jN.doubleValue();
+					
+			jS = (JSONString) jO.get("status");
+			String modCond = jS.stringValue();				
+			
+			jN = (JSONNumber) jO.get("turns");
+			Integer modOri = (int) jN.doubleValue();
+	
+			jN = (JSONNumber) jO.get("X");
+			Integer modX = (int) jN.doubleValue();
+			
+			jN = (JSONNumber) jO.get("Y");
+			Integer modY = (int) jN.doubleValue();
+			
+			MarsModule newModule = new MarsModule(modX, modY, modID, modCond, modOri);
+			modset.addModule(newModule);
+		}
+		
+		
+		
+	}
 	
 	
 }

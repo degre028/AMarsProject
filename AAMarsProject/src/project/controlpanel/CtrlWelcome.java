@@ -43,7 +43,16 @@ public class CtrlWelcome extends CtrlPanel {
 		nasa.getElement().getStyle().setWidth(90, Unit.PCT);;
 		nasa.getElement().getStyle().setDisplay(Display.BLOCK);
 		
-		Label lbLoaded = new Label("Your modlules have been loaded.");
+		Label lbLoaded = new Label();
+		
+		if (modset.getCount("all") > 0) {
+			lbLoaded.setText("Your previous session have been loaded.");
+		}
+		else {
+			lbLoaded.setText("There was no previous session on this computer");
+		}
+		
+		
 		lbLoaded.getElement().getStyle().setWidth(90.0, Unit.PCT);
 		lbLoaded.getElement().getStyle().setPadding(5.0, Unit.PCT);
 		lbLoaded.getElement().getStyle().setPaddingBottom(10.0, Unit.PCT);

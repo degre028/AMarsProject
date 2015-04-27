@@ -149,7 +149,14 @@ public class CtrlAddModule extends CtrlPanel{
 							Integer.parseInt(tbID.getText()),
 							ltCond.getValue(ltCond.getSelectedIndex()),
 							ltOri.getSelectedIndex());
-					modules.addModule(newMod);
+					if (isNew) { 
+						modules.addModule(newMod);
+					}
+					else {
+						modules.addModule(listModules.getSelectedIndex(), newMod);
+					}
+					
+					
 					listBoxUpdater(listModules,modules);
 					setupDisplay();
 					if(!isNew) {btnSubmit.setEnabled(false);}

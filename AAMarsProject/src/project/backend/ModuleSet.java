@@ -43,6 +43,16 @@ public class ModuleSet {
 		storage.saveToLocalStore();
 	}
 	
+	/**
+	 * Adds the module to the list at a given index.
+	 * @param mod The module to add.
+	 */
+	public void addModule(int i, MarsModule mod) {
+		//modList.add(mod);
+		modList.add(i, mod);
+		storage.saveToLocalStore();
+	}
+	
 	
 	/**
 	 * Removes a module from the list
