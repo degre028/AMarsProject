@@ -40,7 +40,9 @@ public class CtrlWelcome extends CtrlPanel {
 		
 		Image nasa = new Image("resources/images/marsPlanet.png");
 		nasa.getElement().getStyle().setPaddingTop(10, Unit.PCT);
-		nasa.getElement().getStyle().setWidth(90, Unit.PCT);;
+		nasa.getElement().getStyle().setPaddingLeft(10, Unit.PCT);
+		nasa.getElement().getStyle().setPaddingRight(10, Unit.PCT);
+		nasa.getElement().getStyle().setWidth(80, Unit.PCT);
 		nasa.getElement().getStyle().setDisplay(Display.BLOCK);
 		
 		Label lbLoaded = new Label();
