@@ -261,8 +261,6 @@ public class MarsStorage {
 			// Do nothing.
 		} else {
 			modsetCounter++;
-//			Window.alert(""+rt.length());
-			Window.alert(rt);
 			modString.add(rt);
 		}
 		
