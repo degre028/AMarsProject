@@ -22,7 +22,8 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.sun.xml.internal.ws.api.server.Module;
-
+import com.allen_sauer.gwt.voices.client.Sound;
+import com.allen_sauer.gwt.voices.client.SoundController;
 /**
  * Control panel subclass for the Add Module / Edit module control panel.
  * @author Rob
@@ -44,6 +45,8 @@ public class CtrlAddModule extends CtrlPanel{
 	
 	final ListBox ltOri;
 	final ListBox ltCond;
+	final SoundController soundController = new SoundController();
+	private Sound sound;
 	
 	
 	/**
@@ -151,6 +154,10 @@ public class CtrlAddModule extends CtrlPanel{
 							ltOri.getSelectedIndex());
 					if (isNew) { 
 						modules.addModule(newMod);
+					    
+					    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
+					        "resources/audio/here we go.wav");	
+					    sound.play();
 					}
 					else {
 						modules.addModule(listModules.getSelectedIndex(), newMod);
