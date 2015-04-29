@@ -172,13 +172,13 @@ public class CnvsMap extends CnvsPanel{
 			int ycoor= drawMod.getY()-1;
 			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 			
-			if (drawMod.getCondition().equals("Broken")) {
+			if (drawMod.getCondition().equals("Damaged")) {
 		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 0 + "," + 0 + ", " + 0.4 + ")");
 		        context1.setFillStyle(damagedMod);
 				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 			}
 			
-			if (drawMod.getCondition().equals("Damaged")) {
+			if (drawMod.getCondition().equals("Uncertain")) {
 		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 255 + "," + 0 + ", " + 0.4 + ")");
 		        context1.setFillStyle(damagedMod);
 				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);

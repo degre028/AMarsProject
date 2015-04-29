@@ -115,10 +115,10 @@ public class CtrlAddModule extends CtrlPanel{
 		ltOri.addItem("1 Turns");
 		ltOri.addItem("2 Turns");
 		
-		ltCond.addItem("Good");
+		ltCond.addItem("Undamaged");
 		ltCond.addItem("Damaged");
-		ltCond.addItem("Broken");
-		
+		ltCond.addItem("Uncertain");
+		 //undamaged, damaged, uncertain
 		btnSubmit.getElement().getStyle().setWidth(50, Unit.PCT);
 		btnCancel.getElement().getStyle().setWidth(50, Unit.PCT);
 		
@@ -146,18 +146,23 @@ public class CtrlAddModule extends CtrlPanel{
 		btnSubmit.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				try {
-					if(!isNew){ modules.removeModule(listModules.getSelectedIndex());}
+					if(!isNew){ modules.removeModule(listModules.getSelectedIndex());
+				    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
+					        "resources/audio/Edited_Module.wav");
+				    sound.play();}
 					MarsModule newMod = new MarsModule(Integer.parseInt(tbX.getText()),
 							Integer.parseInt(tbY.getText()),
 							Integer.parseInt(tbID.getText()),
 							ltCond.getValue(ltCond.getSelectedIndex()),
 							ltOri.getSelectedIndex());
+					    
 					if (isNew) { 
 						modules.addModule(newMod);
-					    
+		    
 					    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
-					        "resources/audio/here we go.wav");	
+					        "resources/audio/Added_Module.wav");
 					    sound.play();
+					   
 					}
 					else {
 						modules.addModule(listModules.getSelectedIndex(), newMod);
@@ -186,6 +191,9 @@ public class CtrlAddModule extends CtrlPanel{
 				modules.removeModule(listModules.getSelectedIndex());
 				listBoxUpdater(listModules,modules);
 				btnCancel.setEnabled(false);
+			    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
+				        "resources/audio/Deleted_Module.wav");
+				    sound.play();
 			}
 		});
 		
