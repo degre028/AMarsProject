@@ -16,6 +16,12 @@ public class Passwd {
 
 		usernames.add("rob");
 		passwds.add("robPass");
+		
+		usernames.add("1");
+		passwds.add("1");
+		
+		usernames.add("user");
+		passwds.add("pass");
 				
 	}
 	public boolean passChecker(String user, String pass){
