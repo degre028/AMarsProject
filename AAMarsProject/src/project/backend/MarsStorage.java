@@ -30,6 +30,10 @@ public class MarsStorage {
 	Storage localStorage;
 	boolean localFail = false;
 	
+	LinkedList<String> modString = new LinkedList<String>();
+	Integer modsetCounter = 0;
+	boolean goAgain = true;
+	
 	/**
 	 * The constructor simply gets the filename for the storage class.
 	 * @param filename. The file to work on
@@ -212,9 +216,70 @@ public class MarsStorage {
 	 * Test cases (Use Case #1)
 	 */
 	public void loadTestData() {
+		int i = 0;
+		
+		while(i < 20) {
+			String proxy = "http://www.d.umn.edu/~degre028/Proxy.php?url=";
+			String url = proxy+"http://www.d.umn.edu/~abrooks/SomeTests.php?q=" + i;
+			url = URL.encode(url);
+			
+			// Send request to server and catch any errors.
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+			
+			try {
+			 Request request = builder.sendRequest(null, new RequestCallback() {
+				 public void onError(Request request, Throwable exception) {
+					 Window.alert("onError: Couldn't retrieve JSON");
+					 
+				 }
+			 public void onResponseReceived(Request request, Response response) {
+				 if (200 == response.getStatusCode()) {
+					 String rt = response.getText();
+					 addModsetString(rt); //METHOD CALL TO DO SOMETHING WITH RESPONSE TEXT
+				 } else {
+//					 Window. alert("Couldn't retrieve JSON (" + response.getStatusCode()
+//							 + ")\n" + "Modules Unchanged" + goAgain);
+				 }
+			 	}
+			 	} ) ;
+			 
+			} catch (RequestException e) {
+			 Window. alert("RequestException: Couldn't retrieve JSON");
+			 goAgainOff();
+			}
+			i++;
+		}
+	}
+	
+	/**
+	 * This method adds a string to the linked list
+	 * containing a set of modules loaded from the PHP
+	 * proxy.
+	 */
+	private synchronized void addModsetString(String rt) {
+		if (rt.length() < 5) {
+			// Do nothing.
+		} else {
+			modsetCounter++;
+//			Window.alert(""+rt.length());
+			Window.alert(rt);
+			modString.add(rt);
+		}
+		
+	}
+	
+	/**
+	 * This method takes in an integer and loads the appropriate 
+	 * test data.
+	 */
+	public void updateModSet(int i) {
+
+		i++;
+		//ignore the string linked list to deal with asynch and pull again.
+		
 		String proxy = "http://www.d.umn.edu/~degre028/Proxy.php?url=";
-		String url = proxy+"http://www.d.umn.edu/~abrooks/SomeTests.php?q=1";
-		url = URL.encode("http://www.d.umn.edu/~degre028/Proxy.php?url=http://www.d.umn.edu/~abrooks/SomeTests.php?q=1");
+		String url = proxy+"http://www.d.umn.edu/~abrooks/SomeTests.php?q=" + i;
+		url = URL.encode(url);
 		
 		// Send request to server and catch any errors.
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
@@ -222,30 +287,30 @@ public class MarsStorage {
 		try {
 		 Request request = builder.sendRequest(null, new RequestCallback() {
 			 public void onError(Request request, Throwable exception) {
-				 Window. alert("onError: Couldn't retrieve JSON");
+				 Window.alert("onError: Couldn't retrieve JSON");
+				 
 			 }
 		 public void onResponseReceived(Request request, Response response) {
 			 if (200 == response.getStatusCode()) {
 				 String rt = response.getText();
-				 updateModSet(rt); //METHOD CALL TO DO SOMETHING WITH RESPONSE TEXT
+				 updateSecondCall(rt); //METHOD CALL TO DO SOMETHING WITH RESPONSE TEXT
 			 } else {
-				 Window. alert("Couldn't retrieve JSON (" + response.getStatusCode()
-						 + ")\n" + response.getText() + "\n" + request.toString());
+//				 Window. alert("Couldn't retrieve JSON (" + response.getStatusCode()
+//						 + ")\n" + "Modules Unchanged" + goAgain);
 			 }
 		 	}
 		 	} ) ;
 		 
 		} catch (RequestException e) {
 		 Window. alert("RequestException: Couldn't retrieve JSON");
+		 goAgainOff();
 		}
+
+
+			
 	}
 	
-	/**
-	 * This method takes in a string from loadTestData() and adds it to the modset.
-	 */
-	private void updateModSet(String sConfig) {
-		
-		Integer i = 0;
+	private void updateSecondCall(String sConfig) {
 		
 		JSONArray jA;
 		JSONNumber jN;
@@ -254,7 +319,7 @@ public class MarsStorage {
 		
 		jA = (JSONArray)JSONParser. parseLenient(sConfig);
 		
-		for (i = 0; i < jA.size(); i++) {
+		for (int i = 0; i < jA.size(); i++) {
 			jO = (JSONObject)jA.get(i);
 			
 			jN = (JSONNumber) jO.get("code");
@@ -275,9 +340,18 @@ public class MarsStorage {
 			MarsModule newModule = new MarsModule(modX, modY, modID, modCond, modOri);
 			modset.addModule(newModule);
 		}
-		
-		
-		
+	}
+	
+	/**
+	 * Method for switching off the goAgain flag.
+	 */
+	private void goAgainOff() {
+		goAgain = false;
+	}
+
+	
+	public Integer getModsetCounter() {
+		return modString.size();
 	}
 	
 	
