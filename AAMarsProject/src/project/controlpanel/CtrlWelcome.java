@@ -1,5 +1,7 @@
 package project.controlpanel;
 
+import com.allen_sauer.gwt.voices.client.Sound;
+import com.allen_sauer.gwt.voices.client.SoundController;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Unit;
@@ -21,7 +23,8 @@ import project.backend.ModuleSet;
  *
  */
 public class CtrlWelcome extends CtrlPanel {
-
+	final SoundController soundController = new SoundController();
+	private Sound sound;
 	/**
 	 * Constructor for CtrlWelcome
 	 * Lays out the CtrlWelcome
@@ -73,6 +76,9 @@ public class CtrlWelcome extends CtrlPanel {
 				modset.getGui().updateCanvasArea();
 				modset.getGui().updateControlArea(modset.getGui().getDefaultControl());
 				modset.getGui().getButtonArea().enableAllButtons();
+				sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
+				        "resources/audio/Map_Modules.wav");
+				    sound.play();
 				} catch (Exception e) {
 					Window.alert(e.getMessage());
 				}
