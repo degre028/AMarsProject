@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class TimerPanel extends Composite {
-	public final long end = 120000;
+	public final long end = 5000;
 
 	final Label timerLabel = new Label("10-Day Alert Test");
 	final Label countLabel = new Label("");
