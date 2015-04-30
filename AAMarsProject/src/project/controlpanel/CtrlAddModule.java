@@ -188,12 +188,18 @@ public class CtrlAddModule extends CtrlPanel{
 		//(Cancel) Button Handler
 		btnCancel.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
+				if(listModules.getSelectedIndex() != -1) {
 				modules.removeModule(listModules.getSelectedIndex());
 				listBoxUpdater(listModules,modules);
+				modules.getGui().updateCanvasArea();
 				btnCancel.setEnabled(false);
 			    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 				        "resources/audio/Deleted_Module.wav");
 				    sound.play();
+				}
+				else {
+					Window.alert("Add Module First");
+				}
 			}
 		});
 		
@@ -286,6 +292,11 @@ public class CtrlAddModule extends CtrlPanel{
 	    	lb.addItem(strbuild.toString());
 	    	
 	    }
+	    
+	    if (lb.getItemCount() == 0 && !isNew) {
+	    	btnSubmit.setEnabled(false);
+	    }
+	    	
 	}
 	
 	/**
