@@ -3,6 +3,8 @@ package project.gui;
 import project.backend.ModuleSet;
 import project.backend.Passwd;
 
+import com.allen_sauer.gwt.voices.client.Sound;
+import com.allen_sauer.gwt.voices.client.SoundController;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -24,7 +26,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  *
  */
 public class Login extends Composite {
-	
+	final SoundController soundController = new SoundController();
+	private Sound sound;
 	/**
 	 * 
 	 * @param passwd
@@ -83,9 +86,10 @@ public class Login extends Composite {
 				String userCheck = userTest.getText();
 				if(passwd.passChecker(userCheck, passCheck)){
 					homePanel.remove(0);
-					
-	
 					homePanel.add(modset.getGui());
+					sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
+					        "resources/audio/Log_in.wav");
+					    sound.play();
 				} else {
 					//countInner = countClick + countInner;
 					loginFail.setText("Login Attempt Failed ");
