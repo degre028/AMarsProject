@@ -1,6 +1,7 @@
 package project.gui;
 
 import java.util.LinkedList;
+import project.gui.TimerPanel;
 
 import project.backend.ModuleSet;
 import project.controlpanel.*;
@@ -29,10 +30,14 @@ public class ButtonArea extends Composite{
 	 */
 	public ButtonArea(ModuleSet modset) {
 		FlowPanel panel = new FlowPanel();
+		TimerPanel timer = new TimerPanel(System.currentTimeMillis());
+		FlexTable ftable = new FlexTable();
 		
-
-
-		panel.add(makeButtons(modset));
+		
+		ftable.setWidget(0,0, makeButtons(modset));
+		ftable.setWidget(0, 1, timer);
+		
+		panel.add(ftable);
 		
 		disableAllButtons(); //Disabled in constructor to enable in welcome.
 		
