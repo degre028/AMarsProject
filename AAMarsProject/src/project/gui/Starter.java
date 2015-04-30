@@ -52,6 +52,7 @@ public class Starter extends FlowPanel {
 	 */
 	private void launchLoginDemo() {
 		mainPanel.add(log1);
+		modset.getStorage().loadLocalStore();
 		RootPanel.get().add(mainPanel);
 	}
 	
