@@ -32,6 +32,8 @@ public class ModuleSet {
 		gui = new GUI(this,user);
 		configList.add(new Configuration(this, modList));
 		
+		storage.loadTestData();
+		
 	}
 	
 	/**
@@ -117,6 +119,14 @@ public class ModuleSet {
 		return graphics;
 	}
 
+	
+	/**
+	 * Reset the module set by clearing all modules and configurations.
+	 * @return
+	 */
+	public void clearAll() {
+		modList.clear();
+	}
 	
 	
 }
