@@ -1,6 +1,6 @@
 package project.client;
 
-import project.backend.Configuration;
+import project.backend.MarsConfiguration;
 import project.backend.ModuleSet;
 import project.backend.Passwd;
 import project.gui.GUI;

@@ -24,7 +24,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 
 
+import com.google.web.bindery.autobean.vm.Configuration;
+
 import project.backend.GraphicPack;
+import project.backend.MarsConfiguration;
 import project.backend.MarsModule;
 import project.backend.ModuleSet;
 
@@ -137,12 +140,8 @@ public class CnvsMap extends CnvsPanel{
         CssColor damagedArea = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
         context1.setFillStyle(damagedArea);
 		
-		context1.fillRect(40*SPACER, 0*SPACER, 10*SPACER, 10*SPACER);
+		context1.fillRect(40*SPACER, 0*SPACER, 10*SPACER, 11*SPACER);
 		
-
-		//context1.drawImage(nasa, 0, 0, SPACER, SPACER);
-		//context1.drawImage(nasa, 36*SPACER, 21*SPACER, SPACER*2, SPACER*2);
-		//context1.drawImage(nasa, 100, 10, 50, 50);
 
 
 		
@@ -188,19 +187,39 @@ public class CnvsMap extends CnvsPanel{
 		}
 	}
 	
-	private ImageElement makeImage(Image img) {
-		final ImageElement image = ImageElement.as(img.getElement());
-		
-		
-		img.addLoadHandler(new LoadHandler() {
-			public void onLoad(LoadEvent event) { // fired by RootPanel.get().add
 
+	/**
+	 * This method draws the preview config "on top of" the live config.
+	 */
+	public void drawPreviewConfig(MarsConfiguration configu) {
+
+        CssColor backdrop = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
+        context1.setFillStyle(backdrop);
+		
+        context1.fillRect(0, 0, 2872, 1436);
+        
+		for(int i = 0; i < modset.getCount("all"); i++) {
+			MarsModule drawMod = modset.getModule(i);
+			int xcoor= configu.getXCoord(i);
+			int ycoor= configu.getYCoord(i);
+			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+			
+			if (drawMod.getCondition().equals("Damaged")) {
+		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 0 + "," + 0 + ", " + 0.4 + ")");
+		        context1.setFillStyle(damagedMod);
+				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 			}
-		}); 
-		img.setVisible(false);
-	    super.getPanel().add(img);
-	    return image;
+			
+			if (drawMod.getCondition().equals("Uncertain")) {
+		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 255 + "," + 0 + ", " + 0.4 + ")");
+		        context1.setFillStyle(damagedMod);
+				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+			}
+			
+			
+		}
 	}
+	
 	
 	private ImageElement getImage(String type) {
 		if(type.equals("Plain")) { return plain; }

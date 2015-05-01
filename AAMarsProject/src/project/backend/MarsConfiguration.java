@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * @author Rob
  *
  */
-public class Configuration {
+public class MarsConfiguration {
 	//Define private variables.
 	private ModuleSet modset;
 	private LinkedList<MarsModule> moduleList = new LinkedList<MarsModule>();
@@ -19,7 +19,7 @@ public class Configuration {
 	 * Constructor for configuration.
 	 * @param modset
 	 */
-	public Configuration(ModuleSet modset, LinkedList<MarsModule> modlist) {
+	public MarsConfiguration(ModuleSet modset, LinkedList<MarsModule> modlist) {
 		this.modset = modset;
 		this.moduleList = modlist;
 		

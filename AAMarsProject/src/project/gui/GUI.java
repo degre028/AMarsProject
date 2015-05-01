@@ -1,6 +1,6 @@
 package project.gui;
 
-import project.backend.Configuration;
+import project.backend.MarsConfiguration;
 import project.backend.ModuleSet;
 import project.canvaspanel.CnvsMap;
 import project.canvaspanel.CnvsPanel;
