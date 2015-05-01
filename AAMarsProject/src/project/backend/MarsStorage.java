@@ -34,6 +34,8 @@ public class MarsStorage {
 	Integer modsetCounter = 0;
 	boolean goAgain = true;
 	
+	long tendaytime = 0;
+	
 	/**
 	 * The constructor simply gets the filename for the storage class.
 	 * @param filename. The file to work on
@@ -148,6 +150,8 @@ public class MarsStorage {
 	 * and adds it to the modset.
 	 */
 	public void loadLocalStore() {
+
+		
 		Integer i = 0;
 		
 		JSONArray jA;
@@ -157,7 +161,7 @@ public class MarsStorage {
 		try {
 		
 			 //localStorage = Storage.getLocalStorageIfSupported();
-	
+			tendaytime = Long.parseLong(localStorage.getItem("tendaytime"));
 			 String sConfigOne = localStorage.getItem("config1");
 			 jA = (JSONArray)JSONParser. parseLenient(sConfigOne);
 		
@@ -352,5 +356,11 @@ public class MarsStorage {
 		return modString.size();
 	}
 	
+	public long getTenDayTime() {
+		return tendaytime;
+	}
 	
+	public void saveTenDayTime(long time) {
+		 localStorage.setItem("tendaytime", String.valueOf(time));
+	}
 }

@@ -50,6 +50,7 @@ public class GUI extends Composite {
 	private ButtonArea buttonArea;
 	CnvsPanel curCanvas;
 	CtrlPanel defaultControl;
+	private TimerPanel timerPanel;
 	
 	
 	
@@ -63,6 +64,7 @@ public class GUI extends Composite {
 		fTableRight = new FlexTable();
 		user = username;
 		fTableLeft = new FlexTable();
+		timerPanel = new TimerPanel(modset);
 
 	      
 	      // All composites must call initWidget() in their constructors.
@@ -117,8 +119,13 @@ public class GUI extends Composite {
 		
 		buttonArea = new ButtonArea(moduleSet);
 		
+		FlexTable ftable = new FlexTable();
+		
+		ftable.setWidget(0, 0, buttonArea);
+		ftable.setWidget(0, 1, timerPanel);
 		//Add the button area
-		bArea.add(buttonArea);
+		bArea.add(ftable);
+		
 		
 		return bArea;
 	}
@@ -230,5 +237,9 @@ public class GUI extends Composite {
 	
 	public ButtonArea getButtonArea() {
 		return buttonArea;
+	}
+	
+	public TimerPanel getTimerPanel() {
+		return timerPanel;
 	}
 }

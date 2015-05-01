@@ -149,7 +149,8 @@ public class CtrlAddModule extends CtrlPanel{
 					if(!isNew){ modules.removeModule(listModules.getSelectedIndex());
 				    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 					        "resources/audio/Edited_Module.wav");
-				    sound.play();}
+				    //sound.play();
+				    }
 					MarsModule newMod = new MarsModule(Integer.parseInt(tbX.getText()),
 							Integer.parseInt(tbY.getText()),
 							Integer.parseInt(tbID.getText()),
@@ -161,7 +162,7 @@ public class CtrlAddModule extends CtrlPanel{
 		    
 					    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 					        "resources/audio/Added_Module.wav");
-					    sound.play();
+					    //sound.play();
 					   
 					}
 					else {
@@ -195,7 +196,7 @@ public class CtrlAddModule extends CtrlPanel{
 				btnCancel.setEnabled(false);
 			    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 				        "resources/audio/Deleted_Module.wav");
-				    sound.play();
+				    //sound.play();
 				}
 				else {
 					Window.alert("Add Module First");

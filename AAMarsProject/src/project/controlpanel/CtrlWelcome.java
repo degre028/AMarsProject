@@ -76,9 +76,10 @@ public class CtrlWelcome extends CtrlPanel {
 				modset.getGui().updateCanvasArea();
 				modset.getGui().updateControlArea(modset.getGui().getDefaultControl());
 				modset.getGui().getButtonArea().enableAllButtons();
+				modset.getGui().getTimerPanel().runTimer(modset.getStorage().getTenDayTime());
 				sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 				        "resources/audio/Map_Modules.wav");
-				    sound.play();
+				    //sound.play();
 				} catch (Exception e) {
 					Window.alert(e.getMessage());
 				}

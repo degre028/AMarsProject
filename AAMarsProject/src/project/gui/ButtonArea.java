@@ -1,14 +1,15 @@
 package project.gui;
 
 import java.util.LinkedList;
-import project.gui.TimerPanel;
 
+import project.gui.TimerPanel;
 import project.backend.ModuleSet;
 import project.controlpanel.*;
 
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,21 +29,18 @@ public class ButtonArea extends Composite{
 	/**
 	 * The constructor simply generates the GUI by adding buttons.
 	 */
-	public ButtonArea(ModuleSet modset) {
+	public ButtonArea(final ModuleSet modset) {
 		FlowPanel panel = new FlowPanel();
-		TimerPanel timer = new TimerPanel(System.currentTimeMillis());
-		FlexTable ftable = new FlexTable();
-		
-		
-		ftable.setWidget(0,0, makeButtons(modset));
-		ftable.setWidget(0, 1, timer);
-		
-		panel.add(ftable);
-		
+
+		final FlexTable ftable = new FlexTable();
+
+				
+				ftable.setWidget(0,0, makeButtons(modset));
+				
 		disableAllButtons(); //Disabled in constructor to enable in welcome.
 		
         // All composites must call initWidget() in their constructors.
-        initWidget(panel);
+        initWidget(ftable);
 	}
 	
 	/**

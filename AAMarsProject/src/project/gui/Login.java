@@ -89,7 +89,7 @@ public class Login extends Composite {
 					homePanel.add(modset.getGui());
 					sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
 					        "resources/audio/Log_in.wav");
-					    sound.play();
+					    //sound.play();
 				} else {
 					//countInner = countClick + countInner;
 					loginFail.setText("Login Attempt Failed ");

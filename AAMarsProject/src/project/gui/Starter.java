@@ -41,7 +41,8 @@ public class Starter extends FlowPanel {
 		//launchLocalStorage();
 		//launchRemoteStorage();
 		} catch (Exception ex) {
-			//Window.alert(ex.getMessage());
+			ex.printStackTrace();
+			Window.alert(ex.getMessage() + "\n");
 		}
 	}
 	
