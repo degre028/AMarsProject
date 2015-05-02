@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class MarsConfiguration {
 	//Define private variables.
 	private ModuleSet modset;
-	private LinkedList<MarsModule> moduleList = new LinkedList<MarsModule>();
+	private LinkedList<MarsModule> modlist = new LinkedList<MarsModule>();
 	private LinkedList<Integer> xCoords = new LinkedList<Integer>();
 	private LinkedList<Integer> yCoords = new LinkedList<Integer>();
 	
@@ -21,11 +21,7 @@ public class MarsConfiguration {
 	 */
 	public MarsConfiguration(ModuleSet modset, LinkedList<MarsModule> modlist) {
 		this.modset = modset;
-		this.moduleList = modlist;
-		
-		for(int i = 0; i < modset.getCount("all"); i++) {
-			moduleList.add(modset.getModule(i));
-		}
+		this.modlist = modlist;
 	}
 	
 	
@@ -33,16 +29,16 @@ public class MarsConfiguration {
 	 * Method used to move a module within an individual config.
 	 */
 	public void setCoords(int index, int xcoo, int ycoo) {
-		moduleList.get(index).setX(xcoo);
-		moduleList.get(index).setY(ycoo);
+		modlist.get(index).setX(xcoo);
+		modlist.get(index).setY(ycoo);
 	}
 	
 	public Integer getXCoord(int index) {
-		return moduleList.get(index).getX();
+		return modlist.get(index).getX();
 	}
 	
 	public Integer getYCoord(int index) {
-		return moduleList.get(index).getY();
+		return modlist.get(index).getY();
 	}
 	
 	/**
@@ -50,7 +46,7 @@ public class MarsConfiguration {
 	 * @param mod The module to add.
 	 */
 	public void addModule(MarsModule mod) {
-		moduleList.add(mod);
+		modlist.add(mod);
 		
 	}
 	
@@ -60,7 +56,7 @@ public class MarsConfiguration {
 	 * @param mod The module to add.
 	 */
 	public void removeModule(int i) {
-		moduleList.remove(i);
+		modlist.remove(i);
 
 	}
 	
