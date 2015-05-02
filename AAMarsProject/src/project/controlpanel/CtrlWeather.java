@@ -7,9 +7,11 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
+import com.google.gwt.json.client.JSONException;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -27,13 +29,12 @@ import project.backend.ModuleSet;
 public class CtrlWeather extends CtrlPanel{
 	private String mResponse;
 	private VerticalPanel weatherPanel = new VerticalPanel(); 
-	private Label tempWeather = new Label("Default Temp");
-	private Label visWeather = new Label("Default Visiblility");
-	private Label sunsetWeather = new Label("Default Sunset");
+	private Label tempWeather = new Label("Getting Temp . . .");
+	private Label visWeather = new Label("Getting Visiblility . . .");
+	private Label sunsetWeather = new Label("Getting Sunset Time . . .");
 	final String DEGREE  = "\u00b0";
 	private String condit = "http://api.wunderground.com/api/d52e7b82dd8d3349/conditions/q/CA/San_Francisco.json";
 	private String astro = "http://api.wunderground.com/api/d52e7b82dd8d3349/astronomy/q/CA/San_Francisco.json";
-	private String url = null;
 	
 
 	/**
@@ -42,30 +43,6 @@ public class CtrlWeather extends CtrlPanel{
 	 * Should call setupDisplay() to refresh.
 	 */
 	public CtrlWeather(ModuleSet modset) {
-		
-		String linkURL = urlGetter();
-		linkURL = URL.encode(linkURL);
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, linkURL); 
-		try { 
-			Request request = builder.sendRequest(null, new RequestCallback()
-			{ 
-				public void onError(Request request, Throwable exception) { 
-				Window.alert("onError: Couldn't retrieve JSON");
-				}
-			@Override	
-			public void onResponseReceived(Request request, Response response) { 
-				if (200 == response.getStatusCode()) { 
-					String rt = response.getText(); 
-					mResponse = rt;
-					} else { 
-						Window.alert("Couldn't retrieve JSON (" + response.getStatusCode() + ")");
-						}
-				}
-			});
-			} 
-		catch (RequestException e) { 
-			Window.alert("RequestException: Couldn't retrieve JSON"); 
-		}
 		
 		// Header set to "Weather"
 		super.getHeaderLabel().setText("Weather");
@@ -109,7 +86,41 @@ public class CtrlWeather extends CtrlPanel{
 	@Override
 	public void setupDisplay() {
 		//KEY: d52e7b82dd8d3349
-
+		final Timer y = new Timer() {
+		@Override
+		public void run() {
+			try {
+				//urlSwapper();
+				
+				//Window.alert(mResponse);
+			} catch (Exception ex) {
+				Window.alert(ex.getMessage());
+			}
+			try {
+				JSONObject jA = (JSONObject)JSONParser.parseLenient(mResponse);
+				JSONValue jTry = jA.get("sun_phase"); 
+				JSONObject jB = (JSONObject)JSONParser.parseLenient(jTry.toString());
+			
+			JSONValue sunset = jB.get("sunset");
+			String sSunset = sunset.toString();
+			String editedSunset;
+			editedSunset = sSunset.substring(9,11);
+			editedSunset = editedSunset + sSunset.substring(24,26);
+			editedSunset = editedSunset + " Hours";
+			sunsetWeather.setText(editedSunset);
+			} catch (Exception ex) {
+				Window.alert(ex.getMessage());
+			}
+		      }
+			    };
+			    // Schedule the timer to run once in 5 seconds.
+			try{
+				makeWeatherData(condit);
+		
+		Timer t = new Timer() {
+	      @Override
+	      public void run() {  
+	    
 		String sAll = mResponse; 
 		JSONObject jA = (JSONObject)JSONParser.parseLenient(sAll);
 		JSONValue jTry = jA.get("current_observation"); 
@@ -125,37 +136,51 @@ public class CtrlWeather extends CtrlPanel{
 		String sVisibility = visibility.toString();	
 		sVisibility = sVisibility.substring(1, sVisibility.length()-1);
 		visWeather.setText(sVisibility + " km");
-		
-//		urlSwapper(url);
-//		JSONValue sunset = jB.get("current_time");
-//		String sSunset = sunset.toString();
-//		sunsetWeather.setText(sSunset);
+		makeWeatherData(astro);
+		y.schedule(1000);
+	      }
+	    };
+	    // Schedule the timer to run once in 5 seconds.
+	    t.schedule(1000);
+	  } catch (Exception ex){
+		  Window.alert(ex.getMessage());
+	  }		    
+	}
+	
+	
+	/**
+	 * Pulls weather data from Wunderground
+	 */
+	public void makeWeatherData(String urlVar){
+		String linkURL = urlVar;
+		linkURL = URL.encode(linkURL);
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, linkURL); 
+		try { 
+			Request request = builder.sendRequest(null, new RequestCallback()
+			{ 
+				public void onError(Request request, Throwable exception) { 
+				Window.alert("onError: Couldn't retrieve JSON");
+				}
+			@Override	
+			public void onResponseReceived(Request request, Response response) { 
+				if (200 == response.getStatusCode()) { 
+					String rt = response.getText(); 
+					setMResponse(rt);
+					} else { 
+						Window.alert("Couldn't retrieve JSON (" + response.getStatusCode() + ")");
+						}
+				}
+			});
+			} 
+		catch (RequestException e) { 
+			Window.alert("RequestException: Couldn't retrieve JSON"); 
+		}
 	}
 	
 	/**
-	 * Gets the current url
-	 * @return url
+	 * sets mResponse
 	 */
-	private String urlGetter(){
-		if(url == null){
-			return condit;
-		} else {
-			return url;
-		}
-		
-	}
-	
-	/**
-	 * Swaps the URL
-	 * @param incomingURL
-	 */
-	private void urlSwapper(String incomingURL){
-		if(url == condit){
-			url = astro;
-		} else if (url == astro) {
-			url = condit;
-		}
-			
+	private void setMResponse(String m){
+		mResponse = m;
 	}
 }
-
