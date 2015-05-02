@@ -140,7 +140,7 @@ public class CtrlWeather extends CtrlPanel{
 		if(url == null){
 			return condit;
 		} else {
-			return astro;
+			return url;
 		}
 		
 	}
