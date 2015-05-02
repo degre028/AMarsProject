@@ -29,8 +29,12 @@ public class CtrlWeather extends CtrlPanel{
 	private VerticalPanel weatherPanel = new VerticalPanel(); 
 	private Label tempWeather = new Label("Default Temp");
 	private Label visWeather = new Label("Default Visiblility");
+	private Label sunsetWeather = new Label("Default Sunset");
 	final String DEGREE  = "\u00b0";
-
+	private String condit = "http://api.wunderground.com/api/d52e7b82dd8d3349/conditions/q/CA/San_Francisco.json";
+	private String astro = "http://api.wunderground.com/api/d52e7b82dd8d3349/astronomy/q/CA/San_Francisco.json";
+	private String url = null;
+	
 
 	/**
 	 * Constructor for the weather control panel.
@@ -39,9 +43,9 @@ public class CtrlWeather extends CtrlPanel{
 	 */
 	public CtrlWeather(ModuleSet modset) {
 		
-		String url = "http://api.wunderground.com/api/d52e7b82dd8d3349/conditions/q/CA/San_Francisco.json";
-		url = URL.encode(url);
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url); 
+		String linkURL = urlGetter();
+		linkURL = URL.encode(linkURL);
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, linkURL); 
 		try { 
 			Request request = builder.sendRequest(null, new RequestCallback()
 			{ 
@@ -77,6 +81,11 @@ public class CtrlWeather extends CtrlPanel{
 		Label visLabel = new Label("Visibility");
 		weatherPanel.add(visLabel);
 		weatherPanel.add(visWeather); //TO VIEW
+		
+		// Sunset Label
+		Label sunsetLabel = new Label("Time of Sunset");
+		weatherPanel.add(sunsetLabel);
+		weatherPanel.add(sunsetWeather);
 
 		
 		// Weather Underground Image
@@ -104,7 +113,7 @@ public class CtrlWeather extends CtrlPanel{
 		String sAll = mResponse; 
 		JSONObject jA = (JSONObject)JSONParser.parseLenient(sAll);
 		JSONValue jTry = jA.get("current_observation"); 
-		JSONObject jB = (JSONObject)JSONParser.parseLenient(jTry.toString()); 
+		JSONObject jB = (JSONObject)JSONParser.parseLenient(jTry.toString());
 		
 		
 		JSONValue temp = jB.get("temp_c"); 
@@ -115,7 +124,38 @@ public class CtrlWeather extends CtrlPanel{
 		
 		String sVisibility = visibility.toString();	
 		sVisibility = sVisibility.substring(1, sVisibility.length()-1);
-		visWeather.setText(sVisibility + " km");	
+		visWeather.setText(sVisibility + " km");
+		
+//		urlSwapper(url);
+//		JSONValue sunset = jB.get("current_time");
+//		String sSunset = sunset.toString();
+//		sunsetWeather.setText(sSunset);
+	}
+	
+	/**
+	 * Gets the current url
+	 * @return url
+	 */
+	private String urlGetter(){
+		if(url == null){
+			return condit;
+		} else {
+			return astro;
+		}
+		
+	}
+	
+	/**
+	 * Swaps the URL
+	 * @param incomingURL
+	 */
+	private void urlSwapper(String incomingURL){
+		if(url == condit){
+			url = astro;
+		} else if (url == astro) {
+			url = condit;
+		}
 			
 	}
 }
+
