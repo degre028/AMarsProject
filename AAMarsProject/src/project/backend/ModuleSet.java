@@ -30,7 +30,7 @@ public class ModuleSet {
 		storage = new MarsStorage(this);
 		this.graphics = graphics;
 		gui = new GUI(this,user);
-		configList.add(new MarsConfiguration(this, modList));
+		configList.add(new MarsConfiguration(this));
 		
 		storage.loadTestData();
 		
@@ -128,5 +128,21 @@ public class ModuleSet {
 		modList.clear();
 	}
 	
+	
+	/**
+	 * Method for adding a configuration.
+	 * @return
+	 */
+	public void newConfig() {
+		configList.add(new MarsConfiguration(this));
+	}
+	
+	public int getConfigNumber() {
+		return configList.size();
+	}
+	
+	public MarsConfiguration getConfig(int i) {
+		return configList.get(i);
+	}
 	
 }

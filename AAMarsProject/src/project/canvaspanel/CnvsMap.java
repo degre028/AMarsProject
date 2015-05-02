@@ -10,6 +10,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.user.client.Random;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Image;
@@ -192,7 +193,8 @@ public class CnvsMap extends CnvsPanel{
 	 * This method draws the preview config "on top of" the live config.
 	 */
 	public void drawPreviewConfig(MarsConfiguration configu) {
-
+		try {
+		Window.alert("Working");
         CssColor backdrop = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
         context1.setFillStyle(backdrop);
 		
@@ -217,6 +219,9 @@ public class CnvsMap extends CnvsPanel{
 			}
 			
 			
+		}
+		} catch (Exception e) {
+			Window.alert(e.getMessage());
 		}
 	}
 	

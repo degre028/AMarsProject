@@ -1,6 +1,9 @@
 package project.canvaspanel;
 
+import project.backend.MarsConfiguration;
+
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -44,6 +47,14 @@ public class CnvsPanel extends ScrollPanel {
 	 */
 	public void refreshDisplay() {
 		
+	}
+	
+	/**
+	 * Override method to due with superimposing.
+	 * 
+	 */
+	public void drawPreviewConfig(MarsConfiguration configu) {
+		Window.alert("Working");
 	}
 	
 }

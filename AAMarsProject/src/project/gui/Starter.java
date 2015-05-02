@@ -1,5 +1,6 @@
 package project.gui;
 
+import project.backend.MarsConfiguration;
 import project.backend.MarsModule;
 import project.backend.ModuleSet;
 import project.backend.Passwd;
@@ -9,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+
 import project.backend.GraphicPack;
 /**
  * This class is responsible for handling the start of the program.
@@ -33,13 +35,14 @@ public class Starter extends FlowPanel {
 
 
 		try {
-		launchLoginDemo();
+		//launchLoginDemo();
 		//launchSkipLogin();
 		//launchSomeData();
 		//launchMinConfig();
 		//launchServerStorage();
 		//launchLocalStorage();
 		//launchRemoteStorage();
+		launchSomeConfigs();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			Window.alert(ex.getMessage() + "\n");
@@ -138,6 +141,46 @@ public class Starter extends FlowPanel {
 		final ModuleSet modset = new ModuleSet("demoremote",graphics);
 		modset.getStorage().loadTestData();
 		
+		RootPanel.get().add(modset.getGui());
+	}
+	
+	private void launchSomeConfigs() {
+		final ModuleSet modset = new ModuleSet("Minimum",graphics);
+		
+		modset.addModule(new MarsModule(1,50,2,"Good",0));		//Plain
+		modset.addModule(new MarsModule(1,49,3,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(1,48,4,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(1,47,70,"Good",0)); 	//Dormitory
+		modset.addModule(new MarsModule(1,46,95,"Good",0));	//Sanitation
+		modset.addModule(new MarsModule(1,45,141,"Good",0));	//Canteen
+		modset.addModule(new MarsModule(1,44,154,"Good",0));	//Power
+		modset.addModule(new MarsModule(1,43,164,"Good",0));	//Control
+		modset.addModule(new MarsModule(1,42,174,"Good",0));	//Airlock
+		modset.addModule(new MarsModule(1,41,111,"Good",0));	//Food and Water
+		
+		modset.getGui().updateCanvasArea();
+		
+		MarsConfiguration configmin = new MarsConfiguration(modset);
+		configmin.setXCoord(0, 10);
+		configmin.setYCoord(0, 42);
+		configmin.setXCoord(1, 9);
+		configmin.setYCoord(1, 42);
+		configmin.setXCoord(2, 11);
+		configmin.setYCoord(2, 42);
+		configmin.setXCoord(3, 8);
+		configmin.setYCoord(3, 42);
+		configmin.setXCoord(4, 12);
+		configmin.setYCoord(4, 42);
+		configmin.setXCoord(5, 13);
+		configmin.setYCoord(5, 42);
+		configmin.setXCoord(6, 14);
+		configmin.setYCoord(6, 42);
+		configmin.setXCoord(7, 15);
+		configmin.setYCoord(7, 42);
+		configmin.setXCoord(8, 16);
+		configmin.setYCoord(8, 42);
+		configmin.setXCoord(9, 16);
+		configmin.setYCoord(9, 42);
 		RootPanel.get().add(modset.getGui());
 	}
 }

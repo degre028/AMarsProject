@@ -1,6 +1,9 @@
 package project.controlpanel;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -17,11 +20,11 @@ import project.backend.ModuleSet;
  */
 public class CtrlConfig extends CtrlPanel {
 	
-	ListBox libListOfConfigs = new ListBox();
+	final ListBox libListOfConfigs = new ListBox();
+	final ModuleSet modset;
 	
-	
-	public CtrlConfig(ModuleSet modset) {
-		
+	public CtrlConfig(ModuleSet modSet) {
+		this.modset = modSet;
 		super.getHeaderLabel().setText("Configurations");
 		
 		FlowPanel mainPanel = new FlowPanel();
@@ -45,6 +48,19 @@ public class CtrlConfig extends CtrlPanel {
 	    
 	    libListOfConfigs.setVisibleItemCount(16);
 	    editPanel.add(libListOfConfigs);
+	    
+	    libListOfConfigs.addChangeHandler( new ChangeHandler() {
+			public void onChange(ChangeEvent ev) {
+				if(libListOfConfigs.getSelectedIndex() > 0) {
+					Window.alert("Changed");
+					try {
+					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
+					} catch (Exception ex) {
+						Window.alert(ex.getMessage());
+					}
+				}
+			}
+		});
 	    
 	    FlowPanel buttonPanel = new FlowPanel();
 	    buttonPanel.getElement().getStyle().setPaddingTop(10.0, Unit.PX);
@@ -79,6 +95,11 @@ public class CtrlConfig extends CtrlPanel {
 	public void setupDisplay() {
 		libListOfConfigs.clear();
 		libListOfConfigs.addItem("Live Config");
+		for (int i = 0; i < modset.getConfigNumber(); i++) {
+			libListOfConfigs.addItem("--Config " + i);
+		}
+		
+		
 	}
 
 }

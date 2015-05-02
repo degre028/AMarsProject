@@ -48,7 +48,7 @@ public class GUI extends Composite {
 	private FlexTable fTableLeft;
 	private String user;
 	private ButtonArea buttonArea;
-	CnvsPanel curCanvas;
+	CnvsMap curCanvas;
 	CtrlPanel defaultControl;
 	private TimerPanel timerPanel;
 	
@@ -223,7 +223,7 @@ public class GUI extends Composite {
 		curCanvas.refreshDisplay();
 	}
 	
-	public CnvsPanel getCurCanvas() {
+	public CnvsMap getCurCanvas() {
 		return curCanvas;
 	}
 	
