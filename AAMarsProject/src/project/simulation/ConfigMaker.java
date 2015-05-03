@@ -32,7 +32,7 @@ public class ConfigMaker {
 		int cenY = getCenterOfGravity(false);
 		
 		int moveMod = -1;
-				
+		Window.alert(""+cenY);		
 		moveMod = getModuleOfType("Plain");
 		config.setXCoord(moveMod, cenX);
 		config.setYCoord(moveMod, cenY);
@@ -92,12 +92,13 @@ public class ConfigMaker {
 		while(!found && i < modset.getCount("all")) {
 			
 			if (usedModules.contains(i)) {
-				
+				i++;
 			} 
 			else {
 				//module not used already, check the type.
-				if(modset.getModule(i).getID().equals(type)) {
+				if(modset.getModule(i).getType().equals(type)) {
 					found = true;
+					usedModules.add(i);
 					index = i;
 				}
 				else {
@@ -106,7 +107,7 @@ public class ConfigMaker {
 			}
 		}
 		
-		Window.alert("" + index);
+		//Window.alert("" + index);
 		return index;
 	}
 	

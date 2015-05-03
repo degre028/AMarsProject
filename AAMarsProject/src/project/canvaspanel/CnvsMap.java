@@ -207,8 +207,8 @@ public class CnvsMap extends CnvsPanel{
         
 		for(int i = 0; i < modset.getCount("all"); i++) {
 			MarsModule drawMod = modset.getModule(i);
-			int xcoor= configu.getXCoord(i);
-			int ycoor= configu.getYCoord(i);
+			int xcoor= configu.getXCoord(i)-1;
+			int ycoor= configu.getYCoord(i)-1;
 			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 			
 //			if (drawMod.getCondition().equals("Damaged")) {
