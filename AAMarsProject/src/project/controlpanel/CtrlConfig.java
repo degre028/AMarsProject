@@ -125,6 +125,7 @@ public class CtrlConfig extends CtrlPanel {
 			public void onClick(ClickEvent ev) {
 				modset.removeConfig(libListOfConfigs.getSelectedIndex() -1);
 				setupDisplay();
+				modset.getGui().updateCanvasArea();
 			}
 				
 		});
