@@ -133,8 +133,8 @@ public class ModuleSet {
 	 * Method for adding a configuration.
 	 * @return
 	 */
-	public void newConfig() {
-		configList.add(new MarsConfiguration(this));
+	public void newConfig(MarsConfiguration config) {
+		configList.add(config);
 	}
 	
 	public int getConfigNumber() {

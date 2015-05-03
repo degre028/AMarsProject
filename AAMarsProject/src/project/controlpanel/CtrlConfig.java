@@ -3,6 +3,8 @@ package project.controlpanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -11,6 +13,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 
 import project.backend.ModuleSet;
+import project.simulation.ConfigMaker;
 
 /**
  * This class is the representation of the control panel configurations.
@@ -52,12 +55,13 @@ public class CtrlConfig extends CtrlPanel {
 	    libListOfConfigs.addChangeHandler( new ChangeHandler() {
 			public void onChange(ChangeEvent ev) {
 				if(libListOfConfigs.getSelectedIndex() > 0) {
-					Window.alert("Changed");
 					try {
-					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
+					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()));
 					} catch (Exception ex) {
 						Window.alert(ex.getMessage());
 					}
+				} else {
+					modset.getGui().getCurCanvas().refreshDisplay();
 				}
 			}
 		});
@@ -73,6 +77,18 @@ public class CtrlConfig extends CtrlPanel {
 	    btnDelete.getElement().getStyle().setWidth(50.0, Unit.PCT);
 	    btnGenerate.getElement().getStyle().setWidth(50.0, Unit.PCT);
 
+		btnGenerate.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				try {
+				ConfigMaker cm = new ConfigMaker(modset);
+				modset.newConfig(cm.genMinimumConfig(modset));
+				setupDisplay();
+				} catch (Exception ex) {
+					Window.alert(ex.getMessage());
+				}
+			}
+		});
+	    
 		
 		mainPanel.add(nameTable);
 		mainPanel.add(editPanel);
@@ -95,7 +111,7 @@ public class CtrlConfig extends CtrlPanel {
 	public void setupDisplay() {
 		libListOfConfigs.clear();
 		libListOfConfigs.addItem("Live Config");
-		for (int i = 0; i < modset.getConfigNumber(); i++) {
+		for (int i = 1; i < modset.getConfigNumber(); i++) {
 			libListOfConfigs.addItem("--Config " + i);
 		}
 		

@@ -157,9 +157,10 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(1,43,164,"Good",0));	//Control
 		modset.addModule(new MarsModule(1,42,174,"Good",0));	//Airlock
 		modset.addModule(new MarsModule(1,41,111,"Good",0));	//Food and Water
+		modset.addModule(new MarsModule(1,40,181,"Good",0));	//Food and Water
 		
 		modset.getGui().updateCanvasArea();
-		
+		try {
 		MarsConfiguration configmin = new MarsConfiguration(modset);
 		configmin.setXCoord(0, 10);
 		configmin.setYCoord(0, 42);
@@ -171,16 +172,49 @@ public class Starter extends FlowPanel {
 		configmin.setYCoord(3, 42);
 		configmin.setXCoord(4, 12);
 		configmin.setYCoord(4, 42);
-		configmin.setXCoord(5, 13);
-		configmin.setYCoord(5, 42);
-		configmin.setXCoord(6, 14);
-		configmin.setYCoord(6, 42);
-		configmin.setXCoord(7, 15);
-		configmin.setYCoord(7, 42);
-		configmin.setXCoord(8, 16);
-		configmin.setYCoord(8, 42);
-		configmin.setXCoord(9, 16);
-		configmin.setYCoord(9, 42);
+		configmin.setXCoord(5, 9);
+		configmin.setYCoord(5, 43);
+		configmin.setXCoord(6, 10);
+		configmin.setYCoord(6, 43);
+		configmin.setXCoord(7, 11);
+		configmin.setYCoord(7, 43);
+		configmin.setXCoord(8, 9);
+		configmin.setYCoord(8, 41);
+		configmin.setXCoord(9, 10);
+		configmin.setYCoord(9, 41);
+		modset.newConfig(configmin);
+		} catch (Exception ex) {
+			Window.alert(ex.getMessage());
+		}
+		
+		try {
+		MarsConfiguration configmin = new MarsConfiguration(modset);
+		configmin.setXCoord(0, 10);
+		configmin.setYCoord(0, 32);
+		configmin.setXCoord(1, 9);
+		configmin.setYCoord(1, 32);
+		configmin.setXCoord(2, 11);
+		configmin.setYCoord(2, 32);
+		configmin.setXCoord(3, 8);
+		configmin.setYCoord(3, 32);
+		configmin.setXCoord(4, 12);
+		configmin.setYCoord(4, 32);
+		configmin.setXCoord(5, 9);
+		configmin.setYCoord(5, 33);
+		configmin.setXCoord(6, 10);
+		configmin.setYCoord(6, 33);
+		configmin.setXCoord(7, 11);
+		configmin.setYCoord(7, 33);
+		configmin.setXCoord(8, 9);
+		configmin.setYCoord(8, 31);
+		configmin.setXCoord(9, 10);
+		configmin.setYCoord(9, 31);
+		modset.newConfig(configmin);
+		} catch (Exception ex) {
+			Window.alert(ex.getMessage());
+		}
+
+		
 		RootPanel.get().add(modset.getGui());
 	}
 }

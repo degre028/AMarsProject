@@ -56,6 +56,7 @@ public class CnvsMap extends CnvsPanel{
 	ImageElement mars;
 	final Context2d context1 = canvas.getContext2d();
 	final ModuleSet modset;
+	boolean isSideBySide = false;
 	
 	/**
 	 * Constructor for the canvas map panel area.
@@ -135,6 +136,7 @@ public class CnvsMap extends CnvsPanel{
 	 */
 	@Override
 	public void refreshDisplay() {
+		isSideBySide = false;
 		context1.drawImage(mars, 1, 1, 2872, 1436);
 
 
@@ -193,11 +195,14 @@ public class CnvsMap extends CnvsPanel{
 	 * This method draws the preview config "on top of" the live config.
 	 */
 	public void drawPreviewConfig(MarsConfiguration configu) {
-		try {
-		Window.alert("Working");
-        CssColor backdrop = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
-        context1.setFillStyle(backdrop);
-		
+
+		try { 
+		refreshDisplay();
+		if(!isSideBySide) {
+	        CssColor backdrop = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 0 + ", " + 0.5 + ")");
+	        context1.setFillStyle(backdrop);
+			isSideBySide = true;
+		}
         context1.fillRect(0, 0, 2872, 1436);
         
 		for(int i = 0; i < modset.getCount("all"); i++) {
@@ -206,17 +211,17 @@ public class CnvsMap extends CnvsPanel{
 			int ycoor= configu.getYCoord(i);
 			context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 			
-			if (drawMod.getCondition().equals("Damaged")) {
-		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 0 + "," + 0 + ", " + 0.4 + ")");
-		        context1.setFillStyle(damagedMod);
-				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
-			}
-			
-			if (drawMod.getCondition().equals("Uncertain")) {
-		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 255 + "," + 0 + ", " + 0.4 + ")");
-		        context1.setFillStyle(damagedMod);
-				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
-			}
+//			if (drawMod.getCondition().equals("Damaged")) {
+//		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 0 + "," + 0 + ", " + 0.4 + ")");
+//		        context1.setFillStyle(damagedMod);
+//				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+//			}
+//			
+//			if (drawMod.getCondition().equals("Uncertain")) {
+//		        CssColor damagedMod = CssColor.make("rgba(" + 255 + ", " + 255 + "," + 0 + ", " + 0.4 + ")");
+//		        context1.setFillStyle(damagedMod);
+//				context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+//			}
 			
 			
 		}
@@ -232,7 +237,7 @@ public class CnvsMap extends CnvsPanel{
 		else if (type.equals("Sanitation")) { return sanitation; }
 		else if (type.equals("Food & Water")) { return food; }
 		else if (type.equals("Gym & Relaxation")) { return gymnasium; }
-		else if (type.equals("Canteeen")) { return canteen; }
+		else if (type.equals("Canteen")) { return canteen; }
 		else if (type.equals("Power")) { return power; }
 		else if (type.equals("Control")) { return control; }
 		else if (type.equals("Airlock")) { return airlock; }

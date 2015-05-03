@@ -49,7 +49,7 @@ public class MarsConfiguration {
 	}
 	
 	public void setYCoord(int index, int ycoord) {
-		xCoords.set(index, ycoord);
+		yCoords.set(index, ycoord);
 	}
 	
 	public MarsModule getModule(int i) {

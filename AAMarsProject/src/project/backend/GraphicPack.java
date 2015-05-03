@@ -93,7 +93,7 @@ public class GraphicPack {
 		else if (imgname.equals("Sanitation")) { return sanitation; }
 		else if (imgname.equals("Food & Water")) { return food; }
 		else if (imgname.equals("Gym & Relaxation")) { return gymnasium; }
-		else if (imgname.equals("Canteeen")) { return canteen; }
+		else if (imgname.equals("Canteen")) { return canteen; }
 		else if (imgname.equals("Power")) { return power; }
 		else if (imgname.equals("Control")) { return control; }
 		else if (imgname.equals("Airlock")) { return airlock; }

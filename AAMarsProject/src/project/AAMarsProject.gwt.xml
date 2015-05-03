@@ -34,6 +34,7 @@
   <source path='backend'/>
   <source path='controlpanel'/>
   <source path='canvaspanel'/>
+  <source path='simulation'/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>
