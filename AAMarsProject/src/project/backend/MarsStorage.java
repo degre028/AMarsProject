@@ -135,7 +135,7 @@ public class MarsStorage {
 
 			 //Write to local storage.
 			 localStorage.setItem("number",i.toString());
-			 localStorage.setItem("config1", mainSave.toString());
+			 localStorage.setItem("config0", mainSave.toString());
 		 
 		 }
 		}
@@ -362,5 +362,68 @@ public class MarsStorage {
 	
 	public void saveTenDayTime(long time) {
 		 localStorage.setItem("tendaytime", String.valueOf(time));
+	}
+	
+	/**
+	 * This method saves configuration data to the local store.
+	 */
+	public void saveConfigLocalStore() {
+		try {
+//			for(int i = 1; i <= modset.getConfigNumber() + 1; i++) {
+//				localStorage.removeItem("config"+i);
+//			}
+			
+			
+			 if (!localFail) {
+				 
+				 StringBuilder mainSave = new StringBuilder();
+
+
+				 
+				 Integer i;
+				 
+				 StringBuilder configString = new StringBuilder();
+				 
+				 for (i = 1; i <= modset.getConfigNumber(); i++) {
+					 
+					 mainSave.append("[");
+					 
+					 MarsConfiguration config = modset.getConfig(i-1);
+					 
+					 for (int j = 0; j < modset.getCount("all"); j++) {
+						 
+						 configString.append("{X:");
+						 configString.append(config.getXCoord(j));
+						 configString.append(",Y:");
+						 configString.append(config.getYCoord(j));
+						 configString.append("}");
+						 
+						 mainSave.append(configString);
+						 
+						 if(j != modset.getCount("all")-1) {
+							 mainSave.append(",");
+						 }
+						 
+					 }	 
+
+					 mainSave.append("]");
+					 localStorage.setItem("config" + i, mainSave.toString());
+				 }
+
+//				String sAll = "[" +
+//							 "{id:091,status:\"undamaged\",turns:0,X:5,Y:5}," +
+//							 "{code:002,status:\"undamaged\",turns:0,X:5,Y:6}," +
+//							 "{code:003,status:\"undamaged\",turns:0,X:5,Y:7}" +
+//							 "]";
+
+				 //Write to local storage.
+				 //localStorage.setItem("number",i.toString());
+
+			 
+			 }
+			}
+			catch (Exception e) {
+				 Window.alert(e.getMessage());
+			}
 	}
 }

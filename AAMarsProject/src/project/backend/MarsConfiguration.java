@@ -13,6 +13,8 @@ public class MarsConfiguration {
 	private ModuleSet modset;
 	private LinkedList<Integer> xCoords = new LinkedList<Integer>();
 	private LinkedList<Integer> yCoords = new LinkedList<Integer>();
+	String name = "";
+	Integer conQuality = 100;
 	
 	/**
 	 * Constructor for configuration.
@@ -63,5 +65,15 @@ public class MarsConfiguration {
 		return mod;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}	
 	
+	public String getName() {
+		return name;
+	}
+	
+	public Integer getQuality() {
+		return conQuality;
+	}
 }

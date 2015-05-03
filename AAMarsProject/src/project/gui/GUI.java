@@ -216,6 +216,7 @@ public class GUI extends Composite {
 	 */
 	public void updateControlArea(CtrlPanel control) {
 		control.setupDisplay();
+		updateCanvasArea();
 		fTableRight.setWidget(0,1, buildControlArea("224px","718px",control));
 	}
 	

@@ -11,7 +11,9 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RadioButton;
 
+import project.backend.MarsConfiguration;
 import project.backend.ModuleSet;
 import project.simulation.ConfigMaker;
 
@@ -29,6 +31,11 @@ public class CtrlConfig extends CtrlPanel {
 	public CtrlConfig(ModuleSet modSet) {
 		this.modset = modSet;
 		super.getHeaderLabel().setText("Configurations");
+		
+		final Button btnDuplicate = new Button("Duplicate");
+	    final Button btnLoad = new Button("Load Active");
+	    final Button btnDelete = new Button("Delete");
+	    final Button btnGenerate = new Button("Generate");
 		
 		FlowPanel mainPanel = new FlowPanel();
 		mainPanel.getElement().getStyle().setPaddingLeft(10.0, Unit.PX);
@@ -55,6 +62,7 @@ public class CtrlConfig extends CtrlPanel {
 	    libListOfConfigs.addChangeHandler( new ChangeHandler() {
 			public void onChange(ChangeEvent ev) {
 				if(libListOfConfigs.getSelectedIndex() > 0) {
+					btnDelete.setEnabled(true);
 					try {
 					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()));
 					} catch (Exception ex) {
@@ -62,42 +70,75 @@ public class CtrlConfig extends CtrlPanel {
 					}
 				} else {
 					modset.getGui().getCurCanvas().refreshDisplay();
+					btnDelete.setEnabled(false);
 				}
 			}
 		});
 	    
 	    FlowPanel buttonPanel = new FlowPanel();
 	    buttonPanel.getElement().getStyle().setPaddingTop(10.0, Unit.PX);
-	    Button btnDuplicate = new Button("Duplicate");
-	    Button btnLoad = new Button("Load Active");
-	    Button btnDelete = new Button("Delete");
-	    Button btnGenerate = new Button("Generate");
+	    
 	    btnDuplicate.getElement().getStyle().setWidth(50.0, Unit.PCT);
 	    btnLoad.getElement().getStyle().setWidth(50.0, Unit.PCT);
 	    btnDelete.getElement().getStyle().setWidth(50.0, Unit.PCT);
 	    btnGenerate.getElement().getStyle().setWidth(50.0, Unit.PCT);
 
-		btnGenerate.addClickHandler( new ClickHandler() {
-			public void onClick(ClickEvent ev) {
-				try {
-				ConfigMaker cm = new ConfigMaker(modset);
-				modset.newConfig(cm.genMinimumConfig(modset));
-				setupDisplay();
-				} catch (Exception ex) {
-					Window.alert(ex.getMessage());
-				}
-			}
-		});
+
 	    
 		
 		mainPanel.add(nameTable);
 		mainPanel.add(editPanel);
 		buttonPanel.add(btnLoad);
 		buttonPanel.add(btnDelete);
-		buttonPanel.add(btnDuplicate);
-		buttonPanel.add(btnGenerate);
+//		buttonPanel.add(btnDuplicate);
+//		buttonPanel.add(btnGenerate);
 		mainPanel.add(buttonPanel);
+		btnDelete.setEnabled(false);
 		
+		FlowPanel generatePanel = new FlowPanel();
+		generatePanel.getElement().getStyle().setPaddingTop(20.0, Unit.PX);
+		
+		generatePanel.add(new Label("Generate a Config"));
+		FlexTable genTable = new FlexTable();
+		final RadioButton radioMin = new RadioButton("1", "Minimum Configuration");
+		final RadioButton radioFull = new RadioButton("1", "Full Configuration");
+		radioFull.setEnabled(false);
+		radioMin.setValue(true);
+		
+		
+		btnGenerate.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				if(radioMin.getValue()) {
+					MarsConfiguration mc = new MarsConfiguration(modset);
+					ConfigMaker cm = new ConfigMaker(modset);
+					mc = cm.genMinimumConfig(modset);
+					mc.setName("Minimum Configuration 1");
+					modset.newConfig(mc);
+					
+					setupDisplay();
+				}
+					 
+				}
+		});
+		
+		btnDelete.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				modset.removeConfig(libListOfConfigs.getSelectedIndex() -1);
+				setupDisplay();
+			}
+				
+		});
+		
+		
+		genTable.setWidget(0, 0, radioMin);
+		genTable.setWidget(1, 0, radioFull);
+		genTable.setWidget(2, 0, btnGenerate);
+	
+		
+		
+		
+		generatePanel.add(genTable);
+		mainPanel.add(generatePanel);
 		super.getPanel().add(mainPanel);
 		
 		setupDisplay();
@@ -112,7 +153,8 @@ public class CtrlConfig extends CtrlPanel {
 		libListOfConfigs.clear();
 		libListOfConfigs.addItem("Live Config");
 		for (int i = 1; i < modset.getConfigNumber(); i++) {
-			libListOfConfigs.addItem("--Config " + i);
+			libListOfConfigs.addItem(modset.getConfig(i).getName() + "  (" + modset.getConfig(i).getQuality() +
+					"/100)");
 		}
 		
 		

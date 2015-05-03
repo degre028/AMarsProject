@@ -135,6 +135,7 @@ public class ModuleSet {
 	 */
 	public void newConfig(MarsConfiguration config) {
 		configList.add(config);
+		storage.saveConfigLocalStore();
 	}
 	
 	public int getConfigNumber() {
@@ -143,6 +144,10 @@ public class ModuleSet {
 	
 	public MarsConfiguration getConfig(int i) {
 		return configList.get(i);
+	}
+	
+	public void removeConfig(int i) {
+		configList.remove(i);
 	}
 	
 }

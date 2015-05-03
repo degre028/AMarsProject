@@ -182,6 +182,7 @@ public class Starter extends FlowPanel {
 		configmin.setYCoord(8, 41);
 		configmin.setXCoord(9, 10);
 		configmin.setYCoord(9, 41);
+		configmin.setName("Base Try 1");
 		modset.newConfig(configmin);
 		} catch (Exception ex) {
 			Window.alert(ex.getMessage());
@@ -209,6 +210,7 @@ public class Starter extends FlowPanel {
 		configmin.setYCoord(8, 31);
 		configmin.setXCoord(9, 10);
 		configmin.setYCoord(9, 31);
+		configmin.setName("Base Try 2");
 		modset.newConfig(configmin);
 		} catch (Exception ex) {
 			Window.alert(ex.getMessage());
