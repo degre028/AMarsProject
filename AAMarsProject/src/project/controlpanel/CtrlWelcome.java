@@ -54,7 +54,7 @@ public class CtrlWelcome extends CtrlPanel {
 			lbLoaded.setText("Your previous session have been loaded.");
 		}
 		else {
-			lbLoaded.setText("There was no previous session on this computer");
+			lbLoaded.setText("Click Start to Begin!");
 		}
 		
 		
