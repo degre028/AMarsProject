@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class TimerPanel extends Composite {
 	public final long end = 150000;
 
-	final Label timerLabel = new Label("10-Day Alert Test");
+	final Label timerLabel = new Label("10-Day Alert");
 	final Label countLabel = new Label("");
 	Integer counter = (int) (end / 1000);
 	long startTime = 0;
@@ -69,9 +69,8 @@ public class TimerPanel extends Composite {
 		//
 		this.startTime = startTime;
 		
-		timerLabel.getElement().getStyle().setPaddingLeft(3.0, Unit.PX);
+		timerLabel.getElement().getStyle().setPaddingLeft(60.0, Unit.PX);
 		countLabel.getElement().getStyle().setPaddingLeft(3.0, Unit.PX);
-		
 
 		mainPanel.getElement().getStyle().setBorderStyle(BorderStyle.SOLID);
 		mainPanel.getElement().getStyle().setWidth(200, Unit.PX);
