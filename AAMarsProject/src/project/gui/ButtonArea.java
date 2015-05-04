@@ -56,6 +56,7 @@ public class ButtonArea extends Composite{
 		buttonList.add(new MarsButton(true, "Weather", new CtrlWeather(modset),modset));
 		buttonList.add(new MarsButton(true, "Load Data", new CtrlLoadModules(modset), modset));
 		buttonList.add(new MarsButton(true, "Configuration", new CtrlConfig(modset),modset));
+		buttonList.add(new MarsButton(true, "Route", new CtrlRoute(modset),modset));
 		buttonList.add(new MarsButton(false, "Test Cases", new CtrlWelcome("BLANK", modset),modset));
 		
 		//Generate a regular button for logout.
