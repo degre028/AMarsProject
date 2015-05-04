@@ -28,14 +28,18 @@ public class CtrlConfig extends CtrlPanel {
 	final ListBox libListOfConfigs = new ListBox();
 	final ModuleSet modset;
 	
+	final Button btnDuplicate = new Button("Duplicate");
+    final Button btnLoad = new Button("Load Active");
+    final Button btnDelete = new Button("Delete");
+    final Button btnGenerate = new Button("Generate");
+    
+	final Label lbNameOfActiveConfig = new Label("Live Config");
+	
 	public CtrlConfig(ModuleSet modSet) {
 		this.modset = modSet;
 		super.getHeaderLabel().setText("Configurations");
 		
-		final Button btnDuplicate = new Button("Duplicate");
-	    final Button btnLoad = new Button("Load Active");
-	    final Button btnDelete = new Button("Delete");
-	    final Button btnGenerate = new Button("Generate");
+
 		
 		FlowPanel mainPanel = new FlowPanel();
 		mainPanel.getElement().getStyle().setPaddingLeft(10.0, Unit.PX);
@@ -45,7 +49,7 @@ public class CtrlConfig extends CtrlPanel {
 		FlexTable nameTable = new FlexTable();
 		Label lbActiveConfig = new Label("Active Config: ");
 		lbActiveConfig.getElement().getStyle().setFontSize(1.2, Unit.EM);
-		Label lbNameOfActiveConfig = new Label("Live Config");
+
 		
 		nameTable.setWidget(0, 0, lbActiveConfig);
 		nameTable.setWidget(1, 0, lbNameOfActiveConfig);
@@ -63,14 +67,23 @@ public class CtrlConfig extends CtrlPanel {
 			public void onChange(ChangeEvent ev) {
 				if(libListOfConfigs.getSelectedIndex() > 0) {
 					btnDelete.setEnabled(true);
+					btnLoad.setEnabled(true);
+					
 					try {
-					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
+						modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
 					} catch (Exception ex) {
 						Window.alert(ex.getMessage());
 					}
+					
+				} else if(libListOfConfigs.getSelectedIndex() == 0) {
+					modset.getGui().getCurCanvas().refreshDisplay();
+					btnDelete.setEnabled(false);
+					btnLoad.setEnabled(true);
+					
 				} else {
 					modset.getGui().getCurCanvas().refreshDisplay();
 					btnDelete.setEnabled(false);
+					btnLoad.setEnabled(false);
 				}
 			}
 		});
@@ -106,13 +119,31 @@ public class CtrlConfig extends CtrlPanel {
 		radioMin.setValue(true);
 		
 		
+		btnLoad.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				if(radioMin.getValue()) {
+					if (libListOfConfigs.getSelectedIndex() > 0) {
+						modset.setActiveConfig(libListOfConfigs.getSelectedIndex()-1);
+						lbNameOfActiveConfig.setText(modset.getConfig(libListOfConfigs.getSelectedIndex()-1).getName());
+					}
+					else if(libListOfConfigs.getSelectedIndex() == 0) {
+						modset.setActiveConfig(libListOfConfigs.getSelectedIndex()-1);
+						lbNameOfActiveConfig.setText("Live Config");
+					}
+					
+				}
+					 
+				}
+		});
+		
+		
 		btnGenerate.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				if(radioMin.getValue()) {
 					MarsConfiguration mc = new MarsConfiguration(modset);
 					ConfigMaker cm = new ConfigMaker(modset);
 					mc = cm.genMinimumConfig(modset);
-					mc.setName("Minimum Configuration 1");
+					mc.setName("Minimum Cfg 1");
 					modset.newConfig(mc);
 					
 					setupDisplay();
@@ -124,9 +155,11 @@ public class CtrlConfig extends CtrlPanel {
 		btnDelete.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				modset.removeConfig(libListOfConfigs.getSelectedIndex() -1);
-				setupDisplay();
 				modset.getGui().updateCanvasArea();
 				modset.getStorage().saveConfigLocalStore();
+				modset.setActiveConfig(-1);
+				setupDisplay();
+
 			}
 				
 		});
@@ -158,6 +191,17 @@ public class CtrlConfig extends CtrlPanel {
 			libListOfConfigs.addItem(modset.getConfig(i).getName() + "  (" + modset.getConfig(i).getQuality() +
 					"/100)");
 		}
+		btnLoad.setEnabled(false);
+		btnDelete.setEnabled(false);
+		
+		if (modset.getActiveConfig() > -1) {
+			lbNameOfActiveConfig.setText(modset.getConfig(modset.getActiveConfig()).getName());
+		}
+		else
+		{
+			lbNameOfActiveConfig.setText("Live Config");
+		}
+		
 		
 		
 	}

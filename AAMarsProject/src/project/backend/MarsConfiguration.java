@@ -2,6 +2,8 @@ package project.backend;
 
 import java.util.LinkedList;
 
+import project.simulation.ConfigStats;
+
 
 /**
  * This class contains a list of modules in different positions.
@@ -13,6 +15,7 @@ public class MarsConfiguration {
 	private ModuleSet modset;
 	private LinkedList<Integer> xCoords = new LinkedList<Integer>();
 	private LinkedList<Integer> yCoords = new LinkedList<Integer>();
+	private LinkedList<Integer> moves = new LinkedList<Integer>();
 	String name = "";
 	Integer conQuality = 100;
 	
@@ -26,6 +29,7 @@ public class MarsConfiguration {
 		for(int i = 0; i < modset.getCount("all"); i++) {
 			xCoords.add(modset.getModule(i).getX());
 			yCoords.add(modset.getModule(i).getY());
+			moves.add(0);
 		}
 	}
 	
@@ -48,10 +52,12 @@ public class MarsConfiguration {
 	
 	public void setXCoord(int index, int xcoord) {
 		xCoords.set(index, xcoord);
+		updateStats();
 	}
 	
 	public void setYCoord(int index, int ycoord) {
 		yCoords.set(index, ycoord);
+		updateStats();
 	}
 	
 	public MarsModule getModule(int i) {
@@ -75,5 +81,17 @@ public class MarsConfiguration {
 	
 	public Integer getQuality() {
 		return conQuality;
+	}
+	
+	private void updateStats() {
+		ConfigStats stats = new ConfigStats(modset,this);
+		
+		for(int i = 0; i < modset.getCount("all"); i++) {
+			moves.set(i, stats.moduleMove(i));
+		}
+	}
+	
+	public Integer getMoves(int index) {
+		return moves.get(index);
 	}
 }

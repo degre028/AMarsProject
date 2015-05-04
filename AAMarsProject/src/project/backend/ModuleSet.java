@@ -20,6 +20,7 @@ public class ModuleSet {
 	MarsStorage storage;
 	String user;
 	GraphicPack graphics;
+	int activeConfig = -1;
 	
 	/**
 	 * Constructor for ModuleSet.  This class will instantiate the first configuration.
@@ -148,6 +149,14 @@ public class ModuleSet {
 	
 	public void removeConfig(int i) {
 		configList.remove(i);
+	}
+	
+	public int getActiveConfig() {
+		return activeConfig;
+	}
+	
+	public void setActiveConfig(int index) {
+		activeConfig = index;
 	}
 	
 }
