@@ -30,7 +30,7 @@ public class ModuleSet {
 		storage = new MarsStorage(this);
 		this.graphics = graphics;
 		gui = new GUI(this,user);
-		configList.add(new MarsConfiguration(this));
+		//configList.add(new MarsConfiguration(this));
 		
 		storage.loadTestData();
 		

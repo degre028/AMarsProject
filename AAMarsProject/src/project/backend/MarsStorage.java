@@ -134,8 +134,8 @@ public class MarsStorage {
 //						 "]";
 
 			 //Write to local storage.
-			 localStorage.setItem("number",i.toString());
-			 localStorage.setItem("config0", mainSave.toString());
+			 //localStorage.setItem("number",i.toString());
+			 localStorage.setItem("modset", mainSave.toString());
 		 
 		 }
 		}
@@ -162,9 +162,10 @@ public class MarsStorage {
 		
 			 //localStorage = Storage.getLocalStorageIfSupported();
 			tendaytime = Long.parseLong(localStorage.getItem("tendaytime"));
-			 String sConfigOne = localStorage.getItem("config1");
+
+			 String sConfigOne = localStorage.getItem("modset");
+			 //Window.alert(sConfigOne);
 			 jA = (JSONArray)JSONParser. parseLenient(sConfigOne);
-		
 
 		
 		if (!localFail) {
@@ -203,11 +204,53 @@ public class MarsStorage {
 				
 			}
 			
+			int maxJ = Integer.parseInt(localStorage.getItem("numberConfigs"));
+			
+			//Load configuration data
+			for (int j = 0; j < maxJ; j++) {
+				try {
+					
+					sConfigOne = localStorage.getItem("config" + j);
+					jA = (JSONArray)JSONParser. parseLenient(sConfigOne);
+					
+					MarsConfiguration config = new MarsConfiguration(modset);
+					
+					for (int k = 0; k < jA.size(); k++) {
+					
+						jO = (JSONObject)jA.get(k);
+						
+						jN = (JSONNumber) jO.get("X");
+						Integer modX = (int) jN.doubleValue();
+						
+						jN = (JSONNumber) jO.get("Y");
+						Integer modY = (int) jN.doubleValue();
+						
+						if(k == 0) {
+							jS = (JSONString) jO.get("name");
+							String nameConfig = jS.stringValue();
+							config.setName(nameConfig);
+						}
+						
+
+						config.setXCoord(k, modX);
+						config.setYCoord(k, modY);
+		
+						
+					}
+					
+					modset.newConfig(config);
+				} catch (Exception e) {
+					Window.alert(e.getMessage());
+				}
+			}
+			
 		} 
 		
 		}catch (Exception ex) {
-			//Window.alert(ex.getMessage());
+			Window.alert(ex.getMessage());
 		}
+		
+		
 			
 		
 		
@@ -375,37 +418,39 @@ public class MarsStorage {
 			
 			
 			 if (!localFail) {
-				 
-				 StringBuilder mainSave = new StringBuilder();
-
-
-				 
+				 localStorage.setItem("numberConfigs", String.valueOf(modset.getConfigNumber()));
 				 Integer i;
 				 
-				 StringBuilder configString = new StringBuilder();
-				 
-				 for (i = 1; i <= modset.getConfigNumber(); i++) {
-					 
+
+				 for (i = 0; i < modset.getConfigNumber(); i++) {
+					 StringBuilder mainSave = new StringBuilder();
+					 StringBuilder configString = new StringBuilder();
 					 mainSave.append("[");
 					 
-					 MarsConfiguration config = modset.getConfig(i-1);
+					 MarsConfiguration config = modset.getConfig(i);
 					 
 					 for (int j = 0; j < modset.getCount("all"); j++) {
-						 
+						 //Window.alert("" + i + "\n" + j);
 						 configString.append("{X:");
 						 configString.append(config.getXCoord(j));
 						 configString.append(",Y:");
 						 configString.append(config.getYCoord(j));
-						 configString.append("}");
+
+						 configString.append(",name:\"");
+						 configString.append(config.getName());
 						 
-						 mainSave.append(configString);
+						 configString.append("\"}");
+
+
 						 
 						 if(j != modset.getCount("all")-1) {
-							 mainSave.append(",");
+							configString.append(",");
 						 }
 						 
 					 }	 
 
+
+					 mainSave.append(configString);
 					 mainSave.append("]");
 					 localStorage.setItem("config" + i, mainSave.toString());
 				 }

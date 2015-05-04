@@ -64,7 +64,7 @@ public class CtrlConfig extends CtrlPanel {
 				if(libListOfConfigs.getSelectedIndex() > 0) {
 					btnDelete.setEnabled(true);
 					try {
-					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()));
+					modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
 					} catch (Exception ex) {
 						Window.alert(ex.getMessage());
 					}
@@ -126,6 +126,7 @@ public class CtrlConfig extends CtrlPanel {
 				modset.removeConfig(libListOfConfigs.getSelectedIndex() -1);
 				setupDisplay();
 				modset.getGui().updateCanvasArea();
+				modset.getStorage().saveConfigLocalStore();
 			}
 				
 		});
@@ -153,7 +154,7 @@ public class CtrlConfig extends CtrlPanel {
 	public void setupDisplay() {
 		libListOfConfigs.clear();
 		libListOfConfigs.addItem("Live Config");
-		for (int i = 1; i < modset.getConfigNumber(); i++) {
+		for (int i = 0; i < modset.getConfigNumber(); i++) {
 			libListOfConfigs.addItem(modset.getConfig(i).getName() + "  (" + modset.getConfig(i).getQuality() +
 					"/100)");
 		}
