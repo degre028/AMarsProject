@@ -18,6 +18,8 @@ public class MarsConfiguration {
 	private LinkedList<Integer> moves = new LinkedList<Integer>();
 	String name = "";
 	Integer conQuality = 100;
+	private LinkedList<Boolean> isUsed = new LinkedList<Boolean>();
+	private LinkedList<Boolean> isIgnored = new LinkedList<Boolean>();
 	
 	/**
 	 * Constructor for configuration.
@@ -29,6 +31,8 @@ public class MarsConfiguration {
 		for(int i = 0; i < modset.getCount("all"); i++) {
 			xCoords.add(modset.getModule(i).getX());
 			yCoords.add(modset.getModule(i).getY());
+			isUsed.add(false);
+			isIgnored.add(false);
 			moves.add(0);
 		}
 	}
@@ -94,4 +98,31 @@ public class MarsConfiguration {
 	public Integer getMoves(int index) {
 		return moves.get(index);
 	}
+
+
+	public boolean getIsUsed(int index) {
+		return isUsed.get(index);
+	}
+
+
+	public void setIsUsed(int i, boolean used) {
+		isUsed.set(i, used);
+	}
+	
+	/**
+	 * This method shifts the entire configuration by the
+	 * specified amount.
+	 * @param xMod
+	 * @param yMod
+	 */
+	public void moveConfig(int xMod, int yMod) {
+		for (int i = 0; i < modset.getCount("all"); i++) {
+			if (getIsUsed(i)) {
+				setXCoord(i, getXCoord(i) + xMod);
+				setYCoord(i, getYCoord(i) + yMod);
+			}
+		}
+	}
+	
+	
 }

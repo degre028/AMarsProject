@@ -188,6 +188,27 @@ public class CnvsMap extends CnvsPanel{
 			
 			
 		}
+		
+		//Display active config
+		if(modset.getActiveConfig() > -1) {
+			MarsConfiguration config = modset.getConfig(modset.getActiveConfig());
+			for(int i = 0; i < modset.getCount("all"); i++) {
+				if(config.getIsUsed(i)) {
+					MarsModule drawMod = modset.getModule(i);
+					int xcoor= config.getXCoord(i)-1;
+					int ycoor= config.getYCoord(i)-1;
+					context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+					
+			        CssColor damagedMod = CssColor.make("rgba(" + 0 + ", " + 0 + "," + 255 + ", " + 0.4 + ")");
+			        context1.setFillStyle(damagedMod);
+					context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+				}
+		}
+			
+			
+			
+			
+		}
 	}
 	
 
@@ -245,5 +266,7 @@ public class CnvsMap extends CnvsPanel{
 		else return medical;
 		
 	}
+	
+	//public void 
 	
 }

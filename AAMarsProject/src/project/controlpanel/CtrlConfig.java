@@ -140,11 +140,22 @@ public class CtrlConfig extends CtrlPanel {
 		btnGenerate.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				if(radioMin.getValue()) {
+					try {
 					MarsConfiguration mc = new MarsConfiguration(modset);
 					ConfigMaker cm = new ConfigMaker(modset);
-					mc = cm.genMinimumConfig(modset);
-					mc.setName("Minimum Cfg 1");
+					mc = cm.genMinimumConfig(modset, 1);
+					mc.setName("Minimum Cfg A");
 					modset.newConfig(mc);
+					
+					mc = new MarsConfiguration(modset);
+					cm = new ConfigMaker(modset);
+					mc = cm.genMinimumConfig(modset, 2);
+					mc.setName("Minimum Cfg B");
+					modset.newConfig(mc);
+					} catch (Exception e) {
+						Window.alert(e.getMessage());
+					}
+					
 					
 					setupDisplay();
 				}

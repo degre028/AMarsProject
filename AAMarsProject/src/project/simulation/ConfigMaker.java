@@ -14,7 +14,7 @@ import project.backend.ModuleSet;
  */
 public class ConfigMaker {
  LinkedList<Integer> usedModules = new LinkedList<Integer>();
- LinkedList<Boolean> isused = new LinkedList<Boolean>();
+
  ModuleSet modset;
  int minx = 1;
  int miny = 1;
@@ -29,14 +29,22 @@ public class ConfigMaker {
   * This method builds an apt minimum configuration if the correct
   * number of modules are present.
   */
- public MarsConfiguration genMinimumConfig(ModuleSet modset) {
+ public MarsConfiguration genMinimumConfig(ModuleSet modset, int numConf) {
   MarsConfiguration config = new MarsConfiguration(modset);
   boolean tits = false;
   tits = inVoid(config);
   //Window.alert("" + tits);
   //makeFull1(config);
-  makeMin1(config);
-  //makeMin2(config);
+  
+  if(numConf == 1) {
+	  makeMin1(config);  
+  }
+  else {
+	  makeMin2(config);  
+  }
+  
+  
+  
   if(inVoid(config)) {
 	  moveVoid(config);
   }
@@ -64,7 +72,6 @@ public class ConfigMaker {
      found = true;
      usedModules.add(i);
      index = i;
-     isused.set(i, true);
     }
     else {
      i++;
@@ -164,7 +171,7 @@ public class ConfigMaker {
   for(int i = 0; i<modset.getCount("all"); i++) {
    int oldX = config.getXCoord(i);
    int oldY = config.getYCoord(i);
-   if(isused.get(i)){
+   if(config.getIsUsed(i)) {
 	   config.setXCoord(i, oldX+newX);
 	   config.setYCoord(i, oldY+newY);
    }
@@ -179,42 +186,52 @@ public class ConfigMaker {
   int moveMod = -1;
   //Window.alert(""+cenY);  
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Canteen");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Power");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Control");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Dormitory");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 2);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Sanitation");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Airlock");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Food & Water");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 2);
   config.setYCoord(moveMod, cenY);
   
@@ -229,42 +246,52 @@ public class ConfigMaker {
   int moveMod = -1;
   //Window.alert(""+cenY);  
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Plain");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Canteen");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Power");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Sanitation");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Dormitory");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX - 1);
   config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Control");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY + 1);
   
   moveMod = getModuleOfType("Airlock");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY - 2);
   
   moveMod = getModuleOfType("Food & Water");
+  config.setIsUsed(moveMod, true);
   config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY + 2);
   
@@ -286,6 +313,7 @@ public class ConfigMaker {
 		  }
 	  return false;
  }
+ 
  //Generate Avg x and decide where to put config based on that! Probably just put it below!
  private void moveVoid(MarsConfiguration config) {
 	 int ymax=40;
@@ -306,7 +334,9 @@ public class ConfigMaker {
 	 
 	  for(int i = 0; i<modset.getCount("all"); i++) {
 		   int oldY = config.getYCoord(i);
-		   config.setYCoord(i, oldY-(ymax-39));
+		   if (config.getIsUsed(i)) {
+			   config.setYCoord(i, oldY-(ymax-39));
+		   }
 		  }
 	  
  }

@@ -1,10 +1,17 @@
 package project.controlpanel;
 
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextBox;
 
 import project.backend.MarsConfiguration;
 import project.backend.MarsModule;
@@ -31,7 +38,7 @@ public class CtrlRoute extends CtrlPanel {
 	 * The constructor outlines the control panel.
 	 * @param modset
 	 */
-	public CtrlRoute(ModuleSet modset) {
+	public CtrlRoute(final ModuleSet modset) {
 		this.modset = modset;
 		
 		if(modset.getActiveConfig() > -1) {
@@ -61,11 +68,66 @@ public class CtrlRoute extends CtrlPanel {
 	    libModules.setWidth("100%");
 	    libModules.setVisibleItemCount(16);
 	    editPanel.add(libModules);
+	    
+		FlowPanel moveCog = new FlowPanel();
+		moveCog.getElement().getStyle().setPaddingTop(20.0, Unit.PX);
+		Label moveCogLabel = new Label("Move Center of Gravity");
+		moveCogLabel.setWidth("100%");
+		moveCog.add(moveCogLabel);
+		
+		FlexTable moveCogTable = new FlexTable();
+		Label xModLabel = new Label("X Modifier:");
+		xModLabel.setSize("75px", "auto");
+		Label yModLabel = new Label("Y Modifier:");
+		yModLabel.setSize("75px", "auto");
+		moveCogTable.setWidget(0, 0, xModLabel);
+		moveCogTable.setWidget(1, 0, yModLabel);
+
+		final TextBox xMod = new TextBox();
+		final TextBox yMod = new TextBox();
+		xMod.setSize("60%", "auto");
+		yMod.setSize("60%", "auto");
+		
+		moveCogTable.setWidget(0, 1, xMod);
+		moveCogTable.setWidget(1, 1, yMod);
+		moveCog.add(moveCogTable);
+		
+		final Button btnGravity = new Button("Move");
+		
+		btnGravity.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				try {
+					int xModifier = Integer.parseInt(xMod.getText());
+					int yModifier = Integer.parseInt(yMod.getText());
+					config.moveConfig(xModifier, yModifier);
+					
+					setupDisplay();
+					modset.getGui().getCurCanvas().refreshDisplay();
+				}
+				catch (Exception e) {
+					Window.alert("Bad input data!  Enter whole numbers in each textbox!");
+				}
+					 
+			}
+		});
+		
+
+
+		libModules.addChangeHandler( new ChangeHandler() {
+			public void onChange(ChangeEvent ev) {
+			
+				
+				
+			}	
+		});
+		
+		moveCog.add(btnGravity);
 		
 //		mainTable.setWidget(0, 0, nameTable);
 //		mainTable.setWidget(1, 0, editPanel);
 		mainPanel.add(nameTable);
 		mainPanel.add(editPanel);
+		mainPanel.add(moveCog);
 		super.getPanel().add(mainPanel);
 	}
 	
@@ -76,6 +138,7 @@ public class CtrlRoute extends CtrlPanel {
 	 */
 	public void setupDisplay() {
 		libModules.clear();
+		int moveCounter = 0;
 		
 		if(modset.getActiveConfig() > -1) {
 			config = modset.getConfig(modset.getActiveConfig());
@@ -97,9 +160,12 @@ public class CtrlRoute extends CtrlPanel {
 		    	
 		    	strbuild.append(", ");
 		    	strbuild.append(config.getMoves(i) + " moves");
+		    	moveCounter += config.getMoves(i);
 		    	
 		    	libModules.addItem(strbuild.toString());
 			}
+			
+			libModules.insertItem("Total Moves: " + moveCounter, 0);
 		}
 		else {
 			lbNameOfActiveConfig.setText("Live Config");
