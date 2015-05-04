@@ -117,7 +117,7 @@ public class CnvsMap extends CnvsPanel{
 		control = graphics.getImageElement("Control");
 		dormitory = graphics.getImageElement("Dormitory");
 		food = graphics.getImageElement("Food & Water");
-		gymnasium = graphics.getImageElement("Gymnasium");
+		gymnasium = graphics.getImageElement("Gym & Relaxation");
 		medical = graphics.getImageElement("Medical");
 		plain = graphics.getImageElement("Plain");
 		power = graphics.getImageElement("Power");

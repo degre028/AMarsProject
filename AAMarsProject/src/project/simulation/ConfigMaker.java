@@ -30,8 +30,17 @@ public class ConfigMaker {
   */
  public MarsConfiguration genMinimumConfig(ModuleSet modset) {
   MarsConfiguration config = new MarsConfiguration(modset);
+  boolean tits = false;
+  tits = inVoid(config);
+  //Window.alert("" + tits);
+  makeFull1(config);
   //makeMin1(config);
-  makeMin2(config);
+  //makeMin2(config);
+  if(inVoid(config)) {
+	  moveVoid(config);
+  }
+  tits = inVoid(config);
+  //Window.alert("" + tits);
   return config;
  }
  
@@ -265,5 +274,474 @@ public class ConfigMaker {
   
   recenterize(config, cenX, cenY);
  }
+ 
+ private boolean inVoid(MarsConfiguration config) {
+	  for(int i = 0; i<modset.getCount("all"); i++) {
+		  boolean temp = false; 
+		  //Window.alert("FOR: " + "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+		  if((config.getXCoord(i) > 40) && (config.getYCoord(i) <51)) {
+			  //Window.alert( "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+			  temp = true;
+		  }
+		  if(config.getXCoord(i) > 40 && config.getYCoord(i) <51 && temp==true) {
+			  //Window.alert( "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+			  return true;
+		  }
+		  }
+	  return false;
+ }
+ //Generate Avg x and decide where to put config based on that! Probably just put it below!
+ private void moveVoid(MarsConfiguration config) {
+	 int ymax=40;
+	 for(int i = 0; i<modset.getCount("all"); i++) {
+		  boolean temp = false; 
+		  //Window.alert("FOR: " + "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+		  if((config.getXCoord(i) > 40) && (config.getYCoord(i) <51)) {
+			  //Window.alert( "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+			  temp = true;
+		  }
+		  if(config.getXCoord(i) > 40 && config.getYCoord(i) <51 && temp==true) {
+			  //Window.alert( "X: " + config.getXCoord(i) + "Y: " + config.getYCoord(i) + "Temp: " + temp);
+			  if(config.getModule(i).getY()>ymax) {
+				  ymax = config.getModule(i).getY();
+			  }
+		  }
+		  }
+	 
+	  for(int i = 0; i<modset.getCount("all"); i++) {
+		   int oldY = config.getYCoord(i);
+		   config.setYCoord(i, oldY-(ymax-39));
+		  }
+	  
+ }
+ 
+ //Airlock 4, Control 4, Power 4, Food & water storage 10, Dormitory 20
+ //Canteen 4, Sanitation 10, Gym & relaxation 4, Medical 4, Plain 40
+
+ private void makeFull1(MarsConfiguration config) {
+	  int cenX = getCenterOfGravity(true);
+	  int cenY = getCenterOfGravity(false);
+
+	  
+	  int moveMod = -1;
+	  //Window.alert(""+cenY);  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY+1);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-1);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX - 2);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-3);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-4);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-5);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-6);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-7);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX - 8);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-9);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+1);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+2);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+3);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+4);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+5);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+6);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+7);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+8);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+9);
+	  config.setYCoord(moveMod, cenY+2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY-1);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+1);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX + 2);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+3);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+4);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+5);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+6);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX+7);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX + 8);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-1);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-2);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-3);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-4);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-5);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-6);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-7);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-8);
+	  config.setYCoord(moveMod, cenY-2);
+	  
+	  moveMod = getModuleOfType("Plain");
+	  config.setXCoord(moveMod, cenX-9);
+	  config.setYCoord(moveMod, cenY-2);
+	  	  
+	  moveMod = getModuleOfType("Canteen");
+	  config.setXCoord(moveMod, cenX - 1);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Canteen");
+	  config.setXCoord(moveMod, cenX + 1);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Canteen");
+	  config.setXCoord(moveMod, cenX - 1);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Canteen");
+	  config.setXCoord(moveMod, cenX + 1);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Power");
+	  config.setXCoord(moveMod, cenX+7);
+	  config.setYCoord(moveMod, cenY+1);
+	  
+	  moveMod = getModuleOfType("Power");
+	  config.setXCoord(moveMod, cenX+7);
+	  config.setYCoord(moveMod, cenY-1);
+
+	  moveMod = getModuleOfType("Power");
+	  config.setXCoord(moveMod, cenX-8);
+	  config.setYCoord(moveMod, cenY+1);
+	  
+	  moveMod = getModuleOfType("Power");
+	  config.setXCoord(moveMod, cenX-8);
+	  config.setYCoord(moveMod, cenY-3);
+	  
+	  moveMod = getModuleOfType("Control");
+	  config.setXCoord(moveMod, cenX + 1);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Control");
+	  config.setXCoord(moveMod, cenX + 1);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Control");
+	  config.setXCoord(moveMod, cenX - 9);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Control");
+	  config.setXCoord(moveMod, cenX - 9);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 5);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 6);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 3);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 4);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 5);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 6);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 3);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 4);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 6);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 7);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 3);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 4);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 3);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 4);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 3);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 4);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 6);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX + 7);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 2);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Dormitory");
+	  config.setXCoord(moveMod, cenX - 3);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 5);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 8);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 6);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX - 5);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 5);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 8);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX - 4);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX + 6);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX - 4);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Sanitation");
+	  config.setXCoord(moveMod, cenX - 4);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Medical");
+	  config.setXCoord(moveMod, cenX + 8);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Medical");
+	  config.setXCoord(moveMod, cenX + 8);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Medical");
+	  config.setXCoord(moveMod, cenX - 8);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Medical");
+	  config.setXCoord(moveMod, cenX - 9);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Airlock");
+	  config.setXCoord(moveMod, cenX - 10);
+	  config.setYCoord(moveMod, cenY - 2);
+	  
+	  moveMod = getModuleOfType("Airlock");
+	  config.setXCoord(moveMod, cenX - 10);
+	  config.setYCoord(moveMod, cenY + 2);
+	  
+	  moveMod = getModuleOfType("Airlock");
+	  config.setXCoord(moveMod, cenX + 9);
+	  config.setYCoord(moveMod, cenY - 2);
+	  
+	  moveMod = getModuleOfType("Airlock");
+	  config.setXCoord(moveMod, cenX + 9);
+	  config.setYCoord(moveMod, cenY + 2);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX - 2);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX - 2);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX - 2);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX - 1);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX + 2);
+	  config.setYCoord(moveMod, cenY + 3);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX + 2);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX + 2);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX + 2);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Food & Water");
+	  config.setXCoord(moveMod, cenX - 1);
+	  config.setYCoord(moveMod, cenY - 3);
+	  
+	  moveMod = getModuleOfType("Gym & Relaxation");
+	  config.setXCoord(moveMod, cenX + 5);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Gym & Relaxation");
+	  config.setXCoord(moveMod, cenX + 5);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  moveMod = getModuleOfType("Gym & Relaxation");
+	  config.setXCoord(moveMod, cenX - 3);
+	  config.setYCoord(moveMod, cenY - 1);
+	  
+	  moveMod = getModuleOfType("Gym & Relaxation");
+	  config.setXCoord(moveMod, cenX - 3);
+	  config.setYCoord(moveMod, cenY + 1);
+	  
+	  recenterize(config, cenX, cenY);
+	 }
  
  }
