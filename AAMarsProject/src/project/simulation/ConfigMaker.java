@@ -14,6 +14,7 @@ import project.backend.ModuleSet;
  */
 public class ConfigMaker {
  LinkedList<Integer> usedModules = new LinkedList<Integer>();
+ LinkedList<Boolean> isused = new LinkedList<Boolean>();
  ModuleSet modset;
  int minx = 1;
  int miny = 1;
@@ -33,8 +34,8 @@ public class ConfigMaker {
   boolean tits = false;
   tits = inVoid(config);
   //Window.alert("" + tits);
-  makeFull1(config);
-  //makeMin1(config);
+  //makeFull1(config);
+  makeMin1(config);
   //makeMin2(config);
   if(inVoid(config)) {
 	  moveVoid(config);
@@ -63,6 +64,7 @@ public class ConfigMaker {
      found = true;
      usedModules.add(i);
      index = i;
+     isused.set(i, true);
     }
     else {
      i++;
@@ -162,8 +164,10 @@ public class ConfigMaker {
   for(int i = 0; i<modset.getCount("all"); i++) {
    int oldX = config.getXCoord(i);
    int oldY = config.getYCoord(i);
-   config.setXCoord(i, oldX+newX);
-   config.setYCoord(i, oldY+newY);
+   if(isused.get(i)){
+	   config.setXCoord(i, oldX+newX);
+	   config.setYCoord(i, oldY+newY);
+   }
   }
  }
  
@@ -204,10 +208,6 @@ public class ConfigMaker {
   
   moveMod = getModuleOfType("Sanitation");
   config.setXCoord(moveMod, cenX + 1);
-  config.setYCoord(moveMod, cenY - 1);
-  
-  moveMod = getModuleOfType("Medical");
-  config.setXCoord(moveMod, cenX);
   config.setYCoord(moveMod, cenY - 1);
   
   moveMod = getModuleOfType("Airlock");
@@ -259,10 +259,6 @@ public class ConfigMaker {
   moveMod = getModuleOfType("Control");
   config.setXCoord(moveMod, cenX + 1);
   config.setYCoord(moveMod, cenY + 1);
-  
-  moveMod = getModuleOfType("Medical");
-  config.setXCoord(moveMod, cenX + 1);
-  config.setYCoord(moveMod, cenY);
   
   moveMod = getModuleOfType("Airlock");
   config.setXCoord(moveMod, cenX);

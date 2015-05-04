@@ -42,9 +42,9 @@ public class Starter extends FlowPanel {
 		//launchServerStorage();
 		//launchLocalStorage();
 		//launchRemoteStorage();
-		//launchSomeConfigs();
+		launchSomeConfigs();
 //<<<<<<< HEAD
-		launchFullConfigs();
+		//launchFullConfigs();
 //=======
 //>>>>>>> branch 'yomaster' of https://github.com/degre028/AMarsProject
 		} catch (Exception ex) {
