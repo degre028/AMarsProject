@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.RadioButton;
 import project.backend.MarsConfiguration;
 import project.backend.ModuleSet;
 import project.simulation.ConfigMaker;
+import project.simulation.FullConfigMaker;
 
 /**
  * This class is the representation of the control panel configurations.
@@ -115,7 +116,7 @@ public class CtrlConfig extends CtrlPanel {
 		FlexTable genTable = new FlexTable();
 		final RadioButton radioMin = new RadioButton("1", "Minimum Configuration");
 		final RadioButton radioFull = new RadioButton("1", "Full Configuration");
-		radioFull.setEnabled(false);
+		radioFull.setEnabled(true);
 		radioMin.setValue(true);
 		
 		
@@ -155,12 +156,25 @@ public class CtrlConfig extends CtrlPanel {
 					} catch (Exception e) {
 						Window.alert(e.getMessage());
 					}
+				}
+				else {
+					try {
+					MarsConfiguration mc = new MarsConfiguration(modset);
+					FullConfigMaker cm = new FullConfigMaker(modset);
+					mc = cm.genFullConfig(modset, 1);
+					mc.setName("Full Config A");
+					modset.newConfig(mc);
+					}
+					catch (Exception ex) {
+						Window.alert(ex.getMessage());
+					}
+ 				}
 					
 					
 					setupDisplay();
 				}
 					 
-				}
+				
 		});
 		
 		btnDelete.addClickHandler( new ClickHandler() {

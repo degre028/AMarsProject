@@ -40,13 +40,11 @@ public class Starter extends FlowPanel {
 		//launchSomeData();
 		//launchMinConfig();
 		//launchServerStorage();
-		//launchLocalStorage();
+		launchLocalStorage();
 		//launchRemoteStorage();
-		launchSomeConfigs();
-//<<<<<<< HEAD
+		//launchSomeConfigs();
 		//launchFullConfigs();
-//=======
-//>>>>>>> branch 'yomaster' of https://github.com/degre028/AMarsProject
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			Window.alert(ex.getMessage() + "\n");
