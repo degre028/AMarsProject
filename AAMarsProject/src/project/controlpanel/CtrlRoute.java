@@ -162,13 +162,31 @@ public class CtrlRoute extends CtrlPanel {
 		btnNextPosition.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
 				try {
-					if(libModules.getSelectedIndex() > 0) {
-					modset.getGui().getCurCanvas().refreshDisplay();
-					
-					int xRov = Integer.parseInt(xRover.getText());
-					int yRov = Integer.parseInt(yRover.getText());
-					
-					modset.getGui().getCurCanvas().drawRoverToModule(xRov, yRov, libModules.getSelectedIndex()-1);
+					if(true) {
+						modset.getGui().getCurCanvas().refreshDisplay();
+						
+						int xRov = Integer.parseInt(xRover.getText());
+						int yRov = Integer.parseInt(yRover.getText());						
+						
+						//find the closest module
+						int index = -1;
+						int minMoves = 10000;
+						
+						for(int i = 0; i < modset.getCount("all"); i++) {
+							
+							if(config.getIsUsed(i)) {
+								int movement = 0;
+								movement = Math.abs(xRov - modset.getModule(i).getX());
+								movement += Math.abs(yRov - modset.getModule(i).getY());
+								if (movement < minMoves) {
+									minMoves = movement;
+									index = i;
+								}
+							}
+						}
+						
+						
+						modset.getGui().getCurCanvas().drawRoverToModule(xRov, yRov, index);
 					}
 					else
 					{

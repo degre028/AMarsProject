@@ -29,18 +29,26 @@ public class FullConfigMaker {
 	 
 	 private void makeFull(MarsConfiguration config) {
 
-		  int numplain = modset.getCount("Plain");
-		  Window.alert("MiddleCount:" + numplain);
-		  int cenX = getCenterOfGravity(true);
-		  int cenY = getCenterOfGravity(false);
-		  constructPlain(config, numplain, cenX, cenY);
-		  int moveMod = -1;
+		 setupPlains(config);
+		 //setupOthers();
+		 
+
 //		  Window.alert("X: "+cenX);  
 //		  Window.alert("Y: "+cenY);
 //		  moveMod = getModuleOfType("Plain");
 //		  config.setIsUsed(moveMod, true);
 //		  config.setXCoord(moveMod, cenX);
 //		  config.setYCoord(moveMod, cenY);
+	 }
+	 
+	 
+	 private void setupPlains(MarsConfiguration config) {
+		  int numplain = modset.getCount("Plain");
+		  Window.alert("MiddleCount:" + numplain);
+		  int cenX = getCenterOfGravity(true);
+		  int cenY = getCenterOfGravity(false);
+		  constructPlain(config, numplain, cenX, cenY);
+		  int moveMod = -1;
 	 }
 	 
 	 private Integer getCenterOfGravity(boolean isX) {

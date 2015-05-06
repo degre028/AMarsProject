@@ -332,8 +332,11 @@ public class CnvsMap extends CnvsPanel{
 		
 		//Draw Line
 		MarsConfiguration config = modset.getConfig(modset.getActiveConfig());
-		int xEnd = config.getXCoord(index);
-		int yEnd = config.getYCoord(index);
+		//int xEnd = config.getXCoord(index);
+		//int yEnd = config.getYCoord(index);
+		
+		int xEnd = modset.getModule(index).getX();
+		int yEnd = modset.getModule(index).getY();
 		
 		Context2d context = canvas.getContext2d();
 		context.beginPath();
