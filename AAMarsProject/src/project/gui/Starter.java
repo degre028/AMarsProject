@@ -38,11 +38,12 @@ public class Starter extends FlowPanel {
 		//launchLoginDemo();
 		//launchSkipLogin();
 		//launchSomeData();
+		launchSomeMaximumData();
 		//launchMinConfig();
 		//launchServerStorage();
-	//	launchLocalStorage();
+		//launchLocalStorage();
 		//launchRemoteStorage();
-		launchSomeConfigs();
+		//launchSomeConfigs();
 		//launchFullConfigs();
 
 		} catch (Exception ex) {
@@ -77,21 +78,304 @@ public class Starter extends FlowPanel {
 	 */
 	private void launchSomeData() {
 		final ModuleSet modset = new ModuleSet("demo",graphics);
+		//plain 1
+		modset.addModule(new MarsModule(42, 42,2,"Good",0));
+		modset.addModule(new MarsModule(43, 42,1,"Good",0));
+		modset.addModule(new MarsModule(41, 42,1,"Good",0));		
+		modset.addModule(new MarsModule(44, 42,1,"Good",0));
+		modset.addModule(new MarsModule(40, 42,1,"Good",0));
+		modset.addModule(new MarsModule(45, 42,1,"Good",0));		
+		modset.addModule(new MarsModule(39, 42,1,"Good",0));
+		modset.addModule(new MarsModule(46, 42,1,"Good",0));
+		modset.addModule(new MarsModule(38, 42,1,"Good",0));		
+		modset.addModule(new MarsModule(47, 42,1,"Good",0));
+		//air
+		modset.addModule(new MarsModule(48, 42,171,"Good",0));		
+		modset.addModule(new MarsModule(37, 42,171,"Good",0));
+		//plain 2
+		modset.addModule(new MarsModule(38, 43,1,"Good",0));
+		modset.addModule(new MarsModule(38, 44,1,"Good",0));
+		modset.addModule(new MarsModule(38, 45,1,"Good",0));
+		modset.addModule(new MarsModule(38, 46,1,"Good",0));		
+		modset.addModule(new MarsModule(38, 47,1,"Good",0));
 		
-		modset.addModule(new MarsModule(1,1,2,"Good",0));
-		modset.addModule(new MarsModule(100,50,63,"Good",0));
-		modset.addModule(new MarsModule(100,1,65,"Good",0));
-		modset.addModule(new MarsModule(1,50,91,"Good",0));
-		modset.addModule(new MarsModule(1,5,3,"Good",0));
-		modset.addModule(new MarsModule(1,6,132,"Good",0));
-		modset.addModule(new MarsModule(1,7,184,"Good",0));
-		modset.addModule(new MarsModule(1,8,172,"Good",0));
-		modset.addModule(new MarsModule(1,9,171,"Good",0));
-		modset.addModule(new MarsModule(50,25,171,"Good",0));
-		modset.addModule(new MarsModule(40,40,171,"Good",0));
-		modset.addModule(new MarsModule(90,34,171,"Good",0));
-		modset.addModule(new MarsModule(23,23,171,"Good",0));
-		modset.addModule(new MarsModule(67,45,171,"Good",0));
+		//Dorms one
+		modset.addModule(new MarsModule(37, 45,65,"Good",0));
+		modset.addModule(new MarsModule(39, 45,65,"Good",0));
+		modset.addModule(new MarsModule(37, 47,65,"Good",0));
+		modset.addModule(new MarsModule(38, 48,65,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(37, 46,91,"Good",0));
+		modset.addModule(new MarsModule(39, 47,92,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(39, 46, 131,"Good",0));
+		//food
+		modset.addModule(new MarsModule(39, 43, 111,"Good",0));
+		modset.addModule(new MarsModule(39, 44, 111,"Good",0));
+		modset.addModule(new MarsModule(37, 44, 111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(37, 43, 141,"Good",0));
+		//plain 3
+		modset.addModule(new MarsModule(42, 43,1,"Good",0));
+		modset.addModule(new MarsModule(42, 44,1,"Good",0));
+		modset.addModule(new MarsModule(42, 45,1,"Good",0));
+		modset.addModule(new MarsModule(42, 46,1,"Good",0));
+		modset.addModule(new MarsModule(42, 47,1,"Good",0));
+		//dorm
+		modset.addModule(new MarsModule(41, 45,61,"Good",0));
+		modset.addModule(new MarsModule(43, 45,61,"Good",0));
+		modset.addModule(new MarsModule(41, 47,61,"Good",0));
+		modset.addModule(new MarsModule(42, 48,61,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(41, 46,91,"Good",0));
+		modset.addModule(new MarsModule(43, 47,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(43, 46,131,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(43, 43,111,"Good",0));
+		modset.addModule(new MarsModule(43, 44,111,"Good",0));
+		modset.addModule(new MarsModule(41, 44,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(41, 43,141,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(46, 43,1,"Good",0));
+		modset.addModule(new MarsModule(46, 44,1,"Good",0));
+		modset.addModule(new MarsModule(46, 45,1,"Good",0));
+		modset.addModule(new MarsModule(46, 46,1,"Good",0));
+		modset.addModule(new MarsModule(46, 47,1,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(45, 45,65,"Good",0));
+		modset.addModule(new MarsModule(47, 45,65,"Good",0));
+		modset.addModule(new MarsModule(45, 47,65,"Good",0));
+		modset.addModule(new MarsModule(46, 48,65,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(45, 46,91,"Good",0));
+		modset.addModule(new MarsModule(47, 47,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(47, 46,131,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(47, 43,111,"Good",0));
+		modset.addModule(new MarsModule(47, 44,111,"Good",0));
+		modset.addModule(new MarsModule(45, 44,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(45, 43,141,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(39, 41,1,"Good",0));
+		modset.addModule(new MarsModule(39, 40,1,"Good",0));
+		modset.addModule(new MarsModule(39, 39,1,"Good",0));
+		modset.addModule(new MarsModule(39, 38,1,"Good",0));
+		modset.addModule(new MarsModule(39, 37,1,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(40, 39,65,"Good",0));
+		modset.addModule(new MarsModule(38, 39,65,"Good",0));
+		modset.addModule(new MarsModule(40, 38,65,"Good",0));
+		modset.addModule(new MarsModule(38, 38,65,"Good",0));
+		modset.addModule(new MarsModule(38, 37,65,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(39, 36,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(40, 37,141,"Good",0));
+		//med
+		modset.addModule(new MarsModule(38, 41,181,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(40, 41,91,"Good",0));
+		modset.addModule(new MarsModule(38, 40,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(40, 40,131,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(43, 41,1,"Good",0));
+		modset.addModule(new MarsModule(43, 40,1,"Good",0));
+		modset.addModule(new MarsModule(43, 39,1,"Good",0));
+		modset.addModule(new MarsModule(43, 38,1,"Good",0));
+		modset.addModule(new MarsModule(43, 37,1,"Good",0));
+		//CONTROL
+		modset.addModule(new MarsModule(44, 40,161,"Good",0));
+		modset.addModule(new MarsModule(42, 40,161,"Good",0));
+		modset.addModule(new MarsModule(42, 38,161,"Good",0));
+		modset.addModule(new MarsModule(44, 38,161,"Good",0));
+		//POW
+		modset.addModule(new MarsModule(44, 41,151,"Good",0));
+		modset.addModule(new MarsModule(42, 41,151,"Good",0));
+		modset.addModule(new MarsModule(44, 39,151,"Good",0));
+		modset.addModule(new MarsModule(42, 39,151,"Good",0));
+		//med
+		modset.addModule(new MarsModule(42, 37,181,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(44, 37,91,"Good",0));
+		//air
+		modset.addModule(new MarsModule(43, 36,171,"Good",0));	
+		//plain 4
+		modset.addModule(new MarsModule(47, 41,1,"Good",0));
+		modset.addModule(new MarsModule(47, 40,1,"Good",0));
+		modset.addModule(new MarsModule(47, 39,1,"Good",0));
+		modset.addModule(new MarsModule(47, 38,1,"Good",0));
+		modset.addModule(new MarsModule(47, 37,1,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(46, 41,91,"Good",0));
+		//med
+		modset.addModule(new MarsModule(48, 41,181,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(46, 40,65,"Good",0));
+		modset.addModule(new MarsModule(48, 40,65,"Good",0));
+		modset.addModule(new MarsModule(48, 39,65,"Good",0));
+		//air
+		modset.addModule(new MarsModule(47, 36,171,"Good",0));
+		//med
+		modset.addModule(new MarsModule(46, 37,181,"Good",0));
+			
+		
+			
+		RootPanel.get().add(modset.getGui());
+
+	}
+	private void launchSomeMaximumData() {
+		final ModuleSet modset = new ModuleSet("demo",graphics);
+		//plain 1
+		modset.addModule(new MarsModule(1,2,2,"Good",0));
+		modset.addModule(new MarsModule(1,3,1,"Good",0));
+		modset.addModule(new MarsModule(1,4,1,"Good",0));		
+		modset.addModule(new MarsModule(1,5,1,"Good",0));
+		modset.addModule(new MarsModule(1,6,1,"Good",0));
+		modset.addModule(new MarsModule(1,7,1,"Good",0));		
+		modset.addModule(new MarsModule(1,8,1,"Good",0));
+		modset.addModule(new MarsModule(1,9,1,"Good",0));
+		modset.addModule(new MarsModule(1,10,1,"Good",0));		
+		modset.addModule(new MarsModule(1,11,1,"Good",0));
+		//air
+		modset.addModule(new MarsModule(1,12,171,"Good",0));		
+		modset.addModule(new MarsModule(1,13,171,"Good",0));
+		//plain 2
+		modset.addModule(new MarsModule(1,14,1,"Good",0));
+		modset.addModule(new MarsModule(1,15,1,"Good",0));
+		modset.addModule(new MarsModule(1,16,1,"Good",0));
+		modset.addModule(new MarsModule(1,17,1,"Good",0));		
+		modset.addModule(new MarsModule(1,18,1,"Good",0));
+		
+		//Dorms one
+		modset.addModule(new MarsModule(1,19,65,"Good",0));
+		modset.addModule(new MarsModule(1,20,65,"Good",0));
+		modset.addModule(new MarsModule(1,21,65,"Good",0));
+		modset.addModule(new MarsModule(1,22,65,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(1,23,91,"Good",0));
+		modset.addModule(new MarsModule(1,24,92,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(1,25, 131,"Good",0));
+		//food
+		modset.addModule(new MarsModule(1,26, 111,"Good",0));
+		modset.addModule(new MarsModule(1,27, 111,"Good",0));
+		modset.addModule(new MarsModule(1,28, 111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(1,29, 141,"Good",0));
+		//plain 3
+		modset.addModule(new MarsModule(2,2,1,"Good",0));
+		modset.addModule(new MarsModule(2,3,1,"Good",0));
+		modset.addModule(new MarsModule(2,4,1,"Good",0));
+		modset.addModule(new MarsModule(2,5,1,"Good",0));
+		modset.addModule(new MarsModule(2,6,1,"Good",0));
+		//dorm
+		modset.addModule(new MarsModule(2,7,61,"Good",0));
+		modset.addModule(new MarsModule(2,8,61,"Good",0));
+		modset.addModule(new MarsModule(2,9,61,"Good",0));
+		modset.addModule(new MarsModule(2,10,61,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(2,11,91,"Good",0));
+		modset.addModule(new MarsModule(2,12,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(2,13,131,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(2,14,111,"Good",0));
+		modset.addModule(new MarsModule(2,15,111,"Good",0));
+		modset.addModule(new MarsModule(2,16,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(2,17,141,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(2,18,1,"Good",0));
+		modset.addModule(new MarsModule(2,19,1,"Good",0));
+		modset.addModule(new MarsModule(2,20,1,"Good",0));
+		modset.addModule(new MarsModule(2,21,1,"Good",0));
+		modset.addModule(new MarsModule(2,22,1,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(80,5,65,"Good",0));
+		modset.addModule(new MarsModule(81,5,65,"Good",0));
+		modset.addModule(new MarsModule(82,5,65,"Good",0));
+		modset.addModule(new MarsModule(83,5,65,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(84,5,91,"Good",0));
+		modset.addModule(new MarsModule(85,5,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(86,5,131,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(87,5,111,"Good",0));
+		modset.addModule(new MarsModule(88,5,111,"Good",0));
+		modset.addModule(new MarsModule(89,5,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(90,5,141,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(91,5,1,"Good",0));
+		modset.addModule(new MarsModule(92,5,1,"Good",0));
+		modset.addModule(new MarsModule(93,5,1,"Good",0));
+		modset.addModule(new MarsModule(94,5,1,"Good",0));
+		modset.addModule(new MarsModule(95,5,1,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(96,5,65,"Good",0));
+		modset.addModule(new MarsModule(97,5,65,"Good",0));
+		modset.addModule(new MarsModule(98, 5,65,"Good",0));
+		modset.addModule(new MarsModule(99,5,65,"Good",0));
+		modset.addModule(new MarsModule(99,6,65,"Good",0));
+		//food water
+		modset.addModule(new MarsModule(98, 6,111,"Good",0));
+		//cant
+		modset.addModule(new MarsModule(97, 6,141,"Good",0));
+		//med
+		modset.addModule(new MarsModule(96, 6,181,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(95, 6,91,"Good",0));
+		modset.addModule(new MarsModule(94, 6,91,"Good",0));
+		//gym
+		modset.addModule(new MarsModule(93, 6,131,"Good",0));
+		//plain 4
+		modset.addModule(new MarsModule(10,25,1,"Good",0));
+		modset.addModule(new MarsModule(10,26,1,"Good",0));
+		modset.addModule(new MarsModule(10,27,1,"Good",0));
+		modset.addModule(new MarsModule(10,28,1,"Good",0));
+		modset.addModule(new MarsModule(10,29,1,"Good",0));
+		//CONTROL
+		modset.addModule(new MarsModule(10,30,161,"Good",0));
+		modset.addModule(new MarsModule(10,31,161,"Good",0));
+		modset.addModule(new MarsModule(10,32,161,"Good",0));
+		modset.addModule(new MarsModule(10,33,161,"Good",0));
+		//POW
+		modset.addModule(new MarsModule(10,34,151,"Good",0));
+		modset.addModule(new MarsModule(10,35,151,"Good",0));
+		modset.addModule(new MarsModule(10,36,151,"Good",0));
+		modset.addModule(new MarsModule(10,37,151,"Good",0));
+		//med
+		modset.addModule(new MarsModule(10,24,181,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(10,23,91,"Good",0));
+		//ai
+		modset.addModule(new MarsModule(10,22,171,"Good",0));	
+		//plain 4
+		modset.addModule(new MarsModule(61, 20,1,"Good",0));
+		modset.addModule(new MarsModule(62, 20,1,"Good",0));
+		modset.addModule(new MarsModule(63, 20,1,"Good",0));
+		modset.addModule(new MarsModule(64, 20,1,"Good",0));
+		modset.addModule(new MarsModule(65, 20,1,"Good",0));
+		//sanit
+		modset.addModule(new MarsModule(66, 20,91,"Good",0));
+		//med
+		modset.addModule(new MarsModule(67, 20,181,"Good",0));
+		//dromszzz
+		modset.addModule(new MarsModule(68, 20,65,"Good",0));
+		modset.addModule(new MarsModule(69, 20,65,"Good",0));
+		modset.addModule(new MarsModule(70,20,65,"Good",0));
+		//air
+		modset.addModule(new MarsModule(71, 20,171,"Good",0));
+		//med
+		modset.addModule(new MarsModule(72, 20,181,"Good",0));
+			
+		
 			
 		RootPanel.get().add(modset.getGui());
 
