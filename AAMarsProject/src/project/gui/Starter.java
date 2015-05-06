@@ -38,12 +38,12 @@ public class Starter extends FlowPanel {
 		//launchLoginDemo();
 		//launchSkipLogin();
 		//launchSomeData();
-		launchSomeMaximumData();
+		//launchSomeMaximumData();
 		//launchMinConfig();
 		//launchServerStorage();
 		//launchLocalStorage();
 		//launchRemoteStorage();
-		//launchSomeConfigs();
+		launchSomeConfigs();
 		//launchFullConfigs();
 
 		} catch (Exception ex) {
