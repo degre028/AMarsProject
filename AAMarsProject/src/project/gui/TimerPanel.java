@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class TimerPanel extends Composite {
-	public final long end = 150000;
+	public final long end = (1000 * 60 * 60 * 24 * 10);  //(1000 * 60 * 60 * 24 * 10)
 
 	final Label timerLabel = new Label("10-Day Alert");
 	final Label countLabel = new Label("");
@@ -24,7 +24,7 @@ public class TimerPanel extends Composite {
 	long startTime = 0;
 	final FlowPanel mainPanel = new FlowPanel();
 	Button btnReset = new Button("Reset");
-	
+
 	
 	final Timer flasher = new Timer() {
 		public void run() {
@@ -51,8 +51,26 @@ public class TimerPanel extends Composite {
 				this.cancel();
 
 			} else {
-			countLabel.setText("You have: " + counter.toString() +
-					" seconds remianing until fuel check.");
+				if(counter < 60) {
+					countLabel.setText("You have: " + counter.toString() +
+							" seconds remianing until fuel check.");
+				}
+				else if(counter < (60 * 60)) {
+					Integer counterDisplay = counter / 60;
+					countLabel.setText("You have: " + counterDisplay.toString() +
+							" minute(s) remianing until fuel check.");
+				}
+				else if(counter < (60 * 60 * 60)) {
+					Integer counterDisplay = counter / 3600;
+					countLabel.setText("You have: " + counterDisplay.toString() +
+							" hour(s) remianing until fuel check.");
+				}
+				else {
+					Integer counterDisplay = counter / (3600 * 24);
+					countLabel.setText("You have: " + counterDisplay.toString() +
+							" day(s) remianing until fuel check.");
+				}
+			
 			incrementCounter();
 
 
