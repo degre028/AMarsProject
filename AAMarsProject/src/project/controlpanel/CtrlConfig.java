@@ -17,6 +17,7 @@ import project.backend.MarsConfiguration;
 import project.backend.ModuleSet;
 import project.simulation.ConfigMaker;
 import project.simulation.FullConfigMaker;
+import project.simulation.QualityChecker;
 
 /**
  * This class is the representation of the control panel configurations.
@@ -122,7 +123,10 @@ public class CtrlConfig extends CtrlPanel {
 		
 		btnLoad.addClickHandler( new ClickHandler() {
 			public void onClick(ClickEvent ev) {
-				if(radioMin.getValue()) {
+				try {
+					
+				
+				if(true) {
 					if (libListOfConfigs.getSelectedIndex() > 0) {
 						modset.setActiveConfig(libListOfConfigs.getSelectedIndex()-1);
 						lbNameOfActiveConfig.setText(modset.getConfig(libListOfConfigs.getSelectedIndex()-1).getName());
@@ -134,8 +138,11 @@ public class CtrlConfig extends CtrlPanel {
 					
 				}
 					 
-				}
-		});
+			}
+			 catch (Exception e) {
+				Window.alert(e.getMessage());
+			}
+		}});
 		
 		
 		btnGenerate.addClickHandler( new ClickHandler() {
@@ -163,6 +170,7 @@ public class CtrlConfig extends CtrlPanel {
 					FullConfigMaker cm = new FullConfigMaker(modset);
 					mc = cm.genFullConfig(modset, 1);
 					mc.setName("Full Config A");
+					mc.setQuality(QualityChecker.getConfigQuality(mc, modset));
 					modset.newConfig(mc);
 					}
 					catch (Exception ex) {
