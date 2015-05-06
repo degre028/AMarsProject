@@ -54,6 +54,8 @@ public class CnvsMap extends CnvsPanel{
 	ImageElement power;
 	ImageElement control;
 	ImageElement mars;
+	ImageElement rover;
+	ImageElement blank;
 	final Context2d context1 = canvas.getContext2d();
 	final ModuleSet modset;
 	boolean isSideBySide = false;
@@ -107,6 +109,7 @@ public class CnvsMap extends CnvsPanel{
 		final Image med = new Image("resources/modpics/Medical.jpg");
 		final Image pla = new Image("resources/modpics/Plain.jpg");
 		final Image pow = new Image("resources/modpics/Power.jpg");
+		final Image rov = new Image("resources/modpics/Rover.jpg");
 		
 		mars = graphics.getImageElement("mars");
 
@@ -121,6 +124,8 @@ public class CnvsMap extends CnvsPanel{
 		medical = graphics.getImageElement("Medical");
 		plain = graphics.getImageElement("Plain");
 		power = graphics.getImageElement("Power");
+		rover = graphics.getImageElement("Rover");
+		blank = graphics.getImageElement("Blank");
 		
 		//context1.drawImage(mars, 1, 1, 2872, 1436);
 		context1.clearRect(0, 0, 100 * SPACER, 50 * SPACER);
@@ -147,7 +152,8 @@ public class CnvsMap extends CnvsPanel{
 		
 
 
-		
+		context1.setStrokeStyle(CssColor.make(2,0,0));
+		context1.setLineWidth(1.0);
 		for(int i=0; i<100; i++) {
 			Context2d context = canvas.getContext2d();
 			context1.beginPath();
@@ -263,10 +269,82 @@ public class CnvsMap extends CnvsPanel{
 		else if (type.equals("Control")) { return control; }
 		else if (type.equals("Airlock")) { return airlock; }
 		else if (type.equals("Medical")) { return medical; }
-		else return medical;
+		else return blank;
 		
 	}
 	
-	//public void 
+	/**
+	 * This method draws a line connecting a module in the modset to a
+	 * its representation in the config.
+	 * @param index The module index in the modset.
+	 */
+	public void drawArrow(int index) {
+		refreshDisplay();
+		MarsConfiguration config = modset.getConfig(modset.getActiveConfig());
+		
+		int xStart = modset.getModule(index).getX();
+		int yStart = modset.getModule(index).getY();
+		int xEnd = config.getXCoord(index);
+		int yEnd = config.getYCoord(index);
+		
+//		Window.alert("" + xStart + "\n" + xEnd + "\n" +yStart +"\n" + yEnd);
+		
+		Context2d context = canvas.getContext2d();
+		context.setStrokeStyle(CssColor.make(255,0,0));
+
+		//Eucledian Geometry
+//		context.beginPath();
+//		context.setStrokeStyle(CssColor.make(255,0,0));
+//		context.setLineWidth(5.0);
+//		context.moveTo((xStart-0.5) * SPACER, (50-yStart+0.5) * SPACER);
+//	
+//		context.lineTo((xEnd-0.5) * SPACER, (50-yEnd+0.5)*SPACER);
+//		context.stroke(); 
+//		context.closePath();
+		
+		//Taxi Cab Gemoetry
+		context.beginPath();
+		context.setStrokeStyle(CssColor.make(0,255,255));
+		context.setLineWidth(5.0);
+		context.moveTo((xStart-0.5) * SPACER, (50-yStart+0.5) * SPACER);
+		context.lineTo((xEnd-0.5) * SPACER, (50-yStart+0.5) * SPACER);
+		context.lineTo((xEnd-0.5) * SPACER, (50-yEnd+0.5)*SPACER);
+		context.stroke(); 
+		context.closePath();
+	}
+	
+	/**
+	 * Method draws the rover and an arrow from its current position to the
+	 * next module to be moved.
+	 * @param xRover x coordinate position of the rover.
+	 * @param yRover y coordinate position of the rover.
+	 * @param index index of the module to navigate to.
+	 */
+	public void drawRoverToModule(int xRover, int yRover, int index) {
+		refreshDisplay();
+		
+		//Adjust for display
+		xRover -= 1;
+		yRover -= 1;
+		
+		//Draw Rover
+		context1.drawImage(rover, xRover*SPACER, (49 - yRover)*SPACER, SPACER, SPACER);
+		
+		//Draw Line
+		MarsConfiguration config = modset.getConfig(modset.getActiveConfig());
+		int xEnd = config.getXCoord(index);
+		int yEnd = config.getYCoord(index);
+		
+		Context2d context = canvas.getContext2d();
+		context.beginPath();
+		context.setStrokeStyle(CssColor.make(255,0,255));
+		context.setLineWidth(5.0);
+		context.moveTo((xRover+0.5)*SPACER, (49 - yRover + 0.5)*SPACER);
+		context.lineTo((xEnd-0.5) * SPACER, (49 - yRover + 0.5)*SPACER);
+		context.lineTo((xEnd-0.5) * SPACER, (50-yEnd+0.5)*SPACER);
+		context.stroke(); 
+		context.closePath();
+		
+	}
 	
 }
