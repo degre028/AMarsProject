@@ -56,9 +56,12 @@ public class QualityChecker {
 				}
 				
 				//Check for 3) Airlock is not next to dormitory.
+				//Check for 9) Airlock is next to medical
 				if(modset.getModule(i).getType().equals("Airlock")) {
 					quality += airlockRules(modset, neighbors);
 				}
+				
+				
 			}
 		}
 			
@@ -139,15 +142,30 @@ public class QualityChecker {
 	private static int airlockRules(ModuleSet modset, LinkedList<Integer> neighbors) {
 		int adjust = 0;
 		
-		//Check for 1) Sanitation is not next to canteen
-				for(int i = 0; i < neighbors.size(); i++) {
-					if(modset.getModule(neighbors.get(i)).getType().equals("Dormitory")) {
-						adjust -= 5;
-					}
-				}
+		//Check for 3) Airlock is not next to Dormitory
+		for(int i = 0; i < neighbors.size(); i++) {
+			if(modset.getModule(neighbors.get(i)).getType().equals("Dormitory")) {
+				adjust -= 5;
+			}
+		}
+		
+		//Check for 9) Airlock is next to medical.
+		for(int i = 0; i < neighbors.size(); i++) {
+			boolean isFound = false;
+			
+			if(modset.getModule(neighbors.get(i)).getType().equals("Medical")) {
+				isFound = true;
+			}
+			
+			if(!isFound) {
+				adjust -= 5;
+			}
+		}
 		
 		return adjust;
 	}
+	
+	
 	
 	
 }

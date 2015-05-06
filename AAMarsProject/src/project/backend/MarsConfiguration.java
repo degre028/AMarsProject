@@ -155,5 +155,17 @@ public class MarsConfiguration {
 		
 		return count;
 	}
+
+
+
+	private boolean getIsIgnored(int index) {
+		return getIsIgnored(index);
+	}
+
+
+
+	private void setIsIgnored(int index, boolean setter) {
+		isIgnored.set(index, setter);
+	}
 	
 }
