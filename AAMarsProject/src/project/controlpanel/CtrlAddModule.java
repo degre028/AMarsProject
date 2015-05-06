@@ -348,7 +348,8 @@ public class CtrlAddModule extends CtrlPanel{
 	}
 	
 	/**
-	 * No conflict add module
+	 * Checks for invalid inputs
+	 * @return boolean
 	 */
 	private boolean conflictChecker(MarsModule newMod){
 		int countInt = modules.getCount("all");
@@ -358,6 +359,10 @@ public class CtrlAddModule extends CtrlPanel{
 				return false;
 			} else if (newMod.getID() == modules.getModule(i).getID()){
 				Window.alert("Duplicate ID");
+				return false;
+			} else if (newMod.getX() < 1 || newMod.getY() < 1 || 
+					newMod.getY() > 50 || newMod.getX() > 100){
+				Window.alert("Invalid X or Y Coordinate");
 				return false;
 			}
 		}
