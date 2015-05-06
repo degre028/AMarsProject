@@ -1,12 +1,17 @@
 package project.simulation;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Random;
+import java.util.RandomAccess;
 
 import com.google.gwt.user.client.Window;
 
 import project.backend.MarsConfiguration;
 import project.backend.MarsModule;
 import project.backend.ModuleSet;
+
 import java.util.Collections;
 
 
@@ -165,7 +170,7 @@ public class FullConfigMaker {
 				  if(i>=2) {
 					  addNonPlain(config, moveMod, cenX,cenY+2, i);
 				  }
-				  if(i==9) {
+				  if(i==numplain || i == 9) {
 					  addNonPlain(config, moveMod, cenX-1, cenY+2, i, true);
 				  }
 			 }
@@ -189,7 +194,7 @@ public class FullConfigMaker {
 				  if(i>=2) {
 					  addNonPlain(config, moveMod, cenX,cenY-2, i);
 				  }
-				  if(i==9) {
+				  if(i==numplain || i == 9) {
 					  addNonPlain(config, moveMod, cenX-1, cenY-2, i, true);
 				  }
 			 }
@@ -211,7 +216,7 @@ public class FullConfigMaker {
 				  if(i>=2) {
 					  addNonPlain(config, moveMod, cenX,cenY+2, -i);
 				  }
-				  if(i==9) {
+				  if(i==numplain || i == 9) {
 					  addNonPlain(config, moveMod, cenX+1, cenY+2, -i, true);
 				  }
 			 }
@@ -233,7 +238,7 @@ public class FullConfigMaker {
 				  if(i>=2) {
 					  addNonPlain(config, moveMod, cenX,cenY-2, -i);
 				  }
-				  if(i==9) {
+				  if(i==numplain || i == 9) {
 					  addNonPlain(config, moveMod, cenX+1, cenY-2, -i, true);
 				  }
 			 }
@@ -400,6 +405,14 @@ public class FullConfigMaker {
 				  }
 			  }
 			  //Collections.shuffle(modules);
+			  
+			  Random random = new Random(System.currentTimeMillis());  
+			  
+			  for(int index = 0; index < modules.size(); index += 1) {  
+			      Collections.swap(modules, index, index + random.nextInt(modules.size() - index));  
+			  }
+			  
 			  return modules;
 		 }
+		 
 }
