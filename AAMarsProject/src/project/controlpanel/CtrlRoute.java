@@ -66,7 +66,7 @@ public class CtrlRoute extends CtrlPanel {
 		editPanel.getElement().getStyle().setPaddingTop(20.0, Unit.PX);
 	    editPanel.add(new Label("Module Movements"));
 	    libModules.setWidth("100%");
-	    libModules.setVisibleItemCount(16);
+	    libModules.setVisibleItemCount(10);
 	    editPanel.add(libModules);
 	    
 		FlowPanel moveCog = new FlowPanel();
@@ -112,22 +112,87 @@ public class CtrlRoute extends CtrlPanel {
 		});
 		
 
+		
+		
 
 		libModules.addChangeHandler( new ChangeHandler() {
 			public void onChange(ChangeEvent ev) {
-			
-				
-				
+				try {
+					if (libModules.getSelectedIndex()>0) {
+						modset.getGui().getCurCanvas().drawArrow(libModules.getSelectedIndex()-1);
+					}
+				}
+				catch (Exception e) {
+					Window.alert(e.getMessage());
+				}
 			}	
 		});
 		
 		moveCog.add(btnGravity);
+		
+		
+		
+		
+		FlowPanel roverPanel = new FlowPanel();
+		roverPanel.getElement().getStyle().setPaddingTop(20.0, Unit.PX);
+		Label roverLabel = new Label("Set Position of Rover");
+		roverLabel.setWidth("100%");
+		roverPanel.add(roverLabel);
+		
+		FlexTable roverTable = new FlexTable();
+		Label xRoverLabel = new Label("X Position:");
+		xRoverLabel.setSize("75px", "auto");
+		Label yRoverLabel = new Label("Y Position:");
+		yRoverLabel.setSize("75px", "auto");
+		roverTable.setWidget(0, 0, xRoverLabel);
+		roverTable.setWidget(1, 0, yRoverLabel);
+
+		final TextBox xRover = new TextBox();
+		final TextBox yRover = new TextBox();
+		xRover.setSize("60%", "auto");
+		yRover.setSize("60%", "auto");
+		
+		roverTable.setWidget(0, 1, xRover);
+		roverTable.setWidget(1, 1, yRover);
+		roverPanel.add(roverTable);
+		
+		final Button btnNextPosition = new Button("Find Next Position");
+		
+		
+		btnNextPosition.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				try {
+					if(libModules.getSelectedIndex() > 0) {
+					modset.getGui().getCurCanvas().refreshDisplay();
+					
+					int xRov = Integer.parseInt(xRover.getText());
+					int yRov = Integer.parseInt(yRover.getText());
+					
+					modset.getGui().getCurCanvas().drawRoverToModule(xRov, yRov, libModules.getSelectedIndex()-1);
+					}
+					else
+					{
+						Window.alert("Please select a module.");
+					}
+					
+					
+				}
+				catch (Exception e) {
+					Window.alert("Bad input data!  Enter whole numbers in each textbox!\n" + e.getMessage());
+				}
+					 
+			}
+		});
+		
+		
+		roverPanel.add(btnNextPosition);
 		
 //		mainTable.setWidget(0, 0, nameTable);
 //		mainTable.setWidget(1, 0, editPanel);
 		mainPanel.add(nameTable);
 		mainPanel.add(editPanel);
 		mainPanel.add(moveCog);
+		mainPanel.add(roverPanel);
 		super.getPanel().add(mainPanel);
 	}
 	
