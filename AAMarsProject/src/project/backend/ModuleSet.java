@@ -44,6 +44,8 @@ public class ModuleSet {
 	public void addModule(MarsModule mod) {
 		modList.add(mod);
 		storage.saveToLocalStore();
+		this.setActiveConfig(-1);
+		configList.clear();
 	}
 	
 	/**
@@ -54,6 +56,8 @@ public class ModuleSet {
 		//modList.add(mod);
 		modList.add(i, mod);
 		storage.saveToLocalStore();
+		this.setActiveConfig(-1);
+		configList.clear();
 	}
 	
 	
@@ -64,6 +68,8 @@ public class ModuleSet {
 	public void removeModule(int i) {
 		modList.remove(i);
 		storage.saveToLocalStore();
+		this.setActiveConfig(-1);
+		configList.clear();
 	}
 	
 	

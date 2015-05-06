@@ -7,6 +7,7 @@ import com.google.gwt.user.client.Window;
 import project.backend.MarsConfiguration;
 import project.backend.MarsModule;
 import project.backend.ModuleSet;
+import java.util.Collections;
 
 
 
@@ -14,6 +15,7 @@ import project.backend.ModuleSet;
 
 public class FullConfigMaker {
 	LinkedList<Integer> usedModules = new LinkedList<Integer>();
+	LinkedList<Integer> randomlist;
 	LinkedList<MarsModule> modList;
 	 int minx = 1;
 	 int miny = 1;
@@ -21,11 +23,13 @@ public class FullConfigMaker {
 	 int maxy = 50;
 	private ModuleSet modset;
 	 public FullConfigMaker(ModuleSet modset) {
-		  this.modset = modset;
+		 this.modset = modset;
 		 }
 	 
 	 public MarsConfiguration genFullConfig(ModuleSet modset, int numConf) {
+		  try {
 		  MarsConfiguration config = new MarsConfiguration(modset);
+			 randomlist = getNonPlain(config);
 		  //constructPlain(config, numplain, cenX, cenY);
 		  makeFull(config);
 		  //recenterize(config, cenX, cenY);
@@ -33,16 +37,37 @@ public class FullConfigMaker {
 			  moveVoid(config);
 		  }
 		  return config;
+		  }
+		  catch(Exception e) {
+			  Window.alert("" + e.getMessage());
+		  }
+		  return null;
 	 }
 	 
 	 private void makeFull(MarsConfiguration config) {
 
+		 setupPlains(config);
+		 
+		 //setupOthers();
+		 
+
+//		  Window.alert("X: "+cenX);  
+//		  Window.alert("Y: "+cenY);
+//		  moveMod = getModuleOfType("Plain");
+//		  config.setIsUsed(moveMod, true);
+//		  config.setXCoord(moveMod, cenX);
+//		  config.setYCoord(moveMod, cenY);
+
+	 }
+	 
+	 
+	 private void setupPlains(MarsConfiguration config) {
 		  int numplain = modset.getCount("Plain");
 		  //Window.alert("MiddleCount:" + numplain);
 		  int cenX = getCenterOfGravity(true);
 		  int cenY = getCenterOfGravity(false);
 		  constructPlain(config, numplain, cenX, cenY);
-		  recenterize(config, cenX, cenY);
+		  int moveMod = -1;
 	 }
 	 
 	 private Integer getCenterOfGravity(boolean isX) {
@@ -102,7 +127,7 @@ public class FullConfigMaker {
 			 if(even) {
 				  //Window.alert("even");  
 				  moveMod = getModuleOfType("Plain");
-				  Window.alert("" + moveMod);
+				  //Window.alert("" + moveMod);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
 				  config.setYCoord(moveMod, cenY-i);
@@ -116,7 +141,7 @@ public class FullConfigMaker {
 			 else {
 				 //Window.alert("odd"); 
 				 moveMod = getModuleOfType("Plain");
-				 Window.alert("" + moveMod);
+				 //Window.alert("" + moveMod);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
 				  config.setYCoord(moveMod, cenY+i);
@@ -138,7 +163,10 @@ public class FullConfigMaker {
 				  config.setXCoord(moveMod, cenX-i);
 				  config.setYCoord(moveMod, cenY+2);
 				  if(i>=2) {
-					  addNonPlain(config, moveMod, cenX,cenY, i);
+					  addNonPlain(config, moveMod, cenX,cenY+2, i);
+				  }
+				  if(i==9) {
+					  addNonPlain(config, moveMod, cenX-1, cenY+2, i, true);
 				  }
 			 }
 
@@ -153,10 +181,17 @@ public class FullConfigMaker {
 		 //Window.alert("BottomLeftCount:" + numplain);
 		 for(int i=1; i<=numplain; i++) {
 			 if(i<=9) {
-				  Window.alert("17" + moveMod);
+				  //Window.alert("" + moveMod);
+				  moveMod = getModuleOfType("Plain");
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX-i);
 				  config.setYCoord(moveMod, cenY-2);
+				  if(i>=2) {
+					  addNonPlain(config, moveMod, cenX,cenY-2, i);
+				  }
+				  if(i==9) {
+					  addNonPlain(config, moveMod, cenX-1, cenY-2, i, true);
+				  }
 			 }
 			 else {
 				  makeTopRight(config, numplain-9, cenX, cenY, moveMod);
@@ -173,6 +208,12 @@ public class FullConfigMaker {
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX+i);
 				  config.setYCoord(moveMod, cenY+2);
+				  if(i>=2) {
+					  addNonPlain(config, moveMod, cenX,cenY+2, -i);
+				  }
+				  if(i==9) {
+					  addNonPlain(config, moveMod, cenX+1, cenY+2, -i, true);
+				  }
 			 }
 			 else {
 				  makeBottomRight(config, numplain-9, cenX, cenY, moveMod);
@@ -189,6 +230,12 @@ public class FullConfigMaker {
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX+i);
 				  config.setYCoord(moveMod, cenY-2);
+				  if(i>=2) {
+					  addNonPlain(config, moveMod, cenX,cenY-2, -i);
+				  }
+				  if(i==9) {
+					  addNonPlain(config, moveMod, cenX+1, cenY-2, -i, true);
+				  }
 			 }
 			 else {
 				  i = numplain+1;
@@ -310,37 +357,48 @@ public class FullConfigMaker {
 		 }
 		 
 		 private void addNonPlain(MarsConfiguration config, int moveMod, int cenX,int cenY, int i) {
-			  int numdor = modset.getCount("Dormitory");
-			  int numsan = modset.getCount("Sanitation");
-			  int numfoo = modset.getCount("Food & Storage");
-			  int numgym = modset.getCount("Gym & Relaxation");
-			  int numcan = modset.getCount("Canteen");
-			  int numpow = modset.getCount("Power");
-			  int numcon = modset.getCount("Control");
-			  int nummed = modset.getCount("Medical");
-			  int numair = modset.getCount("Airlock");
-			  int all = modset.getCount("All");
-			  LinkedList<Integer> modules = new LinkedList<Integer>();
-			  
-			  for(int j = 0; j < all; j++) {
-				  
+
+
+			  if(!randomlist.isEmpty()) {
+			  moveMod = randomlist.removeFirst();
+			  config.setIsUsed(moveMod, true);
+			  config.setXCoord(moveMod, cenX-i);
+			  config.setYCoord(moveMod, cenY-1);
 			  }
-			  
-			  if(i==2 && numdor != 0) {
-			  moveMod = getModuleOfType("Dormitory");
+			  if(!randomlist.isEmpty()) {
+			  moveMod = randomlist.removeFirst();
 			  config.setIsUsed(moveMod, true);
 			  config.setXCoord(moveMod, cenX-i);
 			  config.setYCoord(moveMod, cenY+1);
-			  numdor--;
+			  }
+		 }
+		 
+		 private void addNonPlain(MarsConfiguration config, int moveMod, int cenX,int cenY, int i, boolean isend) {
+
+
+			  if(!randomlist.isEmpty()) {
+			  moveMod = randomlist.removeFirst();
+			  config.setIsUsed(moveMod, true);
+			  config.setXCoord(moveMod, cenX-i);
+			  config.setYCoord(moveMod, cenY);
 			  }
 		 }
 		 
 		 private LinkedList<Integer> getNonPlain(MarsConfiguration config) {
 			  LinkedList<Integer> modules = new LinkedList<Integer>();
-			  for(int i = 0; i<modset.getCount("All"); i++) {
-				  if(!modset.getModule(i).getType().equals("Plain") && config.) {
+			 // Window.alert("in method " + modset.getCount("all"));
+
+			  for(int i = 0; i<modset.getCount("all"); i++) {
+				  boolean isplain = modset.getModule(i).getType().equals("Plain");
+				  //Window.alert("Yes");
+				  //Window.alert("I: " + i + " " + modset.getModule(i).getType() + " " + config.getIsIgnored(i));
+				 // if(!(modset.getModule(i).getType().equals("Plain")) && !(config.getIsIgnored(i))) {
+					if(!isplain) {  
+				  //Window.alert("Is Triggered  I: " + i);
 					  modules.add(i);
 				  }
 			  }
+			  //Collections.shuffle(modules);
+			  return modules;
 		 }
 }

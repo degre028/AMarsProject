@@ -32,20 +32,25 @@ public class MarsConfiguration {
 			xCoords.add(modset.getModule(i).getX());
 			yCoords.add(modset.getModule(i).getY());
 			isUsed.add(false);
-			isIgnored.add(false);
+			if(modset.getModule(i).getType().equals("Unknown") || modset.getModule(i).getCondition().equals("Damaged")) {
+				isIgnored.add(true);
+			}
+			else if(modset.getModule(i).getX() < 1 || modset.getModule(i).getX() > 100) {
+				isIgnored.add(true);
+			}
+			else if(modset.getModule(i).getY() < 1 || modset.getModule(i).getX() > 50) {
+				isIgnored.add(true);
+			}
+			else {
+				isIgnored.add(false);
+			}
+			
 			moves.add(0);
 		}
 	}
 	
 	
-//	/**
-//	 * Method used to move a module within an individual config.
-//	 */
-//	public void setInitialCoords(int index, int xcoo, int ycoo) {
-//		modlist.get(index).setX(xcoo);
-//		modlist.get(index).setY(ycoo);
-//	}
-//	
+
 	public Integer getXCoord(int i) {
 		return xCoords.get(i);
 	}
@@ -87,6 +92,10 @@ public class MarsConfiguration {
 		return conQuality;
 	}
 	
+	public void setQuality(int qual) {
+		this.conQuality = qual;
+	}
+	
 	private void updateStats() {
 		ConfigStats stats = new ConfigStats(modset,this);
 		
@@ -124,5 +133,39 @@ public class MarsConfiguration {
 		}
 	}
 	
+	public int getConfigTypeCount(String type) {
+		
+		if (type.equals("all")) {
+			int count = 0;
+			for(int i=0; i<modset.getCount("all"); i++) {
+				if(isUsed.get(i)) {
+					count++;
+				}
+			}
+			return count;
+		}
+		
+		int count = 0;
+		
+		for(int i=0; i<modset.getCount("all"); i++) {
+			if(modset.getModule(i).getType().equals(type) && isUsed.get(i)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+
+
+
+	public boolean getIsIgnored(int index) {
+		return getIsIgnored(index);
+	}
+
+
+
+	public void setIsIgnored(int index, boolean setter) {
+		isIgnored.set(index, setter);
+	}
 	
 }
