@@ -46,6 +46,7 @@ public class Starter extends FlowPanel {
 		launchSomeConfigs();
 		//launchFullConfigs();
 
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			Window.alert(ex.getMessage() + "\n");
@@ -437,6 +438,17 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(41,42,174,"Good",0));	//Airlock
 		modset.addModule(new MarsModule(41,41,111,"Good",0));	//Food and Water
 		modset.addModule(new MarsModule(41,40,181,"Good",0));	//Food and Water
+		modset.addModule(new MarsModule(15,50,2,"Good",0));		//Plain
+		modset.addModule(new MarsModule(16,49,3,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(13,48,4,"Good",0)); 	//Plain
+		modset.addModule(new MarsModule(16,47,70,"Good",0)); 	//Dormitory
+		modset.addModule(new MarsModule(16,46,95,"Good",0));	//Sanitation
+		modset.addModule(new MarsModule(16,45,141,"Good",0));	//Canteen
+		modset.addModule(new MarsModule(10,44,154,"Good",0));	//Power
+		modset.addModule(new MarsModule(11,43,164,"Good",0));	//Control
+		modset.addModule(new MarsModule(11,42,174,"Good",0));	//Airlock
+		modset.addModule(new MarsModule(11,41,111,"Good",0));	//Food and Water
+		modset.addModule(new MarsModule(11,40,181,"Good",0));	//Food and Water
 		
 		modset.getGui().updateCanvasArea();
 		

@@ -29,6 +29,8 @@ public class CtrlConfig extends CtrlPanel {
 	
 	final ListBox libListOfConfigs = new ListBox();
 	final ModuleSet modset;
+	final boolean checking = true;
+	int configOutput = 1;
 	
 	final Button btnDuplicate = new Button("Duplicate");
     final Button btnLoad = new Button("Load Active");
@@ -167,14 +169,33 @@ public class CtrlConfig extends CtrlPanel {
 				else {
 					try {
 					MarsConfiguration mc = new MarsConfiguration(modset);
-					FullConfigMaker cm = new FullConfigMaker(modset);
-					mc = cm.genFullConfig(modset, 1);
-					mc.setName("Full Config A");
-					mc.setQuality(QualityChecker.getConfigQuality(mc, modset));
+					int maxquality = -1;
+					int i = 0;
+					
+					while(checking && maxquality != 100 && i < 1000 ) {
+						FullConfigMaker cm = new FullConfigMaker(modset);
+						MarsConfiguration tempconfig = new MarsConfiguration(modset);
+						tempconfig = cm.genFullConfig(modset, 1);
+						
+						int qualitycheck = QualityChecker.getConfigQuality(tempconfig, modset);
+						tempconfig.setQuality(qualitycheck);
+						
+						if (qualitycheck > maxquality) {
+							maxquality = qualitycheck;
+							mc = tempconfig;
+						}
+						
+						
+						i++;
+					}
+					
+					mc.setName("Full Config " + configOutput);
+					configOutput++;
 					modset.newConfig(mc);
+//					
 					}
 					catch (Exception ex) {
-						Window.alert("6");
+						//Window.alert("6");
 						Window.alert(ex.getMessage());
 					}
  				}

@@ -38,7 +38,7 @@ public class MarsConfiguration {
 			else if(modset.getModule(i).getX() < 1 || modset.getModule(i).getX() > 100) {
 				isIgnored.add(true);
 			}
-			else if(modset.getModule(i).getY() < 1 || modset.getModule(i).getX() > 50) {
+			else if(modset.getModule(i).getY() < 1 || modset.getModule(i).getY() > 50) {
 				isIgnored.add(true);
 			}
 			else {
@@ -158,13 +158,13 @@ public class MarsConfiguration {
 
 
 
-	private boolean getIsIgnored(int index) {
-		return getIsIgnored(index);
+	public boolean getIsIgnored(int index) {
+		return isIgnored.get(index);
 	}
 
 
 
-	private void setIsIgnored(int index, boolean setter) {
+	public void setIsIgnored(int index, boolean setter) {
 		isIgnored.set(index, setter);
 	}
 	
