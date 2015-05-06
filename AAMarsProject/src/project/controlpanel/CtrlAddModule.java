@@ -157,7 +157,7 @@ public class CtrlAddModule extends CtrlPanel{
 							ltCond.getValue(ltCond.getSelectedIndex()),
 							ltOri.getSelectedIndex());
 					    
-					if (isNew) { 
+					if (isNew && conflictChecker(newMod)) { 
 						modules.addModule(newMod);
 		    
 					    sound = soundController.createSound(Sound.MIME_TYPE_AUDIO_WAV_ADPCM,
@@ -345,5 +345,22 @@ public class CtrlAddModule extends CtrlPanel{
 		if(tempMod.getCondition().equals("Good")) ltCond.setSelectedIndex(0);
 		if(tempMod.getCondition().equals("Damaged")) ltCond.setSelectedIndex(1);
 		if(tempMod.getCondition().equals("Broken")) ltCond.setSelectedIndex(2);
+	}
+	
+	/**
+	 * No conflict add module
+	 */
+	private boolean conflictChecker(MarsModule newMod){
+		int countInt = modules.getCount("all");
+		for(int i =0; i<countInt; i++){
+			if(newMod.getX() == modules.getModule(i).getX() && newMod.getY() == modules.getModule(i).getY()){
+				Window.alert("Duplicate Coordinates");
+				return false;
+			} else if (newMod.getID() == modules.getModule(i).getID()){
+				Window.alert("Duplicate ID");
+				return false;
+			}
+		}
+		return true;		
 	}
 }
