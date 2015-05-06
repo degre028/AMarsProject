@@ -353,7 +353,12 @@ public class CtrlAddModule extends CtrlPanel{
 	 */
 	private boolean conflictChecker(MarsModule newMod){
 		int countInt = modules.getCount("all");
+		if(countInt >= 104){
+			Window.alert("To many modules (Module not added)");
+			return false;
+		}
 		for(int i =0; i<countInt; i++){
+			
 			if(newMod.getX() == modules.getModule(i).getX() && newMod.getY() == modules.getModule(i).getY()){
 				Window.alert("Duplicate Coordinates");
 				return false;
