@@ -166,6 +166,7 @@ public class CtrlConfig extends CtrlPanel {
 					modset.newConfig(mc);
 					}
 					catch (Exception ex) {
+						Window.alert("6");
 						Window.alert(ex.getMessage());
 					}
  				}
