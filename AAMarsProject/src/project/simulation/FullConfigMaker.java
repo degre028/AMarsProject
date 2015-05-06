@@ -390,10 +390,11 @@ public class FullConfigMaker {
 
 			  for(int i = 0; i<modset.getCount("all"); i++) {
 				  boolean isplain = modset.getModule(i).getType().equals("Plain");
+				  boolean isignored = config.getIsIgnored(i);
 				  //Window.alert("Yes");
 				  //Window.alert("I: " + i + " " + modset.getModule(i).getType() + " " + config.getIsIgnored(i));
 				 // if(!(modset.getModule(i).getType().equals("Plain")) && !(config.getIsIgnored(i))) {
-					if(!isplain) {  
+					if(!isplain && !isignored) {  
 				  //Window.alert("Is Triggered  I: " + i);
 					  modules.add(i);
 				  }
