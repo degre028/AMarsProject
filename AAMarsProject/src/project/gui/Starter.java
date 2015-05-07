@@ -43,8 +43,9 @@ public class Starter extends FlowPanel {
 		//launchServerStorage();
 		//launchLocalStorage();
 		//launchRemoteStorage();
-		//launchSomeConfigs();
-		launchFullConfigs();
+		launchSomeConfigs();
+		//launchFullConfigs();
+
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
