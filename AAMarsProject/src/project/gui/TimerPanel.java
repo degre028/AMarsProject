@@ -1,8 +1,11 @@
 package project.gui;
 
+import java.util.LinkedList;
+
 import project.backend.ModuleSet;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -24,16 +27,21 @@ public class TimerPanel extends Composite {
 	long startTime = 0;
 	final FlowPanel mainPanel = new FlowPanel();
 	Button btnReset = new Button("Reset");
-
+	final LinkedList<Boolean> flashBlack = new LinkedList<Boolean>();
+	
 	
 	final Timer flasher = new Timer() {
 		public void run() {
-			if (mainPanel.getElement().getStyle().getBorderColor().equals("RED"))
+			if (flashBlack.getFirst())
 			{
 				mainPanel.getElement().getStyle().setBorderColor("BLACK");
+				flashBlack.set(0, false);
+
 			}
 			else {
 				mainPanel.getElement().getStyle().setBorderColor("RED");
+				flashBlack.set(0, true);
+
 			}
 			
 		}
@@ -86,6 +94,7 @@ public class TimerPanel extends Composite {
 	public TimerPanel(final ModuleSet modset) {
 		//
 		this.startTime = startTime;
+		flashBlack.add(true);
 		
 		timerLabel.getElement().getStyle().setPaddingLeft(60.0, Unit.PX);
 		countLabel.getElement().getStyle().setPaddingLeft(3.0, Unit.PX);

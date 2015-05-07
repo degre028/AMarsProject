@@ -81,7 +81,7 @@ public class CtrlWelcome extends CtrlPanel {
 				        "resources/audio/Map_Modules.wav");
 				    //sound.play();
 				} catch (Exception e) {
-					Window.alert(e.getMessage());
+					//Window.alert(e.getMessage());
 				}
 			}
 		});

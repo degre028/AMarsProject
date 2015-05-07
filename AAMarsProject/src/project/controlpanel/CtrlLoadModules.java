@@ -65,7 +65,7 @@ public class CtrlLoadModules extends CtrlPanel {
 				
 				}
 				catch (Exception ex) {
-					Window.alert(ex.getMessage());
+					//Window.alert(ex.getMessage());
 				}
 			}
 		});
@@ -77,8 +77,43 @@ public class CtrlLoadModules extends CtrlPanel {
 	    editPanel.add(libListOfGPS);
 	    buttonPanel.add(btnLoad);
 	    
+	    FlowPanel emergencyPanel = new FlowPanel();
+	    emergencyPanel.getElement().getStyle().setPaddingTop(50.0, Unit.PX);
+	    emergencyPanel.add(new Label("Load Other Test:"));
+	    final TextBox txtOther = new TextBox();
+	    FlowPanel loadOtherButtonPanel = new FlowPanel();
+	    loadOtherButtonPanel.getElement().getStyle().setPaddingTop(10.0, Unit.PX);
+	    final Button btnLoadOther = new Button("Load Other");
+	    
+	    
+	    btnLoadOther.addClickHandler( new ClickHandler() {
+			public void onClick(ClickEvent ev) {
+				try {
+				modset.clearAll();
+				modset.getStorage().updateModSet(Integer.parseInt(txtOther.getText())-1);
+				
+				Timer t = new Timer() {
+					public void run() {
+						modset.getGui().updateCanvasArea();
+					}
+				};
+				
+				t.schedule(1000);
+				
+				}
+				catch (Exception ex) {
+					//Window.alert(ex.getMessage());
+				}
+			}
+		});
+		
+		emergencyPanel.add(txtOther);
+		loadOtherButtonPanel.add(btnLoadOther);
+		emergencyPanel.add(loadOtherButtonPanel);
+	    
 	    mainPanel.add(editPanel);
 	    mainPanel.add(buttonPanel);
+	    mainPanel.add(emergencyPanel);
 		super.getPanel().add(mainPanel);
 
 	}

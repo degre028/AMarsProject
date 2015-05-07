@@ -41,11 +41,16 @@ public class MarsStorage {
 	 * @param filename. The file to work on
 	 */
 	public MarsStorage(ModuleSet mset) {
+		try {
 		modset = mset;
 		localStorage = Storage.getLocalStorageIfSupported();
 		
 		if (localStorage == null) {
 			localFail = true;
+		}
+		}
+		catch (Exception e) {
+			
 		}
 		
 	}
@@ -55,6 +60,8 @@ public class MarsStorage {
 	 * @return modset. Returns a configuration class representing the list of modules.
 	 */
 	public void readServerHtml() {
+
+			
 		
 		LinkedList<MarsModule> modlist = new LinkedList<MarsModule>();
 		//Configuration config = new Configuration(modset,modlist);
@@ -63,6 +70,7 @@ public class MarsStorage {
 		
 		 d = Dictionary.getDictionary("dataset");
 		 int numbmods = Integer.parseInt(d.get("number"));
+
 		
 		try {
 			 for (int i = 1; i <= numbmods; i++) {
@@ -135,12 +143,15 @@ public class MarsStorage {
 
 			 //Write to local storage.
 			 //localStorage.setItem("number",i.toString());
+			 //Window.alert(modset.getConfigNumber() + "");
 			 localStorage.setItem("modset", mainSave.toString());
+
+			 localStorage.setItem("numberConfigs", String.valueOf(modset.getConfigNumber()));
 		 
 		 }
 		}
 		catch (Exception e) {
-			 Window.alert(e.getMessage());
+			 //Window.alert(e.getMessage());
 		}
 		
 	}
@@ -153,11 +164,13 @@ public class MarsStorage {
 
 		
 		Integer i = 0;
-		
+
 		JSONArray jA;
 		JSONNumber jN;
 		JSONString jS;
 		JSONObject jO;
+
+		
 		try {
 		
 			 //localStorage = Storage.getLocalStorageIfSupported();
@@ -197,14 +210,19 @@ public class MarsStorage {
 				}
 				catch (JSONException ex) {
 					
-					Window.alert(ex.getMessage() + "\n" + i.toString() + "\n in loop");
+					//Window.alert(ex.getMessage() + "\n" + i.toString() + "\n in loop");
 				}
 				
 				
 				
 			}
 			
-			int maxJ = Integer.parseInt(localStorage.getItem("numberConfigs"));
+			int maxJ = 0;
+			try {
+			maxJ = Integer.parseInt(localStorage.getItem("numberConfigs"));
+			} catch (Exception e) {
+				
+			}
 			
 			//Load configuration data
 			for (int j = 0; j < maxJ; j++) {
@@ -240,14 +258,14 @@ public class MarsStorage {
 					
 					modset.newConfig(config);
 				} catch (Exception e) {
-					Window.alert(e.getMessage());
+					//Window.alert(e.getMessage());
 				}
 			}
 			
 		} 
 		
 		}catch (Exception ex) {
-			Window.alert(ex.getMessage());
+			//Window.alert(ex.getMessage());
 		}
 		
 		
@@ -291,7 +309,7 @@ public class MarsStorage {
 			 	} ) ;
 			 
 			} catch (RequestException e) {
-			 Window. alert("RequestException: Couldn't retrieve JSON");
+			 //Window. alert("RequestException: Couldn't retrieve JSON");
 			 goAgainOff();
 			}
 			i++;
@@ -304,11 +322,15 @@ public class MarsStorage {
 	 * proxy.
 	 */
 	private synchronized void addModsetString(String rt) {
+		try {
 		if (rt.length() < 5) {
 			// Do nothing.
 		} else {
 			modsetCounter++;
 			modString.add(rt);
+		}
+		} catch (Exception e) {
+			
 		}
 		
 	}
@@ -347,7 +369,7 @@ public class MarsStorage {
 		 	} ) ;
 		 
 		} catch (RequestException e) {
-		 Window. alert("RequestException: Couldn't retrieve JSON");
+		 //Window. alert("RequestException: Couldn't retrieve JSON");
 		 goAgainOff();
 		}
 
@@ -468,7 +490,7 @@ public class MarsStorage {
 			 }
 			}
 			catch (Exception e) {
-				 Window.alert(e.getMessage());
+				 //Window.alert(e.getMessage());
 			}
 	}
 }

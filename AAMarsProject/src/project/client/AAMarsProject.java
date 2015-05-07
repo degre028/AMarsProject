@@ -15,6 +15,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -48,9 +50,31 @@ public class AAMarsProject implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
+
+		try {
+			
+		
+		 GWT.setUncaughtExceptionHandler(new
+			      GWT.UncaughtExceptionHandler() {
+			      public void onUncaughtException(Throwable e) {
+			        // do exception handling stuff
+			      }
+			    });
+			    DeferredCommand.addCommand(new Command() {
+			      public void execute() {
+			        onModuleLoad2();
+			      }
+			    });
+		} catch (Exception e) {
+			
+		}
+	  }
+	
+	public void onModuleLoad2() {
 		Starter starter = new Starter();
 		RootPanel.get().add(starter);
+	}
 			
 		
 	}
-}
+

@@ -94,7 +94,7 @@ public class CtrlWeather extends CtrlPanel{
 				
 				//Window.alert(mResponse);
 			} catch (Exception ex) {
-				Window.alert(ex.getMessage());
+				//Window.alert(ex.getMessage());
 			}
 			try {
 				JSONObject jA = (JSONObject)JSONParser.parseLenient(mResponse);
@@ -109,7 +109,7 @@ public class CtrlWeather extends CtrlPanel{
 			editedSunset = editedSunset + " Hours";
 			sunsetWeather.setText(editedSunset);
 			} catch (Exception ex) {
-				Window.alert(ex.getMessage());
+				//Window.alert(ex.getMessage());
 			}
 		      }
 			    };
@@ -143,7 +143,7 @@ public class CtrlWeather extends CtrlPanel{
 	    // Schedule the timer to run once in 5 seconds.
 	    t.schedule(1000);
 	  } catch (Exception ex){
-		  Window.alert(ex.getMessage());
+		  //Window.alert(ex.getMessage());
 	  }		    
 	}
 	

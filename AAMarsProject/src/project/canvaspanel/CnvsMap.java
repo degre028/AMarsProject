@@ -266,7 +266,7 @@ public class CnvsMap extends CnvsPanel{
 			
 		}
 		} catch (Exception e) {
-			Window.alert(e.getMessage());
+			//Window.alert(e.getMessage());
 		}
 	}
 	

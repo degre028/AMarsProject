@@ -69,11 +69,17 @@ public class MarsConfiguration {
 	
 	public void setXCoord(int index, int xcoord) {
 		xCoords.set(index, xcoord);
+		if(xcoord != modset.getModule(index).getX()) {
+			isUsed.set(index, true);
+		}
 		updateStats();
 	}
 	
 	public void setYCoord(int index, int ycoord) {
 		yCoords.set(index, ycoord);
+		if(ycoord != modset.getModule(index).getY()) {
+			isUsed.set(index, true);
+		}
 		updateStats();
 	}
 	

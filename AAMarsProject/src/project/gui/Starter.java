@@ -6,6 +6,7 @@ import project.backend.ModuleSet;
 import project.backend.Passwd;
 import project.backend.MarsStorage;
 
+import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -35,7 +36,7 @@ public class Starter extends FlowPanel {
 
 
 		try {
-		//launchLoginDemo();
+		launchLoginDemo();
 		//launchSkipLogin();
 		//launchSomeData();
 		//launchSomeMaximumData();
@@ -43,13 +44,13 @@ public class Starter extends FlowPanel {
 		//launchServerStorage();
 		//launchLocalStorage();
 		//launchRemoteStorage();
-		launchSomeConfigs();
+		//launchSomeConfigs();
 		//launchFullConfigs();
 
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			Window.alert(ex.getMessage() + "\n");
+		} catch (UmbrellaException ex) {
+			//ex.printStackTrace();
+			//Window.alert(ex.getMessage() + "\n");
 		}
 	}
 	

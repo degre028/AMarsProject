@@ -108,7 +108,7 @@ public class FullConfigMaker {
 		  return center;
 		 } 
 	 
-	 private Integer getModuleOfType(String type) {
+	 private Integer getModuleOfType(String type, MarsConfiguration config) {
 		  boolean found = false;
 		  int index = -1;
 		  int i = 0;
@@ -120,7 +120,7 @@ public class FullConfigMaker {
 		   } 
 		   else {
 		    //module not used already, check the type.
-		    if(modset.getModule(i).getType().equals(type)) {
+		    if(modset.getModule(i).getType().equals(type) && !config.getIsIgnored(i)) {
 		     found = true;
 		     usedModules.add(i);
 		     index = i;
@@ -144,7 +144,7 @@ public class FullConfigMaker {
 			 //Window.alert("" + i);
 			 if(even) {
 				  //Window.alert("even");  
-				  moveMod = getModuleOfType("Plain");
+				  moveMod = getModuleOfType("Plain", config);
 				  //Window.alert("" + moveMod);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
@@ -168,7 +168,7 @@ public class FullConfigMaker {
 			}
 			 else {
 				 //Window.alert("odd"); 
-				 moveMod = getModuleOfType("Plain");
+				 moveMod = getModuleOfType("Plain", config);
 				 //Window.alert("" + moveMod);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
@@ -195,7 +195,7 @@ public class FullConfigMaker {
 		 //Window.alert("TopLeftCount:" + numplain);
 		 for(int i=1; i<=numplain; i++) {
 			 if(i<=9) {
-				  moveMod = getModuleOfType("Plain");
+				  moveMod = getModuleOfType("Plain", config);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX-i);
 				  config.setYCoord(moveMod, cenY+2);
@@ -219,7 +219,7 @@ public class FullConfigMaker {
 		 for(int i=1; i<=numplain; i++) {
 			 if(i<=9) {
 				  //Window.alert("" + moveMod);
-				  moveMod = getModuleOfType("Plain");
+				  moveMod = getModuleOfType("Plain", config);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX-i);
 				  config.setYCoord(moveMod, cenY-2);
@@ -241,7 +241,7 @@ public class FullConfigMaker {
 		 //Window.alert("TopRightCount:" + numplain);
 		 for(int i=1; i<=numplain; i++) {
 			 if(i<=9) {
-				  moveMod = getModuleOfType("Plain");
+				  moveMod = getModuleOfType("Plain", config);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX+i);
 				  config.setYCoord(moveMod, cenY+2);
@@ -263,7 +263,7 @@ public class FullConfigMaker {
 		 //Window.alert("BottomRightCount:" + numplain);
 		 for(int i=1; i<=numplain; i++) {
 			 if(i<=8) {
-				  moveMod = getModuleOfType("Plain");
+				  moveMod = getModuleOfType("Plain", config);
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX+i);
 				  config.setYCoord(moveMod, cenY-2);

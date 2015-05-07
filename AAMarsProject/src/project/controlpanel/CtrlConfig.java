@@ -87,7 +87,7 @@ public class CtrlConfig extends CtrlPanel {
 					try {
 						modset.getGui().getCurCanvas().drawPreviewConfig(modset.getConfig(libListOfConfigs.getSelectedIndex()-1));
 					} catch (Exception ex) {
-						Window.alert(ex.getMessage());
+						//Window.alert(ex.getMessage());
 					}
 					
 				} else if(libListOfConfigs.getSelectedIndex() == 0) {
@@ -153,7 +153,7 @@ public class CtrlConfig extends CtrlPanel {
 					 
 			}
 			 catch (Exception e) {
-				Window.alert(e.getMessage());
+				//Window.alert(e.getMessage());
 			}
 		}});
 		
@@ -209,7 +209,7 @@ public class CtrlConfig extends CtrlPanel {
 					}
 					catch (Exception ex) {
 						//Window.alert("6");
-						Window.alert(ex.getMessage());
+						//Window.alert(ex.getMessage());
 					}
  				}
 					

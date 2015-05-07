@@ -123,7 +123,7 @@ public class CtrlRoute extends CtrlPanel {
 					}
 				}
 				catch (Exception e) {
-					Window.alert(e.getMessage());
+					//Window.alert(e.getMessage());
 				}
 			}	
 		});
