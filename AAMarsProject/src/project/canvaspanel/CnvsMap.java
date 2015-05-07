@@ -209,6 +209,17 @@ public class CnvsMap extends CnvsPanel{
 			        context1.setFillStyle(damagedMod);
 					context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
 				}
+				else {
+					MarsModule drawMod = modset.getModule(i);
+					int xcoor= config.getXCoord(i)-1;
+					int ycoor= config.getYCoord(i)-1;
+					context1.drawImage(getImage(modset.getModule(i).getType()), xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+					
+			        CssColor damagedMod = CssColor.make("rgba(" + 0 + ", " + 128 + "," + 0 + ", " + 0.5 + ")");
+			        context1.setFillStyle(damagedMod);
+					context1.fillRect(xcoor*SPACER, (49 - ycoor)*SPACER, SPACER, SPACER);
+				}
+					
 		}
 			
 			

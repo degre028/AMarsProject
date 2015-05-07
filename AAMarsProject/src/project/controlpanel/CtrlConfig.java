@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
 
@@ -31,6 +32,7 @@ public class CtrlConfig extends CtrlPanel {
 	final ModuleSet modset;
 	final boolean checking = true;
 	int configOutput = 1;
+	final Label labelGenProgress = new Label("Not Started");
 	
 	final Button btnDuplicate = new Button("Duplicate");
     final Button btnLoad = new Button("Load Active");
@@ -38,12 +40,21 @@ public class CtrlConfig extends CtrlPanel {
     final Button btnGenerate = new Button("Generate");
     
 	final Label lbNameOfActiveConfig = new Label("Live Config");
+	final ListBox libPermutations = new ListBox(); 
 	
 	public CtrlConfig(ModuleSet modSet) {
 		this.modset = modSet;
 		super.getHeaderLabel().setText("Configurations");
 		
 
+		libPermutations.addItem("1");
+		libPermutations.addItem("10");
+		libPermutations.addItem("100");
+		libPermutations.addItem("500");
+		libPermutations.addItem("1000");
+		libPermutations.addItem("2000");
+		libPermutations.addItem("40000");
+		
 		
 		FlowPanel mainPanel = new FlowPanel();
 		mainPanel.getElement().getStyle().setPaddingLeft(10.0, Unit.PX);
@@ -163,7 +174,7 @@ public class CtrlConfig extends CtrlPanel {
 					mc.setName("Minimum Cfg B");
 					modset.newConfig(mc);
 					} catch (Exception e) {
-						Window.alert(e.getMessage());
+						Window.alert("No Minimum Configuration Available");
 					}
 				}
 				else {
@@ -172,7 +183,9 @@ public class CtrlConfig extends CtrlPanel {
 					int maxquality = -1;
 					int i = 0;
 					
-					while(checking && maxquality != 100 && i < 1000 ) {
+					Integer numloops = Integer.parseInt(libPermutations.getItemText(libPermutations.getSelectedIndex()));
+					
+					while(checking && maxquality != 100 && i < numloops ) {
 						FullConfigMaker cm = new FullConfigMaker(modset);
 						MarsConfiguration tempconfig = new MarsConfiguration(modset);
 						tempconfig = cm.genFullConfig(modset, 1);
@@ -185,7 +198,7 @@ public class CtrlConfig extends CtrlPanel {
 							mc = tempconfig;
 						}
 						
-						
+						changeProgressLabel(i/100);
 						i++;
 					}
 					
@@ -222,7 +235,10 @@ public class CtrlConfig extends CtrlPanel {
 		
 		genTable.setWidget(0, 0, radioMin);
 		genTable.setWidget(1, 0, radioFull);
-		genTable.setWidget(2, 0, btnGenerate);
+		genTable.setWidget(2, 0, new Label("Permutations:"));
+		genTable.setWidget(3, 0, libPermutations);
+		genTable.setWidget(4, 0, btnGenerate);
+		
 	
 		
 		
@@ -259,6 +275,13 @@ public class CtrlConfig extends CtrlPanel {
 		
 		
 		
+	}
+	
+	/**
+	 * This method changes the progress label below the generate button.
+	 */
+	public void changeProgressLabel(int num) {
+		labelGenProgress.setText("Progress: " + num + "%" );
 	}
 
 }
