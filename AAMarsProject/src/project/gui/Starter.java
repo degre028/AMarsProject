@@ -496,7 +496,7 @@ public class Starter extends FlowPanel {
 		modset.addModule(new MarsModule(45,37,36,"Good",0));		//Plain
 		modset.addModule(new MarsModule(45,38,37,"Good",0));		//Plain
 		modset.addModule(new MarsModule(45,39,38,"Good",0));		//Plain
-		modset.addModule(new MarsModule(45,40,39,"Good",0));		//Plain
+		modset.addModule(new MarsModule(35,40,39,"Good",0));		//Plain
 		modset.addModule(new MarsModule(1,10,61,"Good",0));		//Dormitory
 		modset.addModule(new MarsModule(1,11,62,"Good",0));		//Dormitory
 		modset.addModule(new MarsModule(1,12,63,"Good",0));		//Dormitory

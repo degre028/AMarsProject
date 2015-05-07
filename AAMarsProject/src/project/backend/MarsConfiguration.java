@@ -41,6 +41,14 @@ public class MarsConfiguration {
 			else if(modset.getModule(i).getY() < 1 || modset.getModule(i).getY() > 50) {
 				isIgnored.add(true);
 			}
+			else if(modset.getModule(i).getX() > 40 && modset.getModule(i).getX() < 51) {
+				if(modset.getModule(i).getY() > 39 && modset.getModule(i).getY() < 51 ) {
+					isIgnored.add(true);
+				}
+				else{
+					isIgnored.add(false);
+				}
+			}
 			else {
 				isIgnored.add(false);
 			}

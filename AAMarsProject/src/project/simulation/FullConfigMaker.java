@@ -67,7 +67,20 @@ public class FullConfigMaker {
 	 
 	 
 	 private void setupPlains(MarsConfiguration config) {
-		  int numplain = modset.getCount("Plain");
+		  int numallplain = modset.getCount("all");
+		  int numplain = 0;
+		  //Window.alert("Before for");
+		  for(int i = 0; i < numallplain; i++ ) {
+			  boolean isplain = modset.getModule(i).getType().equals("Plain");
+			  boolean invoid = config.getIsIgnored(i);
+			  //Window.alert("Before if");
+			  if(isplain && !invoid) {
+				  //Window.alert("In if");
+				  numplain++;
+			  }
+		  }
+		  //Window.alert("Plains: " + numplain);
+ 
 		  //Window.alert("MiddleCount:" + numplain);
 		  int cenX = getCenterOfGravity(true);
 		  int cenY = getCenterOfGravity(false);
@@ -136,6 +149,16 @@ public class FullConfigMaker {
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
 				  config.setYCoord(moveMod, cenY-i);
+				  if(numplain <6) {
+					  addNonPlain(config,moveMod,cenX+i-1,cenY-i, i, true);
+					  addNonPlain(config,moveMod,cenX+i+1,cenY-i, i, true);
+					  if(2*i+2 >= numplain) {
+						  addNonPlain(config,moveMod,cenX+i,cenY-i-1, i, true); 
+						  if(numplain == 1) {
+							  addNonPlain(config,moveMod,cenX+i,cenY+i+1, i, true);
+						  }
+					  }
+				  }
 				  //Window.alert("" + (cenY-i));
 				  even = false;
 				  if(i==2) {
@@ -150,6 +173,13 @@ public class FullConfigMaker {
 				  config.setIsUsed(moveMod, true);
 				  config.setXCoord(moveMod, cenX);
 				  config.setYCoord(moveMod, cenY+i);
+				  if(numplain <6) {
+					  addNonPlain(config,moveMod,cenX+i-1,cenY+i, i, true);
+					  addNonPlain(config,moveMod,cenX+i+1,cenY+i, i, true);
+					  if(2*i+1 >= numplain) {
+						  addNonPlain(config,moveMod,cenX+i,cenY+i+1, i, true); 
+					  }
+				  }
 				  //Window.alert("" + (cenY+i));
 				  even = true;
 				  i--;
@@ -157,6 +187,8 @@ public class FullConfigMaker {
 			 i++;
 			 count++;
 		 }
+		 fillOpenSpots(config, moveMod, cenX, cenY, numplain);
+		 recenterize(config, cenX, cenY);
 	 }
 	 private void makeTopLeft(MarsConfiguration config, int numplain, int cenX, int cenY) {
 		 int moveMod = -1;
@@ -413,6 +445,245 @@ public class FullConfigMaker {
 			  }
 			  
 			  return modules;
+		 }
+		 
+		 private void fillOpenSpots(MarsConfiguration config, int moveMod, int cenX, int cenY, int numplain) {
+			 if(numplain > 5 && numplain < 15) {
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY-1);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY-2);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY-2);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY-1);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY+2);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY+1);
+				  }
+			 }
+			 if(numplain < 24 && numplain > 14) {
+				 if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY-2);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY-1);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY+2);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY+1);
+				  } 
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY);
+				  } 
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY-3);
+				  } 
+			 }
+			 if(numplain < 33 && numplain > 23) {
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY);
+				  } 
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+					 if(!randomlist.isEmpty()) {
+						  moveMod = randomlist.removeFirst();
+						  config.setIsUsed(moveMod, true);
+						  config.setXCoord(moveMod, cenX);
+						  config.setYCoord(moveMod, cenY-3);
+					  }
+					  if(!randomlist.isEmpty()) {
+						  moveMod = randomlist.removeFirst();
+						  config.setIsUsed(moveMod, true);
+						  config.setXCoord(moveMod, cenX+1);
+						  config.setYCoord(moveMod, cenY-2);
+					  }
+					  if(!randomlist.isEmpty()) {
+						  moveMod = randomlist.removeFirst();
+						  config.setIsUsed(moveMod, true);
+						  config.setXCoord(moveMod, cenX+1);
+						  config.setYCoord(moveMod, cenY-1);
+					  }
+					  if(!randomlist.isEmpty()) {
+						  moveMod = randomlist.removeFirst();
+						  config.setIsUsed(moveMod, true);
+						  config.setXCoord(moveMod, cenX+1);
+						  config.setYCoord(moveMod, cenY);
+			 }
+					  if(!randomlist.isEmpty()) {
+						  moveMod = randomlist.removeFirst();
+						  config.setIsUsed(moveMod, true);
+						  config.setXCoord(moveMod, cenX+1);
+						  config.setYCoord(moveMod, cenY+3);
+			 }
+			 }	 
+			 if(numplain > 32) {
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX-1);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY+3);
+				  }
+				  if(!randomlist.isEmpty()) {
+					  moveMod = randomlist.removeFirst();
+					  config.setIsUsed(moveMod, true);
+					  config.setXCoord(moveMod, cenX+1);
+					  config.setYCoord(moveMod, cenY-3);
+				  }
+			 }
 		 }
 		 
 }
