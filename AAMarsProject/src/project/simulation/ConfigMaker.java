@@ -31,8 +31,6 @@ public class ConfigMaker {
   */
  public MarsConfiguration genMinimumConfig(ModuleSet modset, int numConf) {
   MarsConfiguration config = new MarsConfiguration(modset);
-  boolean tits = false;
-  tits = inVoid(config);
   //Window.alert("" + tits);
   //makeFull1(config);
   
@@ -48,8 +46,6 @@ public class ConfigMaker {
   if(inVoid(config)) {
 	  moveVoid(config);
   }
-  tits = inVoid(config);
-  //Window.alert("" + tits);
   return config;
  }
  
@@ -182,7 +178,7 @@ public class ConfigMaker {
   int cenX = getCenterOfGravity(true);
   int cenY = getCenterOfGravity(false);
 
-  
+  if(canMakeMin(config)) {
   int moveMod = -1;
   //Window.alert(""+cenY);  
   moveMod = getModuleOfType("Plain");
@@ -237,12 +233,13 @@ public class ConfigMaker {
   
   recenterize(config, cenX, cenY);
  }
+ }
  
  private void makeMin2(MarsConfiguration config) {
   int cenX = getCenterOfGravity(true);
   int cenY = getCenterOfGravity(false);
 
-  
+  if(canMakeMin(config)) {
   int moveMod = -1;
   //Window.alert(""+cenY);  
   moveMod = getModuleOfType("Plain");
@@ -296,6 +293,7 @@ public class ConfigMaker {
   config.setYCoord(moveMod, cenY + 2);
   
   recenterize(config, cenX, cenY);
+ }
  }
  
  private boolean inVoid(MarsConfiguration config) {
@@ -769,6 +767,76 @@ public class ConfigMaker {
 	  
 	  recenterize(config, cenX, cenY);
 	 }
+ 
+ 	private boolean canMakeMin(MarsConfiguration config) {
+		int numdor = 0;
+		int numpla = 0;
+		int numsan = 0;
+		int numfoo = 0;
+		int numcon = 0;
+		int numpow = 0;
+		int numcan = 0;
+		int numair = 0;
+ 		for(int i = 0; i < modset.getCount("all"); i++ ) {
+			  boolean ispla = modset.getModule(i).getType().equals("Plain");
+			  boolean isdor = modset.getModule(i).getType().equals("Dormitory");
+			  boolean issan = modset.getModule(i).getType().equals("Sanitation");
+			  boolean isfoo = modset.getModule(i).getType().equals("Food & Water");
+			  boolean iscon = modset.getModule(i).getType().equals("Control");
+			  boolean ispow = modset.getModule(i).getType().equals("Power");
+			  boolean iscan = modset.getModule(i).getType().equals("Canteen");
+			  boolean isair = modset.getModule(i).getType().equals("Airlock");
+			  boolean invoid = config.getIsIgnored(i);
+			  //Window.alert("Before if");
+			  if(ispla && !invoid) {
+				  numpla++;
+				  //Window.alert("Plain: " + numpla);
+			  }
+			  else if(isdor && !invoid) {
+				  numdor++;
+				  //Window.alert("Dorm: " + numdor);
+			  }
+			  else if(issan && !invoid) {
+				  numsan++;
+				  //Window.alert("San: " + numsan);
+			  }
+			  else if(isfoo && !invoid) {
+				  numfoo++;
+				  //Window.alert("Food: " + numfoo);
+			  }
+			  else if(iscon && !invoid) {
+				  numcon++;
+				  //Window.alert("Con: " + numcon);
+			  }
+			  else if(ispow && !invoid) {
+				  numpow++;
+				  //Window.alert("Power: " + numpow);
+			  }
+			  else if(iscan && !invoid) {
+				  numcan++;
+				  //Window.alert("Can: " + numcon);
+			  }
+			  else if(isair && !invoid) {
+				  numair++;
+				  //Window.alert("Air: " + numair);
+			  }
+			  else {}
+		  }
+ 		
+ 		if((numpla >=3) &&
+ 				(numdor >= 1) &&
+ 				(numsan >= 1) &&
+ 				(numfoo >= 1) &&
+ 				(numcon >= 1) &&
+ 				(numpow >= 1) &&
+ 				(numcan >= 1) &&
+ 				(numair >= 1)) {
+ 			return true;
+ 			
+ 		}
+		  Window.alert("Cannot Generate a Minimum Configuration");
+ 		return false;
+ 	}
  
  }
 
